@@ -1,29 +1,29 @@
-import asyncpraw
 import asyncio
+from fastmcp import Client
 
 async def main():
-    async with asyncpraw.Reddit(
-        client_id="oFMO4ZLCcBlIBA-mm8S0Lg",
-        client_secret="btVC-TdjvvFIPdbQo5mqogYdWdULTw",
-        user_agent="your_platform:roam_mate:v1.0 (by u/Admirable-Star-1447)"
-    ) as reddit:
-        subreddit = await reddit.subreddit("Kasol")
-        async for submission in subreddit.hot(limit=5):
-            print(f"Post Title: {submission.title}")
-            # Load comments
-            await submission.load()  # Ensure submission is fully loaded (optional but recommended)
+    client = Client("http://localhost:8000")  # Your running MCP server
 
-            # Replace 'MoreComments' objects to get all comments
-            await submission.comments.replace_more(limit=0)
+    async with client:
+        # Optional: list available tools
+        tools = await client.list_tools()
+        print("Available tools:", [t.name for t in tools])
 
-            # Iterate over all comments (flat)
-            for comment in submission.comments.list():
-                # You can filter deleted or removed comments
-                if comment.body and comment.body.lower() not in ['[deleted]', '[removed]']:
-                    print(f"  Comment by {comment.author}: {comment.body[:100]}")  # Print first 100 chars
+        # Call your tool with proper arguments
+        result = await client.call_tool(
+            "scrape_and_extract_travel_advice",
+            {
+                "subreddit": "all",
+                "user_prefs": {
+                    "location": "Kasol",
+                    "interests": ["cafes", "hiking"],
+                    "trip_style": "relaxed"
+                },
+                "post_limit": 3
+            }
+        )
+        print("== TOOL RESULT ==")
+        print(result.data)  # Or result.content[0].text for plain text
 
-            print("\n" + "-"*50 + "\n")
-
-
-
-asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())
