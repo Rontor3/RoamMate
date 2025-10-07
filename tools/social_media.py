@@ -1,4 +1,4 @@
-from fastmcp import FastMCP
+from fastmcp import tool
 import asyncio
 import asyncpraw
 import time
@@ -27,7 +27,7 @@ except ImportError:
     logger.warning("python-dotenv not installed. Please install it or set environment variables manually.")
 
 # Create MCP server instance
-mcp = FastMCP("SocialTools")
+#mcp = FastMCP("SocialTools")
 
 # Reddit API credentials (replace with your real credentials or load from env)
 CLIENT_ID = "-HzPQ6ejtqhohQGFFqqI-w"
@@ -267,44 +267,6 @@ def generate_reddit_search_queries(user_prefs) -> list[str]:
     # Limit to 3 queries max
     return queries[:3]
 
-def extract_travel_insights_with_llm(prompt: str, temperature=0.3, max_new_tokens=1024) -> dict: 
-    """
-    Summarize travel insights from Reddit content using the  model.
-    """
-    body = {
-        "model": "llama-3.1-8b-instant",   # high context model
-        "messages": [
-            {"role": "system", "content": "You are a helpful assistant that summarizes Reddit discussions."},
-            {"role": "user", "content": prompt}
-        ],
-        "max_tokens": 1024  # adjust if you want longer summaries
-    }
-
-    headers = {
-        "Authorization": f"Bearer {API_KEY}",
-        "Content-Type": "application/json"
-    }
-
-    response = requests.post(URL, headers=headers, json=body)
-    result = response.json()
-    # Log the full response for inspection
-    logger.info("Full Groq response:\n%s", json.dumps(result, indent=2))
-
-    # Extract the generated text
-    summary = result["choices"][0]["message"]["content"]
-    return summary
-async def summarize_in_batches(all_posts_text):
-    batches = split_into_batches(all_posts_text)
-    async with aiohttp.ClientSession() as session:
-        tasks = [
-            call_llm(session, f"Batch {i+1} of {len(batches)}:\n{chunk}")
-            for i, chunk in enumerate(batches)
-        ]
-        results = await asyncio.gather(*tasks)
-
-    # Extract text from each response and merge
-    partials = [r["choices"][0]["message"]["content"] for r in results]
-    return "\n\n".join(partials)
 
 def split_into_batches(user_pref:str,text: str, max_input_tokens: int = 4500, model_name="gpt-4o"):
     """
@@ -392,10 +354,34 @@ def build_llm_prompt(user_prefs, all_posts_text):
     return f"{prefs_text}\n\n{all_posts_text}\n\n{instruction}\n\n"
 
 
-@mcp.tool()
-async def scrape_and_extract_travel_advice(subreddit: str, user_prefs: dict, post_limit: int) -> dict:
+@tool(
+    name="scrape_and_extract_travel_advice",
+    description="Scrapes Reddit for travel advice based on user preferences and subreddit, then extracts insights using a language model.",
+    input_schema={
+        "type": "object",
+        "properties": {
+            "user_prefs": {
+                "type": "object",
+                "description": "User preferences for travel advice extraction.",
+                "properties": {
+                    "location": {"type": "string", "description": "Preferred travel location."},
+                    "interest": {"type": "string", "description": "User interests related to travel."},
+                    "trip_style": {"type": "string", "description": "Preferred style of trip."}
+                },
+                "required": ["location", "interest", "trip_style"],
+                "additionalProperties": False
+            },
+            "post_limit": {
+                "type": "integer",
+                "description": "The maximum number of posts to retrieve."
+            }
+        },
+        "required": ["user_prefs", "post_limit"]
+    }
+)
+async def scrape_and_extract_travel_advice(user_prefs: dict, post_limit: int) -> dict:
     """Scrape Reddit for travel advice and extract insights using LLM."""
-    logger.info(f"Tool called with subreddit: {subreddit}, post_limit: {post_limit}")
+    logger.info(f"Tool called with post_limit: {post_limit}")
     
     try:
         queries = generate_reddit_search_queries(user_prefs)   ##used for extracting the queries from the user preferences
@@ -434,8 +420,6 @@ async def scrape_and_extract_travel_advice(subreddit: str, user_prefs: dict, pos
         logger.error(f"Error in scrape_and_extract_travel_advice: {e}")
         return {"insights": f"Error occurred while processing: {str(e)}"}   
 
-if __name__ == "__main__":
-    logger.info("Starting SocialTools MCP server...")
-    mcp.run(transport="http", host="127.0.0.1", port=8000, log_level="debug")        
+    
 
 
