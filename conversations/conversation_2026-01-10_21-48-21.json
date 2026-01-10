@@ -1,0 +1,42 @@
+[
+  {
+    "role": "user",
+    "content": "I want to go to Goa"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's try to find some travel suggestions for a trip to Goa based on your request. ",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01DTF4g1yrGwzGS6vWVgTAi4",
+        "input": {
+          "params": {
+            "user_prefs": {
+              "location": "Goa",
+              "interests": [],
+              "trip_style": ""
+            },
+            "post_limit": 5
+          }
+        },
+        "name": "scrape_and_extract_travel_advice",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01DTF4g1yrGwzGS6vWVgTAi4",
+        "content": [
+          "type='text' text='{\"status\":\"success\",\"message\":\"Reddit aggregated data\",\"data\":\"I\\'ve summarized the Reddit discussions for you:\\\\n\\\\n**1. Mapping U.S. regional food traditions**\\\\n\\\\nA user shared a map of 78 U.S. food regions after a year of research, debate, and feedback from locals. The map is based on distinct culinary traditions shaped by geography, culture, and history. The user invited feedback on the map, asking if any regions were missed or if any should be renamed or split.\\\\n\\\\n**2. Goa restaurant controversy**\\\\n\\\\nA user shared a story about the owner of a restaurant in Goa (Babka) bashing a reviewer on social media. The post sparked a discussion about the local politics and scams in Goa, with some users sharing their negative experiences with the cab mafia and overhyped tourist attractions.\\\\n\\\\n**3. Finding a travel companion for Goa**\\\\n\\\\nA 23-year-old female user from Hyderabad is planning to travel to Goa solo in April 2026 and is looking for a like-minded female companion. She has a budget of 15k and is flexible with her travel plans.\\\\n\\\\n**4. Tips for traveling to South Goa**\\\\n\\\\nA user shared their tips for traveling to South Goa, including recommendations for where to stay (Palolem), what to eat, and things to do (visiting Butterfly Beach, Cola Beach, and Agonda). They also provided tips for North Goa, including visiting Tito\\'s Lane and trying local drinks like Urak and Feni.\\\\n\\\\n**5. Successful itinerary for South Goa**\\\\n\\\\nA user shared their 5-day itinerary for South Goa, which included visiting Palolem, Butterfly Beach, Galgibaga Beach, and Agonda. They provided costs for their trip, including train tickets, hotel, taxi, scooty rental, and food, which totaled around 37,000 INR for a married couple.\\\\n\\\\n## Goa Travel Discussions\\\\n\\\\n### Trip Itineraries and Costs\\\\n\\\\nA couple shared their 4N5D Goa trip itinerary and costs for the second week of November:\\\\n\\\\n* Total cost: Rs 37,000\\\\n* Breakdown:\\\\n\\\\t+ Train tickets: Rs 7,000\\\\n\\\\t+ Hotel: Rs 9,500\\\\n\\\\t+ Taxi: Rs 3,200\\\\n\\\\t+ Scooty rent and fuel: Rs 2,000\\\\n\\\\t+ Food, drinks, and miscellaneous: Rs 15,300\\\\n\\\\nAnother user shared a 3N4D Goa trip itinerary under \u20b915k:\\\\n\\\\n* Stay: \u20b91.2k\u20131.6k per night around Calangute/Candolim\\\\n* Transport: scooter rental \u20b9400\u2013500/day + fuel \u20b9300\u2013400\\\\n* Food: \u20b9600\u2013800 per day at local caf\u00e9s and beach shacks\\\\n\\\\n### Solo Travel to Goa\\\\n\\\\nA 26-year-old male shared his concerns about solo traveling to Goa:\\\\n\\\\n* Fears:\\\\n\\\\t+ Feeling alone\\\\n\\\\t+ Eating alone\\\\n\\\\t+ Boredom\\\\n\\\\t+ Security concerns\\\\n* Request for tips and tricks from experienced solo travelers\\\\n\\\\n### Itinerary Sharing\\\\n\\\\nUsers shared their Goa trip itineraries, including:\\\\n\\\\n* A 6-day itinerary covering South and North Goa, including visits to Palolem, Agonda, and Calangute beaches, as well as forts and markets.\\\\n* A 4-day itinerary focusing on North Goa, with visits to Calangute, Baga, and Vagator beaches, as well as Anjuna Flea Market and Chapora Fort.\\\\n\\\\n### Accommodation and Transportation\\\\n\\\\nUsers discussed their accommodation choices, including:\\\\n\\\\n* The Village Resort Palolem and Casa Amancio in North Goa\\\\n* Budget stays around Calangute/Candolim\\\\n\\\\nTransportation options included:\\\\n\\\\n* Renting a car or scooter\\\\n* Using taxis\\\\n\\\\n### Activities and Experiences\\\\n\\\\nUsers shared their experiences with various activities, such as:\\\\n\\\\n* Visiting beaches, forts, and markets\\\\n* Trying water sports (though some missed out due to monsoon)\\\\n* Hiking to butterfly beach\\\\n* Enjoying local food and drinks at caf\u00e9s and beach shacks.\\\\n\\\\nThe discussions are about planning a trip to Goa, India. Here are the summaries:\\\\n\\\\n**Goa Itinerary and Budget**\\\\n\\\\n* A user shared their 4-day itinerary for Goa, visiting places like Fort Aguada, Candolim Beach, Anjuna Flea Market, and Old Goa, with a total spend of \u20b912k-\u20b914.5k.\\\\n* They offered to help others with stay and route suggestions.\\\\n\\\\n**Solo Goa Trip for NYE**\\\\n\\\\n* A 20-year-old female solo traveler is planning a trip to Goa from Dec 25 to Jan 2 and wants to experience classy parties, EDM, R&B, Techno parties, chic beach clubs, sunset beaches, Latin dance socials, and art experiences.\\\\n* She asked for advice on choosing between hostels, hotels, or Airbnbs for safety and amazing experiences.\\\\n* Other users suggested sharing more details about her itinerary, budget, and travel style to get better advice.\\\\n\\\\n**Must-try Foods in Goa**\\\\n\\\\n* Users discussed must-try foods in Goa, including:\\\\n\\\\t+ Prawn curry\\\\n\\\\t+ Pork/Chicken Vindaloo\\\\n\\\\t+ Bebinca\\\\n\\\\t+ Cutlet Pao\\\\n\\\\t+ Choris Pao\\\\n\\\\t+ Ros Omelette\\\\n\\\\t+ Rissois\\\\n\\\\t+ Rachaedo Bangdo\\\\n\\\\t+ Chicken Cafrael\\\\n\\\\t+ Chonak Rawa fry\\\\n\\\\t+ Goan sausages\\\\n\\\\n**Safety for Solo Woman Traveler**\\\\n\\\\n* A solo woman traveler asked about the safety of South Goa for a trip at the end of January.\\\\n* Other users replied that Goa is generally safe, and she can roam around places like Agonda, Palolem, and Morjim.\\\\n\\\\n**Connecting with Other Solo Travelers**\\\\n\\\\n* Users connected with each other for a solo trip to Goa during NYE, with some planning to meet up and have fun together.\"}' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "role": "user",
+    "content": "Hello"
+  },
+  {
+    "role": "assistant",
+    "content": "Hello! How can I assist you today?"
+  },
+  {
+    "role": "user",
+    "content": "I want to go to Goa"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's see if we can find some good travel suggestions for a trip to Goa. ",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01GofgAwuZcBmmDuw3ftSYvv",
+        "input": {
+          "params": {
+            "user_prefs": {
+              "location": "Goa",
+              "interests": [
+                "beaches",
+                "nature",
+                "food"
+              ],
+              "trip_style": "relaxing"
+            },
+            "post_limit": 5
+          }
+        },
+        "name": "scrape_and_extract_travel_advice",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

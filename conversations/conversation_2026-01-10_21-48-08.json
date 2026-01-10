@@ -1,0 +1,30 @@
+[
+  {
+    "role": "user",
+    "content": "I want to go to Goa"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's try to find some travel suggestions for a trip to Goa based on your request. ",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01DTF4g1yrGwzGS6vWVgTAi4",
+        "input": {
+          "params": {
+            "user_prefs": {
+              "location": "Goa",
+              "interests": [],
+              "trip_style": ""
+            },
+            "post_limit": 5
+          }
+        },
+        "name": "scrape_and_extract_travel_advice",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

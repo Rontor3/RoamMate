@@ -1,4 +1,3 @@
-from fastmcp import tool
 import asyncio
 import asyncpraw
 import time
@@ -11,7 +10,8 @@ import requests
 import json
 import tiktoken
 import aiohttp
-
+#from ..main import mcp
+from pydantic import BaseModel
 # Set up logging to see what's happening
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -54,9 +54,6 @@ import logging
 import asyncpraw
 from typing import List, Dict
 
-# Set up logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 
 
@@ -238,9 +235,9 @@ def generate_reddit_search_queries(user_prefs) -> list[str]:
     Returns:
         List of up to 3 tailored query strings for Reddit search.
     """
-    location = user_prefs.get("location", "").strip()
-    interests = user_prefs.get("interests", [])
-    trip_style = user_prefs.get("trip_style", "").strip().lower()
+    location = user_prefs.location.strip()
+    interests = user_prefs.interests
+    trip_style = user_prefs.trip_style.strip().lower()
 
     queries = []
 
@@ -268,7 +265,7 @@ def generate_reddit_search_queries(user_prefs) -> list[str]:
     return queries[:3]
 
 
-def split_into_batches(user_pref:str,text: str, max_input_tokens: int = 4500, model_name="gpt-4o"):
+def split_into_batches(user_pref:str,text: str, max_input_tokens: int = 4000, model_name="gpt-4o"):
     """
     Split text into batches of roughly max_input_tokens tokens,
     cutting only at paragraph breaks when possible.
@@ -307,7 +304,7 @@ def split_into_batches(user_pref:str,text: str, max_input_tokens: int = 4500, mo
 async def call_llm(session, prompt):
     headers = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
     body = {
-        "model": "llama-3.1-8b-instant",
+        "model": "meta-llama/llama-4-scout-17b-16e-instruct",
         "messages": [
             {"role": "system", "content": "You are a helpful assistant that summarizes Reddit discussions."},
             {"role": "user", "content": prompt}
@@ -324,7 +321,7 @@ async def summarize_in_batches(total_data,user_pref):
             for chunk in (batches)
         ]
         results = await asyncio.gather(*tasks)
-
+    logger.info(results)
     # Extract text from each response and merge
     partials = [r["choices"][0]["message"]["content"] for r in results]
     return "\n\n".join(partials)  
@@ -339,9 +336,9 @@ def build_llm_prompt(user_prefs, all_posts_text):
     """
     prefs_text = (
         f"User Preferences:\n"
-        f"- Location: {user_prefs.get('location','')}\n"
-        f"- Interests: {', '.join(user_prefs.get('interests', []))}\n"
-        f"- Trip Style: {user_prefs.get('trip_style', '')}\n"
+        f"- Location: {user_prefs.location}\n"
+        f"- Interests: {', '.join(user_prefs.interests)}\n"
+        f"- Trip Style: {user_prefs.trip_style}\n"
     )
     instruction = (
         "Your task:\n"
@@ -353,35 +350,23 @@ def build_llm_prompt(user_prefs, all_posts_text):
     )
     return f"{prefs_text}\n\n{all_posts_text}\n\n{instruction}\n\n"
 
+class UserPrefs(BaseModel):
+    location: str
+    interests: list
+    trip_style: str
 
-@tool(
-    name="scrape_and_extract_travel_advice",
-    description="Scrapes Reddit for travel advice based on user preferences and subreddit, then extracts insights using a language model.",
-    input_schema={
-        "type": "object",
-        "properties": {
-            "user_prefs": {
-                "type": "object",
-                "description": "User preferences for travel advice extraction.",
-                "properties": {
-                    "location": {"type": "string", "description": "Preferred travel location."},
-                    "interest": {"type": "string", "description": "User interests related to travel."},
-                    "trip_style": {"type": "string", "description": "Preferred style of trip."}
-                },
-                "required": ["location", "interest", "trip_style"],
-                "additionalProperties": False
-            },
-            "post_limit": {
-                "type": "integer",
-                "description": "The maximum number of posts to retrieve."
-            }
-        },
-        "required": ["user_prefs", "post_limit"]
-    }
-)
-async def scrape_and_extract_travel_advice(user_prefs: dict, post_limit: int) -> dict:
+class InputModel(BaseModel):
+    user_prefs: UserPrefs
+    post_limit: int | None = None
+#@mcp.tool(
+    #name="scrape_and_extract_travel_advice",
+    #description="Scrapes Reddit for travel advice based on user preferences and subreddit, then extracts insights using a language model."
+#)
+async def scrape_and_extract_travel_advice(params: InputModel) -> dict:
     """Scrape Reddit for travel advice and extract insights using LLM."""
-    logger.info(f"Tool called with post_limit: {post_limit}")
+    logger.info(f"Tool called with post_limit: {params.post_limit}")
+    user_prefs = params.user_prefs
+    post_limit = params.post_limit or 5
     
     try:
         queries = generate_reddit_search_queries(user_prefs)   ##used for extracting the queries from the user preferences

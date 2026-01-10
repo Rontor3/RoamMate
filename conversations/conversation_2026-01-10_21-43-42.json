@@ -1,0 +1,30 @@
+[
+  {
+    "role": "user",
+    "content": "Goa as of now"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let me try to provide some travel advice for Goa based on the current situation:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01A4EXcTGxKSUaLgRqHkZRFC",
+        "input": {
+          "params": {
+            "user_prefs": {
+              "location": "Goa",
+              "interests": [],
+              "trip_style": ""
+            },
+            "post_limit": 5
+          }
+        },
+        "name": "scrape_and_extract_travel_advice",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

@@ -1,0 +1,33 @@
+[
+  {
+    "role": "user",
+    "content": "goa as of now"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let me scrape and extract some travel advice for Goa as of now:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01Y9Nfom9dyXijrEGaXHHBEu",
+        "input": {
+          "params": {
+            "user_prefs": {
+              "location": "Goa",
+              "interests": [
+                "beaches",
+                "culture",
+                "nightlife"
+              ],
+              "trip_style": "relaxing"
+            }
+          }
+        },
+        "name": "scrape_and_extract_travel_advice",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

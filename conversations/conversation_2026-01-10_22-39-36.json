@@ -1,0 +1,38 @@
+[
+  {
+    "role": "user",
+    "content": "Hello"
+  },
+  {
+    "role": "assistant",
+    "content": "Hello! How can I assist you today?"
+  },
+  {
+    "role": "user",
+    "content": "I want to go to Goa"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's see if I can provide some travel advice for a trip to Goa.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01PkwyB9zfwg2BVNpqHy7gPN",
+        "input": {
+          "params": {
+            "user_prefs": {
+              "location": "Goa",
+              "interests": [],
+              "trip_style": ""
+            },
+            "post_limit": 5
+          }
+        },
+        "name": "scrape_and_extract_travel_advice",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

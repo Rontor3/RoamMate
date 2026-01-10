@@ -1,0 +1,30 @@
+[
+  {
+    "role": "user",
+    "content": "I would like to go to Goa, I want a laid back trip chill views and good food"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's see if we can find some good travel recommendations for you based on your preferences for a chill trip to Goa with good views and food:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_016EuJnWy1gcW38AWZStEnPS",
+        "input": {
+          "params": {
+            "user_prefs": {
+              "location": "Goa",
+              "interests": [],
+              "trip_style": "laid back"
+            },
+            "post_limit": 5
+          }
+        },
+        "name": "scrape_and_extract_travel_advice",
+        "type": "tool_use"
+      }
+    ]
+  }
+]
