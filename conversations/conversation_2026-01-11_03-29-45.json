@@ -1,0 +1,36 @@
+[
+  {
+    "role": "user",
+    "content": "Find me a luxury hotel in Goa."
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's search for a luxury hotel in Goa:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01MZj4FNfgpRvmu1DkhRb7jp",
+        "input": {
+          "location": "Goa",
+          "budget_category": "luxury"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01MZj4FNfgpRvmu1DkhRb7jp",
+        "content": [
+          "type='text' text='Hotel recommendations in Goa (luxury):\\n\\n- The Grand Goan: \u20b915,000/night | Rating: 4.9/5\\n- Azurio Sands: \u20b918,500/night | Rating: 4.8/5\\n' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

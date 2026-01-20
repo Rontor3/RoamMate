@@ -1,0 +1,160 @@
+[
+  {
+    "role": "user",
+    "content": "hi I want to travel to Varkala next weekend"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let me help you plan your trip to Varkala!",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01XYNSUPWJMhWVkcTCxGcXiR",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01XYNSUPWJMhWVkcTCxGcXiR",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Ghazipur, Uttar Pradesh, India\\n\ud83d\udcc5 Date: 19/01/2026 (Monday)\\n\ud83d\udcc6 ISO Date: 2026-01-19\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Based on your location in Ghazipur, Uttar Pradesh, here are some travel options to Varkala, Kerala for next weekend:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01Qn7FrQbExx8kdwqwAYwzMN",
+        "input": {
+          "origin": "Ghazipur",
+          "destination": "Varkala"
+        },
+        "name": "search_travel_routes",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01Qn7FrQbExx8kdwqwAYwzMN",
+        "content": [
+          "type='text' text='\u26a0\ufe0f Google Custom Search API is not configured.\\n\\nPlease add the following to your .env file:\\n- GOOGLE_API_KEY=your_api_key\\n- GOOGLE_SEARCH_ENGINE_ID=your_cx_id\\n\\nMeanwhile, here are typical travel options:\\n\u2708\ufe0f Flights - Ask me to search for specific flights from Ghazipur to Varkala\\n\ud83d\ude82 Trains - Check https://www.irctc.co.in\\n\ud83d\ude8c Buses - Check https://www.redbus.in' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Since I'm unable to search travel routes, would you be able to provide your preferred travel dates and budget? That will help me find the best flight and hotel options for your trip to Varkala next weekend."
+  },
+  {
+    "role": "user",
+    "content": "what are my options"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, no problem. Let me try to get more details to provide you with the best travel options to Varkala next weekend.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01YMh3HSxx23qcC16K5qPkex",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01YMh3HSxx23qcC16K5qPkex",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Ghazipur, Uttar Pradesh, India\\n\ud83d\udcc5 Date: 19/01/2026 (Monday)\\n\ud83d\udcc6 ISO Date: 2026-01-19\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, since you're located in Ghazipur, here are the travel options I can provide for a trip to Varkala next weekend:\n\n1. Flights:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01Cwp1QgakLv1rJ31Hqkjw5Y",
+        "input": {
+          "origin": "GAU",
+          "destination": "TRV",
+          "departure_date": "2026-01-24"
+        },
+        "name": "search_flights",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01Cwp1QgakLv1rJ31Hqkjw5Y",
+        "content": [
+          "type='text' text='Real-time flight options for GAU to TRV on 2026-01-24:\\n\\n- **Airline: AI** | Price: 144.49 EUR\\n  Dep: 2026-01-24T11:50:00 | Arr: 2026-01-24T22:15:00 | Duration: PT10H25M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+GAU+to+TRV+on+2026-01-24)\\n\\n- **Airline: AI** | Price: 144.49 EUR\\n  Dep: 2026-01-24T18:40:00 | Arr: 2026-01-25T07:45:00 | Duration: PT13H5M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+GAU+to+TRV+on+2026-01-24)\\n\\n- **Airline: AI** | Price: 158.49 EUR\\n  Dep: 2026-01-24T18:25:00 | Arr: 2026-01-25T02:15:00 | Duration: PT7H50M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+GAU+to+TRV+on+2026-01-24)\\n\\n- **Airline: AI** | Price: 188.49 EUR\\n  Dep: 2026-01-24T17:05:00 | Arr: 2026-01-25T02:15:00 | Duration: PT9H10M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+GAU+to+TRV+on+2026-01-24)\\n\\n- **Airline: AI** | Price: 200.12 EUR\\n  Dep: 2026-01-24T22:05:00 | Arr: 2026-01-25T22:15:00 | Duration: PT24H10M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+GAU+to+TRV+on+2026-01-24)\\n\\n' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "2. Trains:\nYou can check the IRCTC website (https://www.irctc.co.in) for train options from Ghazipur to Varkala.\n\n3. Buses: \nYou can check the RedBus website (https://www.redbus.in) for bus options from Ghazipur to Varkala.\n\nLet me know if you have a preferred travel date or budget, and I can try to refine the options further. I'd be happy to help you book the flights, hotels, or other transportation once we have your preferences."
+  },
+  {
+    "role": "user",
+    "content": "tell me about the flights"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's take a closer look at the flight options from Ghazipur to Varkala for next weekend.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01FhFq5NgDxgLhhxEQvk6wsf",
+        "input": {
+          "origin": "GAU",
+          "destination": "TRV",
+          "departure_date": "2026-01-24"
+        },
+        "name": "search_flights",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

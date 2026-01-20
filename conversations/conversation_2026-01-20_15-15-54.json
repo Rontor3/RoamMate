@@ -1,0 +1,102 @@
+[
+  {
+    "role": "user",
+    "content": "Hi I would like to travel to varakala next weekend for a chill trip"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan your trip to Varkala next weekend! Here's how I can help:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01EBK4So55TXMcoqETRus7Sm",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01EBK4So55TXMcoqETRus7Sm",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Mumbai, Maharashtra, India\\n\ud83d\udcc5 Date: 20/01/2026 (Tuesday)\\n\ud83d\udcc6 ISO Date: 2026-01-20\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Since you mentioned traveling to Varkala next weekend, let's assume you're traveling from Mumbai, as that's your current location based on the IP address.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01WB2BjLXgGU9KJQ9KGjxmEQ",
+        "input": {
+          "query": "best hotels in varkala"
+        },
+        "name": "perform_live_search",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01WB2BjLXgGU9KJQ9KGjxmEQ",
+        "content": [
+          "type='text' text=\"SEARCH RESULTS for 'best hotels in varkala':\\n\\nRESULT 1:\\nTitle: THE 10 BEST Hotels in Varkala Town, India 2026 (from $14 ...\\nSnippet: Find the right hotel for you \u00b7 1. Sunview Beach Resort & Spa By Citrine \u00b7 2. Black Beach Resort \u00b7 3. Ashiyana Cliff & Beach Resort \u00b7 4.\\nLink: https://www.tripadvisor.com/Hotels-g297639-Varkala_Town_Varkala_Thiruvananthapuram_District_Kerala-Hotels.html\\n\\nRESULT 2:\\nTitle: Hotels in Varkala - Luxury Resorts in Varkala | IHCL Hotels\\nSnippet: Experience unparalleled luxury at our 5-star hotel in Varkala for a home away from home experience. Enjoy SeleQtions exceptional hospitality at this exotic\\xa0...\\nLink: https://www.tajhotels.com/en-in/destination/hotels-in-varkala\\n\\nRESULT 3:\\nTitle: Best places to stay in Varkala, India (2025) | The Hotel Guru\\nSnippet: The best hotels in Varkala \u00b7 Soul & Surf Kerala \u00b7 Villa Akasa \u00b7 Villa Jacaranda. Varkala (Varkala). A white washed, back to basics four bedroom home stay that\\xa0...\\nLink: https://www.thehotelguru.com/en-us/best-hotels-in/india/varkala\\n\\nRESULT 4:\\nTitle: THE BEST Varkala Town Luxury Hotels 2026 (with Prices ...\\nSnippet: Varkala Town Luxury Hotels \u00b7 1. Gateway Varkala \u00b7 2. Zion Villa Beach View Resort. 4.0. (5 reviews). #2 Best Value of 2 Varkala Town\\xa0...\\nLink: https://www.tripadvisor.com/Hotels-g297639-zff12-Varkala_Town_Varkala_Thiruvananthapuram_District_Kerala-Hotels.html\\n\\nRESULT 5:\\nTitle: Luxury stays in varkala : r/Kerala\\nSnippet: Nov 13, 2024 ... Nebo Hotel, the rooms have view to the sea. Highly recommended. Call them and ask for these particular rooms since they have other option too.\\nLink: https://www.reddit.com/r/Kerala/comments/1gq3984/luxury_stays_in_varkala/\\n\\n\" annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Based on the search results, here are some top hotel options I'd recommend for your chill trip to Varkala next weekend:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_015ZmDYgnySd36XY4PNaBXG8",
+        "input": {
+          "resource_type": "hotel",
+          "names": [
+            "Sunview Beach Resort & Spa By Citrine",
+            "Black Beach Resort",
+            "Nebo Hotel"
+          ]
+        },
+        "name": "generate_travel_links",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_015ZmDYgnySd36XY4PNaBXG8",
+        "content": [
+          "type='text' text='GENERATED LINKS:\\n\\n\ud83c\udfe8 Sunview Beach Resort & Spa By Citrine: https://www.booking.com/searchresults.html?ss=Sunview%20Beach%20Resort%20%26%20Spa%20By%20Citrine&aid=15db61ca\\n\ud83c\udfe8 Black Beach Resort: https://www.booking.com/searchresults.html?ss=Black%20Beach%20Resort&aid=15db61ca\\n\ud83c\udfe8 Nebo Hotel: https://www.booking.com/searchresults.html?ss=Nebo%20Hotel&aid=15db61ca\\n' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "These highly rated hotels in Varkala seem to be a good fit for your chill trip next weekend. Let me know if you'd like me to search for any specific dates or have a preferred budget, and I can refine the hotel options further."
+  }
+]

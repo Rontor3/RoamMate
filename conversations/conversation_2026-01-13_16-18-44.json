@@ -1,0 +1,10 @@
+[
+  {
+    "role": "user",
+    "content": "I am planning to go to Goa for a chill trip nothing fancy"
+  },
+  {
+    "role": "assistant",
+    "content": "Okay, let's get started on planning your trip to Goa! \n\nBefore I can provide any recommendations, I'll need a few more details:\n\n1. What are your travel dates? When do you plan to visit Goa?\n2. What is your preferred hotel budget for this trip? For example, would you like to stay in a \"cheap\", \"moderate\", or \"luxury\" hotel?\n\nOnce I have those details, I can use my tools to search for flights, hotels, and provide some trip suggestions tailored to your preferences. Please let me know the travel dates and hotel budget when you have a chance."
+  }
+]

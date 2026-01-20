@@ -1,0 +1,75 @@
+[
+  {
+    "role": "user",
+    "content": "I am planning to go to Goa for a chill trip nothing fancy"
+  },
+  {
+    "role": "assistant",
+    "content": "Okay, let's get started on planning your trip to Goa! \n\nBefore I can provide any recommendations, I'll need a few more details:\n\n1. What are your travel dates? When do you plan to visit Goa?\n2. What is your preferred hotel budget for this trip? For example, would you like to stay in a \"cheap\", \"moderate\", or \"luxury\" hotel?\n\nOnce I have those details, I can use my tools to search for flights, hotels, and provide some trip suggestions tailored to your preferences. Please let me know the travel dates and hotel budget when you have a chance."
+  },
+  {
+    "role": "user",
+    "content": "travel date will be next weekend, budget of 2k rs will be good ig , hostels will work for me as well"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Got it, thanks for providing those details! Let me get started on planning your trip to Goa for next weekend within a 2,000 INR hotel budget.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_011j8WKeDyPV2yXQReiwjKHY",
+        "input": {
+          "origin": "BOM",
+          "destination": "GOI",
+          "departure_date": "2023-04-07"
+        },
+        "name": "search_flights",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_011j8WKeDyPV2yXQReiwjKHY",
+        "content": [
+          "type='text' text=\"Error calling tool 'search_flights': 'ClientError' object has no attribute 'instruction'\" annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Hmm, it looks like there was an issue calling the flight search tool. Let me try the hotel search instead:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01B2iJFHzse1xHzqrpCdYJDi",
+        "input": {
+          "city_code": "GOI",
+          "budget": "2000 INR"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01B2iJFHzse1xHzqrpCdYJDi",
+        "content": [
+          "type='text' text='Top hotels in GOI (via Amadeus):\\n\\n- **DONA ALCINA RESORTS** (ID: ONGOIDON)\\n  [Check Rates on Booking.com](https://www.booking.com/searchresults.html?ss=DONA+ALCINA+RESORTS+hotel+GOI) | [View on Google](https://www.google.com/search?q=DONA+ALCINA+RESORTS+hotel+GOI)\\n\\n- **HERITAGE VILLAGE CLUB** (ID: FGGOIHVC)\\n  [Check Rates on Booking.com](https://www.booking.com/searchresults.html?ss=HERITAGE+VILLAGE+CLUB+hotel+GOI) | [View on Google](https://www.google.com/search?q=HERITAGE+VILLAGE+CLUB+hotel+GOI)\\n\\n- **JEWEL INN AND SPA** (ID: ILGOI057)\\n  [Check Rates on Booking.com](https://www.booking.com/searchresults.html?ss=JEWEL+INN+AND+SPA+hotel+GOI) | [View on Google](https://www.google.com/search?q=JEWEL+INN+AND+SPA+hotel+GOI)\\n\\n- **LAGOA AZUL RESORT** (ID: ILGOI071)\\n  [Check Rates on Booking.com](https://www.booking.com/searchresults.html?ss=LAGOA+AZUL+RESORT+hotel+GOI) | [View on Google](https://www.google.com/search?q=LAGOA+AZUL+RESORT+hotel+GOI)\\n\\n- **THE OCEANIQUE** (ID: ONGOIOCE)\\n  [Check Rates on Booking.com](https://www.booking.com/searchresults.html?ss=THE+OCEANIQUE+hotel+GOI) | [View on Google](https://www.google.com/search?q=THE+OCEANIQUE+hotel+GOI)\\n\\n\\n*Note: You mentioned a budget of 2000 INR. Please check the links above for specific pricing.*' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

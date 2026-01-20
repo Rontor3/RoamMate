@@ -1,0 +1,75 @@
+[
+  {
+    "role": "user",
+    "content": "I would like to plan a trip for goa"
+  },
+  {
+    "role": "assistant",
+    "content": "Okay, let's plan your trip to Goa! To get started, I'll need a few more details:\n\n1. What are your preferred travel dates? When would you like to depart and return?\n2. What is your preferred budget for hotels?\n\nOnce I have those details, I can use our travel planning tools to provide some recommendations and suggestions for your trip to Goa. Please provide the travel dates and hotel budget, and I'll be happy to assist further."
+  },
+  {
+    "role": "user",
+    "content": "I am thinking of like next week or around that time when its cheap on travel Andy budget is around 2k perday"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, got it. Let me use our travel planning tools to provide some suggestions for your trip to Goa next week on a budget of around $2,000 per day.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01C9EgvKSyQTQciTSjyiW6cv",
+        "input": {
+          "origin": "BOM",
+          "destination": "GOI",
+          "departure_date": "2023-04-17"
+        },
+        "name": "search_flights",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01C9EgvKSyQTQciTSjyiW6cv",
+        "content": [
+          "type='text' text='Error fetching flight data: [---]' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Hmm, it looks like there was an issue fetching the flight data for your requested dates. Let me try searching for hotel options instead.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01VqeSJcRJZmpD82GHdk2Yon",
+        "input": {
+          "city_code": "GOI",
+          "budget": "2000 USD"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01VqeSJcRJZmpD82GHdk2Yon",
+        "content": [
+          "type='text' text='Top hotels in GOI (via Amadeus):\\n\\n- **LAGOA AZUL RESORT** (ID: ILGOI071)\\n  Location: 15.60417, 73.75415\\n\\n- **RESORT TERRA PARAISO** (ID: ILGOI077)\\n  Location: 15.55086, 73.7591\\n\\n- **STAY SIMPLE JESANT VALLEY** (ID: ILGOI365)\\n  Location: 15.4911, 73.91361\\n\\n- **RIO RESORT** (ID: HSGOIAAR)\\n  Location: 15.56457, 73.75928\\n\\n- **COUNTRY INN SUITES GOA** (ID: CXGOI565)\\n  Location: 15.49719, 73.83486\\n\\n' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

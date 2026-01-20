@@ -1,0 +1,23 @@
+[
+  {
+    "role": "user",
+    "content": "Where am I currently and what is the date?"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let me check your current location and the date:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01C9GhfAUqUs3XZw4QwGYuoe",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

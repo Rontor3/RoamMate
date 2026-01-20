@@ -17,7 +17,7 @@ for p in sys.path:
     logging.info(p)
 #---------------------------------------------#
 from fastmcp import FastMCP
-mcp=FastMCP('RoamMate')
+mcp=FastMCP('SocialTravelInsights')
 from tools.social_media import scrape_and_extract_travel_advice
 mcp.tool(
     scrape_and_extract_travel_advice,
@@ -26,8 +26,8 @@ mcp.tool(
 
 async def show_tools():
     # Await the coroutine to get the tools list
-    tools = await mcp._tool_manager.get_tools()
-    tool_names = [tool for tool in tools]
+    tools = await mcp._tool_manager.list_tools()
+    tool_names = [tool.name for tool in tools]
     print("Registered tools:", tool_names)
 
 # Run the async function

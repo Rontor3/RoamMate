@@ -1,0 +1,76 @@
+[
+  {
+    "role": "user",
+    "content": "Hi I want to plan a trip to varakala next weekend for chill outing, how can I plan it"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "*Voya here, your friendly travel consultant. Let's plan an amazing getaway to Varkala for you next weekend!*\n\nBased on the details you provided, it seems like you're looking for a relaxing trip to the picturesque town of Varkala. As your current location is Mumbai, I'll focus on finding the best options to get you there and suggest some top accommodation and activity choices.\n\nFirst, let me check on the current travel situation. ",
+        "type": "text"
+      },
+      {
+        "id": "toolu_014VJVrxGR91owPiy3CwgvtC",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_014VJVrxGR91owPiy3CwgvtC",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Mumbai, Maharashtra, India\\n\ud83d\udcc5 Date: 20/01/2026 (Tuesday)\\n\ud83d\udcc6 ISO Date: 2026-01-20\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Great, I have the necessary location and date information to start planning your trip. \n\nFor getting to Varkala, I'd recommend taking the train from Mumbai. The [Trivandrum Rajdhani Express](https://www.makemytrip.com/railways/trains/2624amd-trivandrum-central-mumbai-central-trivandrum-rajdhani-express.html) is a comfortable option that takes around 9 hours. Alternatively, you could fly to Trivandrum International Airport and then take a 1-hour cab ride to Varkala.\n\nIn terms of accommodation, the [Gateway Varkala](https://www.booking.com/hotel/in/gateway-varkala.html?aid=1610267) is a top-rated luxury resort right on the Varkala Cliff. For a more budget-friendly stay, [Varkala Inn](https://www.booking.com/hotel/in/varkala-inn.html?aid=1610267) offers cozy rooms with great views. Both options provide easy access to the main beach and cliff area.\n\nAs for activities, you'll find plenty of opportunities to unwind. You could start your day with a yoga session overlooking the Arabian Sea, explore the Varkala Cliff and its unique shops, or simply relax on the beautiful Papanasam Beach. If you're feeling adventurous, you can also try water sports like kayaking or parasailing.\n\nDoes this sound like a good plan so far? Let me know if you'd like me to look into any specific flights, trains, or hotels in more detail. I'm happy to provide more personalized suggestions to make your Varkala trip as relaxing and enjoyable as possible."
+  },
+  {
+    "role": "user",
+    "content": "Hi I want to plan a trip to varakala next weekend for chill outing, how can I plan it"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "*Voya here, your friendly travel consultant. Let's plan an amazing getaway to Varkala for you next weekend!*\n\nBased on the details you provided, it seems like you're looking for a relaxing trip to the picturesque town of Varkala. As your current location is Mumbai, I'll focus on finding the best options to get you there and suggest some top accommodation and activity choices.\n\nFirst, let me check on the current travel situation.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01H1aEc9MhyPqG7wVkyxAg2b",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01H1aEc9MhyPqG7wVkyxAg2b",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Mumbai, Maharashtra, India\\n\ud83d\udcc5 Date: 20/01/2026 (Tuesday)\\n\ud83d\udcc6 ISO Date: 2026-01-20\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Great, I have the necessary location and date information to start planning your trip.\n\nFor getting to Varkala, I'd recommend taking the train from Mumbai. The [Trivandrum Rajdhani Express](https://www.makemytrip.com/railways/trains/2624amd-trivandrum-central-mumbai-central-trivandrum-rajdhani-express.html) is a comfortable option that takes around 9 hours. Alternatively, you could fly to Trivandrum International Airport and then take a 1-hour cab ride to Varkala.\n\nIn terms of accommodation, the [Gateway Varkala](https://www.booking.com/hotel/in/gateway-varkala.html?aid=1610267) is a top-rated luxury resort right on the Varkala Cliff. For a more budget-friendly stay, [Varkala Inn](https://www.booking.com/hotel/in/varkala-inn.html?aid=1610267) offers cozy rooms with great views. Both options provide easy access to the main beach and cliff area.\n\nAs for activities, you'll find plenty of opportunities to unwind. You could start your day with a yoga session overlooking the Arabian Sea, explore the Varkala Cliff and its unique shops, or simply relax on the beautiful Papanasam Beach. If you're feeling adventurous, you can also try water sports like kayaking or parasailing.\n\nDoes this sound like a good plan so far? Let me know if you'd like me to look into any specific flights, trains, or hotels in more detail. I'm happy to provide more personalized suggestions to make your Varkala trip as relaxing and enjoyable as possible."
+  }
+]

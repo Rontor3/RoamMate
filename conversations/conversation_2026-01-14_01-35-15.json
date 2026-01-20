@@ -1,0 +1,23 @@
+[
+  {
+    "role": "user",
+    "content": "hi I want to travel to varakala for a chill weekend"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan your trip to Varakala for a weekend getaway! ",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01LzCj9YbBWzBtjXRtvvHABi",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

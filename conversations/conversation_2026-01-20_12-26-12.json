@@ -1,0 +1,115 @@
+[
+  {
+    "role": "user",
+    "content": "Hi I would like to travel to varakala next weekend for a chill trip"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan your trip to Varkala next weekend!",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01VMU9p6WVhLRSB3EUYs5QMU",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01VMU9p6WVhLRSB3EUYs5QMU",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Mumbai, Maharashtra, India\\n\ud83d\udcc5 Date: 20/01/2026 (Tuesday)\\n\ud83d\udcc6 ISO Date: 2026-01-20\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Since your current location is Mumbai, let's search for travel options from Mumbai to Varkala for next weekend.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_011W8otsqBLtGuJWpoGnTmM5",
+        "input": {
+          "origin": "Mumbai",
+          "destination": "Varkala"
+        },
+        "name": "search_travel_routes",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_011W8otsqBLtGuJWpoGnTmM5",
+        "content": [
+          "type='text' text=\"\ud83d\udd0d **Travel Options from Mumbai to Varkala**\\n\\n\u2708\ufe0f **By Flight** (Fastest)\\n   \ud83d\udeeb Airports mentioned: BOM\\n   \ud83d\udca1 Ask me: *'Find flights from Mumbai to Varkala for next Monday'*\\n\\n\ud83d\ude82 **By Train** (Economical)\\n   \ud83d\udd17 Check IRCTC: https://www.irctc.co.in\\n   Search: 'Mumbai to Varkala train'\\n\\n\ud83d\ude8c **By Bus** (Budget-friendly)\\n   \ud83d\udd17 Check RedBus: https://www.redbus.in\\n\\n\ud83d\udcdd **Quick Info**:\\nMumbai to Varkala. Varkala is approximately 1250+ kms from Mumbai. The fastest way to reach Varkala from Mumbai is by Flight, Cab Via Thiruvananthapuram....\\n\\n\ud83d\udcac **What would you like to do?**\\n- Search for specific flights\\n- Find hotels in Varkala\\n- Get more details about train/bus options\" annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "It looks like you're interested in a chill trip to Varkala next weekend. Let's go ahead and search for flights from Mumbai to Varkala for next Monday.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_0121RWqJxMJQ2ZAocfyuV1LW",
+        "input": {
+          "origin": "BOM",
+          "destination": "VKK",
+          "departure_date": "2026-01-26",
+          "currency_code": "INR"
+        },
+        "name": "search_flights",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_0121RWqJxMJQ2ZAocfyuV1LW",
+        "content": [
+          "type='text' text='Error fetching flight data (Status 400): [400]\\n' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Hmm, it looks like there was an issue fetching the flight data. Let me try a different approach.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_0129YyG8SG7oubKe5Yu5bSxJ",
+        "input": {
+          "city_code": "VKK",
+          "budget": "300 INR"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

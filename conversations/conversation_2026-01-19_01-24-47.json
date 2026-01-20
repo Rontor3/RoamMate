@@ -1,0 +1,35 @@
+[
+  {
+    "role": "user",
+    "content": "hi I want to travel to Varkala next weekend"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let me help you plan your trip to Varkala!",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01XYNSUPWJMhWVkcTCxGcXiR",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01XYNSUPWJMhWVkcTCxGcXiR",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Ghazipur, Uttar Pradesh, India\\n\ud83d\udcc5 Date: 19/01/2026 (Monday)\\n\ud83d\udcc6 ISO Date: 2026-01-19\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

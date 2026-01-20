@@ -1,0 +1,23 @@
+[
+  {
+    "role": "user",
+    "content": "Where am I and what is the local time?"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's find out where you are and the local time.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01HNgxn1rZmiK4NUxPjwfCQV",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

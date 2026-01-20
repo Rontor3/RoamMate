@@ -1,0 +1,52 @@
+[
+  {
+    "role": "user",
+    "content": "Hi I would like to travel to varakala next weekend for a chill trip"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan your trip to Varkala next weekend! Here's how I can help:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01EBK4So55TXMcoqETRus7Sm",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01EBK4So55TXMcoqETRus7Sm",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Mumbai, Maharashtra, India\\n\ud83d\udcc5 Date: 20/01/2026 (Tuesday)\\n\ud83d\udcc6 ISO Date: 2026-01-20\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Since you mentioned traveling to Varkala next weekend, let's assume you're traveling from Mumbai, as that's your current location based on the IP address.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01WB2BjLXgGU9KJQ9KGjxmEQ",
+        "input": {
+          "query": "best hotels in varkala"
+        },
+        "name": "perform_live_search",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

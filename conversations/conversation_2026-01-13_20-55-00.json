@@ -1,0 +1,128 @@
+[
+  {
+    "role": "user",
+    "content": "I want to go to Goa for a chill weekend"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan a chill weekend trip to Goa for you!",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01BtWLjMZ7SJtRcVE34Gy3mD",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01BtWLjMZ7SJtRcVE34Gy3mD",
+        "content": [
+          "type='text' text='User Location: Unknown City, Unknown Country | Local Time: 2026-01-13 15:24:55 (UTC)' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Since I don't know your starting location, let's assume you're based in an unknown city. For a weekend trip to Goa from an unknown location, here's what I suggest:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01Uo7DzBWErH63851edu8vy3",
+        "input": {
+          "origin": "NYC",
+          "destination": "GOI",
+          "departure_date": "2023-01-13"
+        },
+        "name": "search_flights",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01Uo7DzBWErH63851edu8vy3",
+        "content": [
+          "type='text' text='Error: Departure date 2023-01-13 is in the past. Please choose a future date.' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Oops, my apologies. Let's try that again with a future date:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01VztHAeVyYPJj666uamBCw8",
+        "input": {
+          "origin": "NYC",
+          "destination": "GOI",
+          "departure_date": "2023-01-21"
+        },
+        "name": "search_flights",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01VztHAeVyYPJj666uamBCw8",
+        "content": [
+          "type='text' text='Error: Departure date 2023-01-21 is in the past. Please choose a future date.' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Hmm, looks like I'm still off with the date. Let me try one more time, this time using today's date:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01Q49R7SFgrDH1nY7JfoubKT",
+        "input": {
+          "origin": "NYC",
+          "destination": "GOI",
+          "departure_date": "2026-01-13"
+        },
+        "name": "search_flights",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01Q49R7SFgrDH1nY7JfoubKT",
+        "content": [
+          "type='text' text='Error: Departure date 2026-01-13 is in the past. Please choose a future date.' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

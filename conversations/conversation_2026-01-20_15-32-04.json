@@ -1,0 +1,17 @@
+[
+  {
+    "role": "user",
+    "content": "Hi I want to plan a trip to varakala next weekend for chill outing, how can I plan it"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "id": "toolu_013akMgk7nkknzJBdLY5Q39z",
+        "input": {},
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

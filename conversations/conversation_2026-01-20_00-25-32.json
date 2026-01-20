@@ -1,0 +1,157 @@
+[
+  {
+    "role": "user",
+    "content": "I want to go to Varkala"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let me help you plan a trip to Varkala.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_0174XCVpSErNcS5Vkoi15FoZ",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_0174XCVpSErNcS5Vkoi15FoZ",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Mumbai, Maharashtra, India\\n\ud83d\udcc5 Date: 20/01/2026 (Tuesday)\\n\ud83d\udcc6 ISO Date: 2026-01-20\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Since you're starting from Mumbai, India, let's check the travel options to Varkala.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01CS7kz4s6wkTbsBbhrXPqq4",
+        "input": {
+          "origin": "Mumbai",
+          "destination": "Varkala"
+        },
+        "name": "search_travel_routes",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01CS7kz4s6wkTbsBbhrXPqq4",
+        "content": [
+          "type='text' text='\ud83d\udd0d **Travel Options from Mumbai to Varkala**\\n\\nError fetching search results: 403 Client Error: Forbidden for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyBE5430U1VvPsLf2CRSnZOp9B0ldjXePKo&cx=216d3a041f2524b83&q=how+to+reach+Varkala+from+Mumbai&num=5\\n\\nHowever, typical options include:\\n\u2708\ufe0f Flights (fastest) - Ask me to search for specific flights\\n\ud83d\ude82 Trains - Check https://www.irctc.co.in\\n\ud83d\ude8c Buses - Check https://www.redbus.in\\n\\nWhat would you like to explore?' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "It seems the custom search API is not working right now, but I can still help you find some good flight and hotel options. \n\nSince you're starting from Mumbai, India, let's assume your preferred currency is INR. When would you like to travel?"
+  },
+  {
+    "role": "user",
+    "content": "I want to go to Varkala"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan your trip to Varkala.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01UC2KW74NcVzgbqzUPmxanR",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01UC2KW74NcVzgbqzUPmxanR",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Mumbai, Maharashtra, India\\n\ud83d\udcc5 Date: 20/01/2026 (Tuesday)\\n\ud83d\udcc6 ISO Date: 2026-01-20\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Since you're starting from Mumbai, India, let's check the travel options to Varkala.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01XarTCDTFcjLz28NEShVu2M",
+        "input": {
+          "origin": "Mumbai",
+          "destination": "Varkala"
+        },
+        "name": "search_travel_routes",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01XarTCDTFcjLz28NEShVu2M",
+        "content": [
+          "type='text' text='\ud83d\udd0d **Travel Options from Mumbai to Varkala**\\n\\nError fetching search results: 403 Client Error: Forbidden for url: https://www.googleapis.com/customsearch/v1?key=AIzaSyBE5430U1VvPsLf2CRSnZOp9B0ldjXePKo&cx=216d3a041f2524b83&q=how+to+reach+Varkala+from+Mumbai&num=5\\n\\nHowever, typical options include:\\n\u2708\ufe0f Flights (fastest) - Ask me to search for specific flights\\n\ud83d\ude82 Trains - Check https://www.irctc.co.in\\n\ud83d\ude8c Buses - Check https://www.redbus.in\\n\\nWhat would you like to explore?' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "It seems the custom search API is not working right now, but I can still help you find some good flight and hotel options. \n\nSince you're starting from Mumbai, India, let's assume your preferred currency is INR. When would you like to travel?"
+  },
+  {
+    "role": "user",
+    "content": "I want to go to Varkala"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan your trip to Varkala.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01VTs4hZHxG54LSfckdAbEce",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 import os
@@ -24,11 +24,15 @@ settings = Settings()
 async def lifespan(app: FastAPI):
     client = MCPClient()
     try:
-        connected = await client.connect_to_server(settings.server_script_path)
-        if not connected:
-            raise HTTPException(
-                status_code=500, detail="Failed to connect to MCP server"
-            )
+        # Connect to Social Travel Insights Server
+        await client.connect_to_server(settings.server_script_path)
+        
+        # Connect to Hotel & Flight Server
+        # We assume tools folder is at project root level
+        project_root = os.path.dirname(settings.server_script_path)
+        hotel_flight_path = os.path.join(project_root, "tools", "hotel_flight_details.py")
+        await client.connect_to_server(hotel_flight_path)
+        
         app.state.client = client
         yield
     except Exception as e:
@@ -75,10 +79,18 @@ class ToolCall(BaseModel):
 
 
 @app.post("/query")
-async def process_query(request: QueryRequest):
+async def process_query(request: QueryRequest, raw_request: Request):
     """Process a query and return the response"""
     try:
-        messages = await app.state.client.process_query(request.query)
+        # Get client IP
+        client_ip = raw_request.client.host
+        # For local testing, client.host is often '127.0.0.1'. 
+        # In production, check for X-Forwarded-For if behind a proxy.
+        x_forwarded_for = raw_request.headers.get("X-Forwarded-For")
+        if x_forwarded_for:
+            client_ip = x_forwarded_for.split(",")[0]
+            
+        messages = await app.state.client.process_query(request.query, client_ip=client_ip)
         return {"messages": messages}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -92,9 +104,9 @@ async def get_tools():
         return {
             "tools": [
                 {
-                    "name": tool.name,
-                    "description": tool.description,
-                    "input_schema": tool.inputSchema,
+                    "name": tool["name"],
+                    "description": tool["description"],
+                    "input_schema": tool["input_schema"],
                 }
                 for tool in tools
             ]

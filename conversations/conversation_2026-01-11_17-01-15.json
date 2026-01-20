@@ -1,0 +1,36 @@
+[
+  {
+    "role": "user",
+    "content": "Find me a luxury hotel in Paris."
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's search for a luxury hotel in Paris using the ",
+        "type": "text"
+      },
+      {
+        "id": "toolu_0167xaLP1mQaZk5uHAPfVVTY",
+        "input": {
+          "location": "Paris",
+          "budget_category": "luxury"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_0167xaLP1mQaZk5uHAPfVVTY",
+        "content": [
+          "type='text' text='Error searching hotels: 403 Client Error: Forbidden for url: https://places.googleapis.com/v1/places:searchText' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

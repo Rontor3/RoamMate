@@ -1,0 +1,65 @@
+[
+  {
+    "role": "user",
+    "content": "Hi I would like to travel to varakala next weekend for a chill trip"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan your trip to Varkala next weekend!\n\nFirst, let me find your current location:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01MjTTcg9efyw3NBPs854qau",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01MjTTcg9efyw3NBPs854qau",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Mumbai, Maharashtra, India\\n\ud83d\udcc5 Date: 20/01/2026 (Tuesday)\\n\ud83d\udcc6 ISO Date: 2026-01-20\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Since you're based in Mumbai, let's search for travel options from Mumbai to Varkala for next weekend:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01HLPTLrxajktjE1fKG2GdXo",
+        "input": {
+          "origin": "Mumbai",
+          "destination": "Varkala"
+        },
+        "name": "search_travel_routes",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01HLPTLrxajktjE1fKG2GdXo",
+        "content": [
+          "type='text' text='Search results for travel from Mumbai to Varkala:\\n\\nSource: Mumbai to Varkala - Multiple Options To Reach By Flight, Train, Cab ...\\nSummary: Mumbai to Varkala. Varkala is approximately 1250+ kms from Mumbai. The fastest way to reach Varkala from Mumbai is by Flight, Cab Via Thiruvananthapuram.\\nLink: https://www.makemytrip.com/routeplanner/mumbai-varkala.html\\n\\nSource: Mumbai to Varkala - 7 ways to travel via train, plane, bus, and car\\nSummary: How far is it from Mumbai to Varkala? The distance between Mumbai and Varkala is 1308 km. The road distance is 1435.5 km. ... How do I travel from Mumbai to\\xa0...\\nLink: https://www.rome2rio.com/s/Mumbai/Varkala\\n\\nSource: Best way to reach Varkala : r/Kochi\\nSummary: Jun 6, 2024 ... Spending a few days in Kochi and then heading to Varkala. Is it fine to take a cab directly from Kochi or should I fly to Trivandrum and\\xa0...\\nLink: https://www.reddit.com/r/Kochi/comments/1d9jteo/best_way_to_reach_varkala/\\n\\nSource: Find Cheap Flights from Mumbai to Varkala - Google Flights\\nSummary: Popular airlines from Mumbai to Varkala \u00b7 IndiGo. Nonstop. from $147 \u00b7 Air India. Nonstop. from $159 \u00b7 Air Arabia. 21 weekly connecting flights. BOM - TRVEvery day.\\nLink: https://www.google.com/travel/flights/flights-from-mumbai-to-varkala.html\\n\\nSource: Travel to Varkala : Bus or Train? : r/Kerala\\nSummary: Aug 4, 2025 ... You probably need to take 2 buses to reach varkala by bus first bus ... Best way to travel to Worli from Navi Mumbai? So far I only see\\xa0...\\nLink: https://www.reddit.com/r/Kerala/comments/1mhi1m6/travel_to_varkala_bus_or_train/\\n\\n' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

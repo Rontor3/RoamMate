@@ -1,0 +1,24 @@
+[
+  {
+    "role": "user",
+    "content": "Find me hotels in GOI (Goa) with a budget of 2000."
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let me help you find hotels in Goa within your budget.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_0125MUHvx1cSQDPgVnR2259j",
+        "input": {
+          "city_code": "GOI",
+          "budget": "2000 EUR"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

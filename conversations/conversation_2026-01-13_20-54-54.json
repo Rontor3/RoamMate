@@ -1,0 +1,23 @@
+[
+  {
+    "role": "user",
+    "content": "I want to go to Goa for a chill weekend"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan a chill weekend trip to Goa for you!",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01BtWLjMZ7SJtRcVE34Gy3mD",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

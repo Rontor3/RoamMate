@@ -1,0 +1,32 @@
+[
+  {
+    "role": "user",
+    "content": "Find me hotels in PAR (Paris) for next week"
+  },
+  {
+    "role": "assistant",
+    "content": "Okay, let's find some hotels in Paris for your trip next week. I just need a couple more details from you:\n\n1. When do you plan to travel to Paris? What are the exact travel dates?\n2. What is your preferred hotel budget for this trip?\n\nOnce I have those details, I can use the Amadeus API to search for suitable hotel options for you in Paris. Please provide the travel dates and budget, and I'll get started on finding some great hotel recommendations."
+  },
+  {
+    "role": "user",
+    "content": "Find me hotels in PAR (Paris). Travel dates: 2024-05-10. Budget: 200 EUR."
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Alright, got it! Here is what I can find for you:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_0144YtyNkAHWGcf5JeJhz5Eu",
+        "input": {
+          "city_code": "PAR",
+          "budget": "200 EUR"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

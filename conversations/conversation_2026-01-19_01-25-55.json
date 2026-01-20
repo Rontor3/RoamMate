@@ -1,0 +1,102 @@
+[
+  {
+    "role": "user",
+    "content": "hi I want to travel to Varkala next weekend"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let me help you plan your trip to Varkala!",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01XYNSUPWJMhWVkcTCxGcXiR",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01XYNSUPWJMhWVkcTCxGcXiR",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Ghazipur, Uttar Pradesh, India\\n\ud83d\udcc5 Date: 19/01/2026 (Monday)\\n\ud83d\udcc6 ISO Date: 2026-01-19\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Based on your location in Ghazipur, Uttar Pradesh, here are some travel options to Varkala, Kerala for next weekend:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01Qn7FrQbExx8kdwqwAYwzMN",
+        "input": {
+          "origin": "Ghazipur",
+          "destination": "Varkala"
+        },
+        "name": "search_travel_routes",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01Qn7FrQbExx8kdwqwAYwzMN",
+        "content": [
+          "type='text' text='\u26a0\ufe0f Google Custom Search API is not configured.\\n\\nPlease add the following to your .env file:\\n- GOOGLE_API_KEY=your_api_key\\n- GOOGLE_SEARCH_ENGINE_ID=your_cx_id\\n\\nMeanwhile, here are typical travel options:\\n\u2708\ufe0f Flights - Ask me to search for specific flights from Ghazipur to Varkala\\n\ud83d\ude82 Trains - Check https://www.irctc.co.in\\n\ud83d\ude8c Buses - Check https://www.redbus.in' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Since I'm unable to search travel routes, would you be able to provide your preferred travel dates and budget? That will help me find the best flight and hotel options for your trip to Varkala next weekend."
+  },
+  {
+    "role": "user",
+    "content": "what are my options"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, no problem. Let me try to get more details to provide you with the best travel options to Varkala next weekend.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01YMh3HSxx23qcC16K5qPkex",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01YMh3HSxx23qcC16K5qPkex",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Ghazipur, Uttar Pradesh, India\\n\ud83d\udcc5 Date: 19/01/2026 (Monday)\\n\ud83d\udcc6 ISO Date: 2026-01-19\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

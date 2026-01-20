@@ -13,15 +13,20 @@ import os
 
 from anthropic import Anthropic
 from anthropic.types import messages
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class MCPClient():
     def __init__(self):
-        self.session: Optional[ClientSession] = None
+        self.sessions: List[ClientSession] = []
+        self.tool_to_session: Dict[str, ClientSession] = {}
         self.exit_stack= AsyncExitStack()
         self.llm=Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
         self.tools=[]
         self.messages = []
         self.logger =logger
+        self.client_ip = None
     
     #connect to the MCP server
     async def connect_to_server(self, server_script_path:str):
@@ -33,19 +38,24 @@ class MCPClient():
             command = sys.executable if is_python else "node"
             server_params = StdioServerParameters(command=command,args=[server_script_path],env=None)
             stdio_transport = await self.exit_stack.enter_async_context(stdio_client(server_params))
-            self.stdio,self.write=stdio_transport
-            self.session=await self.exit_stack.enter_async_context(ClientSession(self.stdio,self.write))
+            read, write = stdio_transport
+            session = await self.exit_stack.enter_async_context(ClientSession(read, write))
 
-            await self.session.initialize()
+            await session.initialize()
+            self.sessions.append(session)
+            self.logger.info(f'Connected to MCP server: {server_script_path}')
 
-            self.logger.info('Connected to MCP server')
-
-            mcp_tools = await self.get_mcp_tools()
-            self.tools =[{"name":tool.name,
-            "description":tool.description,
-            "input_schema":tool.inputSchema}
-            for tool in mcp_tools]
-            self.logger.info(f"Availabe tools : {[tool['name'] for tool in self.tools]}")
+            # Fetch and map tools for this specific session
+            mcp_tools_resp = await session.list_tools()
+            for tool in mcp_tools_resp.tools:
+                self.tools.append({
+                    "name": tool.name,
+                    "description": tool.description,
+                    "input_schema": tool.inputSchema
+                })
+                self.tool_to_session[tool.name] = session
+                
+            self.logger.info(f"Available tools: {[t['name'] for t in self.tools]}")
             return True
         except Exception as e:
             self.logger.error(f"Error connecting MCP serer: {e}")    
@@ -53,18 +63,15 @@ class MCPClient():
             raise
 
     async def get_mcp_tools(self):
-        try:
-            response= await self.session.list_tools()
-            return response.tools
-        except Exception as e:
-            self.logger.error(f"Error getting MCP tools :{e}")
-            raise    
+        # Tools are already aggregated in self.tools during connection
+        return self.tools
 
-    async def process_query(self,query:str):
+    async def process_query(self, query: str, client_ip: str = None):
         try:
-            self.logger.info(f"Processing query: {query}")
+            self.logger.info(f"Processing query: {query} (Client IP: {client_ip})")
+            self.client_ip = client_ip
             user_message={"role":"user","content":query}
-            self.messages.append(user_message) # Changed from self.message=[user_message] to self.messages.append(user_message)
+            self.messages.append(user_message)
 
             while True:
                 response = await self.call_llm()
@@ -89,8 +96,18 @@ class MCPClient():
                         tool_args=content.input
                         tool_use_id=content.id
                         self.logger.info(f'Calling tool {tool_name} with args {tool_args}')
+                        
+                        # Inject IP if available and tool is get_current_info
+                        if tool_name == "get_current_info" and "ip" not in tool_args and self.client_ip:
+                            tool_args["ip"] = self.client_ip
+
                         try:
-                            result =await self.session.call_tool(tool_name,tool_args)
+                            # Use the correct session for the tool
+                            session = self.tool_to_session.get(tool_name)
+                            if not session:
+                                raise ValueError(f"No session found for tool: {tool_name}")
+                                
+                            result = await session.call_tool(tool_name, tool_args)
                             self.logger.info(f'Tool {tool_name} result:{result}...')
                             self.messages.append({"role": "user",
                             "content":[{
@@ -104,7 +121,8 @@ class MCPClient():
                         except Exception as e:
                             self.logger.error(f"Error calling tool {tool_name}:{e}")
                             raise
-            return self.messages        
+            return self.messages
+        
         except Exception as e:
             self.logger.error(f"Error processing query : {e}")
             raise
@@ -112,10 +130,49 @@ class MCPClient():
 
     async def call_llm(self):
         try:
+            current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            ip_info = f" (User IP: {self.client_ip})" if self.client_ip else ""
+            
             self.logger.info('Calling LLM')
             return self.llm.messages.create(
                 model='claude-3-haiku-20240307',
-                max_tokens=1000,
+                max_tokens=4000,
+                system=f"""Today's date is {current_date}. Your location is {ip_info}.
+
+# ROLE & PERSONA
+You are a highly efficient, professional travel planning assistant. 
+- You speak with expertise, warmth, and a helpful tone.
+- Do NOT introduce yourself by name. 
+- Do NOT use the name 'Voya' or any other identity.
+- Start your response immediately with the travel advice.
+
+# THE 'INVISIBLE REASONING' PROTOCOL
+You follow a strict 5-stage internal process (Intent, Search, Extraction, Linking, Synthesis).
+- **CRITICAL**: You must never mention these stages to the user.
+- **CRITICAL**: Do NOT use headers, labels, or categories like 'The Narrative', 'The Comparison', 'Booking Action', or 'Next Step'.
+- Output only a fluid, natural conversational response.
+
+# OUTPUT FORMATTING
+- **Embedded Hyperlinks**: You MUST embed links directly into the text using standard Markdown: `[Name of Hotel/Train/Bus](URL)`. 
+  - Correct: 'I found a great stay at [Black Beach Resort](https://...) which is near the cliff.'
+  - Incorrect: 'Black Beach Resort. Link: https://...'
+- **No Lists**: Avoid bullet points or numbered lists. Use well-structured paragraphs to compare options.
+- **Narrative Flow**: 
+    1. Start with a warm acknowledgment of the destination.
+    2. Transition into comparing 3-5 top options (Hotels/Flights/Buses) in prose.
+    3. End with a single, clear question to guide the user's next choice.
+
+# INTERNAL LOGIC (EXECUTE SILENTLY)
+1. **Intent**: Identify origin, destination, and dates.
+2. **Search**: Execute tool calls for live travel and accommodation data.
+3. **Extraction**: Identify the top 3-5 most relevant options.
+4. **Linking**: Construct deep links using your internal URL templates.
+5. **Synthesis**: Write the final, clean, conversational response.
+
+# CONSTRAINTS
+- Do not use the symbols '###' or '##' for headers.
+- Do not include technical jargon or status updates on your tool calls.
+- If a link is not available, do not mention it; only provide options with active links.""",
                 messages=self.messages,
                 tools=self.tools
             )
@@ -175,4 +232,3 @@ class MCPClient():
                 self.logger.error(f"Error writing conversation to file: {str(e)}")
                 self.logger.debug(f"Serializable conversation: {serializable_conversation}")
                 raise
-

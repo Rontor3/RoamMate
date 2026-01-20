@@ -39,3 +39,6 @@ rich>=13.7.1
 
 # Voice (optional advanced TTS)
 TTS==0.22.0
+
+# API Integrations
+amadeus>=9.0.0beautifulsoup4>=4.12.0

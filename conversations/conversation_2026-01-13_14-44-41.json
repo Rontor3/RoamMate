@@ -1,0 +1,23 @@
+[
+  {
+    "role": "user",
+    "content": "Find me hotels in PAR (Paris)."
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's search for hotels in Paris using the Amadeus API:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01HfQPwBbKehCLjnZFApZreP",
+        "input": {
+          "city_code": "PAR"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

@@ -1,0 +1,69 @@
+[
+  {
+    "role": "user",
+    "content": "I want to go to Varkala"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan your trip to Varkala!",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01GpDnAbdCszcKx8VbW21dKX",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01GpDnAbdCszcKx8VbW21dKX",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Hyderabad, Telangana, India\\n\ud83d\udcc5 Date: 15/01/2026 (Thursday)\\n\ud83d\udcc6 ISO Date: 2026-01-15\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Based on your current location in Hyderabad, here are some travel options to get to Varkala:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01V1ykcnzeaaAUVcR1PJTGrP",
+        "input": {
+          "origin": "Hyderabad",
+          "destination": "Varkala"
+        },
+        "name": "search_travel_routes",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01V1ykcnzeaaAUVcR1PJTGrP",
+        "content": [
+          "type='text' text=\"\ud83d\udd0d **Travel Options from Hyderabad to Varkala**\\n\\nBased on typical routes, here are your options:\\n\\n\u2708\ufe0f **1. By Flight** (Fastest)\\n   - Search flights using: *'Find me flights from Hyderabad to Varkala'*\\n\\n\ud83d\ude82 **2. By Train** (Economical)\\n   - Check IRCTC: https://www.irctc.co.in\\n   - Search: 'Hyderabad to Varkala train'\\n\\n\ud83d\ude8c **3. By Bus** (Budget-friendly)\\n   - Check RedBus: https://www.redbus.in\\n   - Search MakeMyTrip for bus options\\n\\n\ud83d\udca1 **Recommendation**: Ask me to search for specific options like:\\n   - 'Search flights from Hyderabad to Varkala for next Monday'\\n   - 'Find hotels in Varkala'\\n\" annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the travel options, which one would you like me to look into further? I can help you book flights, trains, or hotels."
+  }
+]

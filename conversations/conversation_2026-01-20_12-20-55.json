@@ -1,0 +1,53 @@
+[
+  {
+    "role": "user",
+    "content": "I want to go to Varkala"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan your trip to Varkala!",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01XypkogAAifrUwMCGpYcxxi",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01XypkogAAifrUwMCGpYcxxi",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Mumbai, Maharashtra, India\\n\ud83d\udcc5 Date: 20/01/2026 (Tuesday)\\n\ud83d\udcc6 ISO Date: 2026-01-20\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Since your current location is Mumbai, India, let's look at travel options from Mumbai to Varkala.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01RsmzFRkn4jPAqahEqC7uNC",
+        "input": {
+          "origin": "Mumbai",
+          "destination": "Varkala"
+        },
+        "name": "search_travel_routes",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

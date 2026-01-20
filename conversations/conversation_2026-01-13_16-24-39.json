@@ -1,0 +1,44 @@
+[
+  {
+    "role": "user",
+    "content": "Find me hotels in PAR (Paris) for next week"
+  },
+  {
+    "role": "assistant",
+    "content": "Okay, let's find some hotels in Paris for your trip next week. I just need a couple more details from you:\n\n1. When do you plan to travel to Paris? What are the exact travel dates?\n2. What is your preferred hotel budget for this trip?\n\nOnce I have those details, I can use the Amadeus API to search for suitable hotel options for you in Paris. Please provide the travel dates and budget, and I'll get started on finding some great hotel recommendations."
+  },
+  {
+    "role": "user",
+    "content": "Find me hotels in PAR (Paris). Travel dates: 2024-05-10. Budget: 200 EUR."
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Alright, got it! Here is what I can find for you:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_0144YtyNkAHWGcf5JeJhz5Eu",
+        "input": {
+          "city_code": "PAR",
+          "budget": "200 EUR"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_0144YtyNkAHWGcf5JeJhz5Eu",
+        "content": [
+          "type='text' text='Top hotels in PAR (via Amadeus):\\n\\n- **BW PREMIER FAUBOURG 88** (ID: BWPAR789)\\n  [Check Rates on Booking.com](https://www.booking.com/searchresults.html?ss=BW+PREMIER+FAUBOURG+88+hotel+PAR) | [View on Google](https://www.google.com/search?q=BW+PREMIER+FAUBOURG+88+hotel+PAR)\\n\\n- **DIAMOND HOTEL** (ID: XKPAR120)\\n  [Check Rates on Booking.com](https://www.booking.com/searchresults.html?ss=DIAMOND+HOTEL+hotel+PAR) | [View on Google](https://www.google.com/search?q=DIAMOND+HOTEL+hotel+PAR)\\n\\n- **MERCURE PARIS LAFAYETTE** (ID: RTPARFAY)\\n  [Check Rates on Booking.com](https://www.booking.com/searchresults.html?ss=MERCURE+PARIS+LAFAYETTE+hotel+PAR) | [View on Google](https://www.google.com/search?q=MERCURE+PARIS+LAFAYETTE+hotel+PAR)\\n\\n- **IBIS PARIS TOUR MONTPARNASSE** (ID: RTPARMAI)\\n  [Check Rates on Booking.com](https://www.booking.com/searchresults.html?ss=IBIS+PARIS+TOUR+MONTPARNASSE+hotel+PAR) | [View on Google](https://www.google.com/search?q=IBIS+PARIS+TOUR+MONTPARNASSE+hotel+PAR)\\n\\n- **MERCURE PARIS TOUR EIFFEL 4*** (ID: RTPAREIF)\\n  [Check Rates on Booking.com](https://www.booking.com/searchresults.html?ss=MERCURE+PARIS+TOUR+EIFFEL+4*+hotel+PAR) | [View on Google](https://www.google.com/search?q=MERCURE+PARIS+TOUR+EIFFEL+4*+hotel+PAR)\\n\\n\\n*Note: You mentioned a budget of 200 EUR. Please check the links above for specific pricing.*' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

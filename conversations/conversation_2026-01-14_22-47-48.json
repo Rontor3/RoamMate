@@ -1,0 +1,40 @@
+[
+  {
+    "role": "user",
+    "content": "Show me top 5 hotels in Paris with budget around 200 EUR"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let me check for top hotels in Paris with a budget around 200 EUR:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01YFFp3frY88YRoGReU7LWgQ",
+        "input": {
+          "city_code": "PAR",
+          "budget": "200 EUR"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01YFFp3frY88YRoGReU7LWgQ",
+        "content": [
+          "type='text' text='\u2728 **Top 5 Hotels in PAR**\\n\\n**1. IBIS PARIS TOUR MONTPARNASSE**\\n   \u2b50 Rating: 8.1/10\\n   \ud83d\udccd Location: 48.84333, 2.32019\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=RTPARMAI&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DIBIS%2BPARIS%2BTOUR%2BMONTPARNASSE%2BPAR)\\n\\n**2. BW PREMIER FAUBOURG 88**\\n   \u2b50 Rating: 9.0/10\\n   \ud83d\udccd Location: 48.8777, 2.3492\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=BWPAR789&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DBW%2BPREMIER%2BFAUBOURG%2B88%2BPAR)\\n\\n**3. HN TEST PROPERTY1 FOR E2E TESTING**\\n   \u2b50 Rating: 8.5/10\\n   \ud83d\udccd Location: 48.85315, 2.34513\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=HNPARKGU&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DHN%2BTEST%2BPROPERTY1%2BFOR%2BE2E%2BTESTING%2BPAR)\\n\\n**4. MERCURE PARIS LAFAYETTE**\\n   \u2b50 Rating: 8.0/10\\n   \ud83d\udccd Location: 48.87281, 2.34493\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=RTPARFAY&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DMERCURE%2BPARIS%2BLAFAYETTE%2BPAR)\\n\\n**5. RENAISSANCE PARIS VENDOME**\\n   \u2b50 Rating: 8.1/10\\n   \ud83d\udccd Location: 48.86195, 2.33592\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=BRPARVDB&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DRENAISSANCE%2BPARIS%2BVENDOME%2BPAR)\\n\\n\\n\ud83d\udcb0 *Your budget: 200 EUR. Click the links above to check availability and current prices.*' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "This search provides the top 5 hotel options in Paris with a budget around 200 EUR. The results include the hotel name, rating, location, and a direct booking link to Booking.com where you can check availability and current prices. Let me know if you need any clarification or have additional requirements!"
+  }
+]

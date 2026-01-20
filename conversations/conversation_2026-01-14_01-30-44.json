@@ -1,0 +1,62 @@
+[
+  {
+    "role": "user",
+    "content": "Where am I currently and what is the date?"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let me check your current location and the date:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01C9GhfAUqUs3XZw4QwGYuoe",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01C9GhfAUqUs3XZw4QwGYuoe",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Kushinagar, Uttar Pradesh, India\\n\ud83d\udcc5 Date: 14/01/2026 (Wednesday)\\n\ud83d\udcc6 ISO Date: 2026-01-14\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Based on your IP address (127.0.0.1), your current location is Kushinagar, Uttar Pradesh, India. The current date is January 14, 2026, which is a Wednesday. The timezone is Asia/Kolkata."
+  },
+  {
+    "role": "user",
+    "content": "Find me 5 flights from BOM to GOI for next Monday. Budget is cheap."
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's search for flights from BOM (Mumbai) to GOI (Goa) for next Monday within a cheap budget.\n\nFirst, let's calculate the date for next Monday:\nToday is 2026-01-14, so next Monday will be 2026-01-20.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_0176gUnJMnAf6F4bGgf2KiPL",
+        "input": {
+          "origin": "BOM",
+          "destination": "GOI",
+          "departure_date": "2026-01-20"
+        },
+        "name": "search_flights",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

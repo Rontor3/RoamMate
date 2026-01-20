@@ -1,0 +1,24 @@
+[
+  {
+    "role": "user",
+    "content": "Show me top 5 hotels in Paris with budget around 200 EUR"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let me check for top hotels in Paris with a budget around 200 EUR:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01YFFp3frY88YRoGReU7LWgQ",
+        "input": {
+          "city_code": "PAR",
+          "budget": "200 EUR"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

@@ -1,0 +1,141 @@
+[
+  {
+    "role": "user",
+    "content": "hii"
+  },
+  {
+    "role": "assistant",
+    "content": "Hello! How can I assist you with your travel plans today?"
+  },
+  {
+    "role": "user",
+    "content": "I want to travel to varkala"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let me help you plan your trip to Varkala.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01GzgN48aTporkXiAPf8KMBw",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01GzgN48aTporkXiAPf8KMBw",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Mumbai, Maharashtra, India\\n\ud83d\udcc5 Date: 19/01/2026 (Monday)\\n\ud83d\udcc6 ISO Date: 2026-01-19\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Based on your location in Mumbai, India, here are some travel options to Varkala:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01RomAiXSHmB4nkqdSP1Cctg",
+        "input": {
+          "origin": "Mumbai",
+          "destination": "Varkala"
+        },
+        "name": "search_travel_routes",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01RomAiXSHmB4nkqdSP1Cctg",
+        "content": [
+          "type='text' text='\u26a0\ufe0f Google Custom Search API is not configured.\\n\\nPlease add the following to your .env file:\\n- GOOGLE_API_KEY=your_api_key\\n- GOOGLE_SEARCH_ENGINE_ID=your_cx_id\\n\\nMeanwhile, here are typical travel options:\\n\u2708\ufe0f Flights - Ask me to search for specific flights from Mumbai to Varkala\\n\ud83d\ude82 Trains - Check https://www.irctc.co.in\\n\ud83d\ude8c Buses - Check https://www.redbus.in' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Okay, since the Google Custom Search API is not configured, let me know if you would like me to search for specific flights from Mumbai to Varkala. I can also help you with hotel options in Varkala once I have your travel dates and budget preferences."
+  },
+  {
+    "role": "user",
+    "content": "travel dates is next weekend,what are my options of travel"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Alright, let's look at your travel options for next weekend from Mumbai to Varkala.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_017qcVTB7q9GgSyhyrdbXphz",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_017qcVTB7q9GgSyhyrdbXphz",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Mumbai, Maharashtra, India\\n\ud83d\udcc5 Date: 19/01/2026 (Monday)\\n\ud83d\udcc6 ISO Date: 2026-01-19\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Since today is January 19th, 2026 and you want to travel next weekend, that would be January 24-26, 2026.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01CajHRvBHwFbHxviRA1qgWt",
+        "input": {
+          "origin": "BOM",
+          "destination": "TRV",
+          "departure_date": "2026-01-24"
+        },
+        "name": "search_flights",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01CajHRvBHwFbHxviRA1qgWt",
+        "content": [
+          "type='text' text='Real-time flight options for BOM to TRV on 2026-01-24:\\n\\n- **Airline: AI** | Price: 84.55 EUR\\n  Dep: 2026-01-24T05:50:00 | Arr: 2026-01-24T07:55:00 | Duration: PT2H5M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+BOM+to+TRV+on+2026-01-24)\\n\\n- **Airline: AI** | Price: 84.55 EUR\\n  Dep: 2026-01-24T17:40:00 | Arr: 2026-01-24T20:00:00 | Duration: PT2H20M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+BOM+to+TRV+on+2026-01-24)\\n\\n- **Airline: AI** | Price: 133.51 EUR\\n  Dep: 2026-01-24T11:20:00 | Arr: 2026-01-24T17:05:00 | Duration: PT5H45M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+BOM+to+TRV+on+2026-01-24)\\n\\n- **Airline: AI** | Price: 137.71 EUR\\n  Dep: 2026-01-24T21:30:00 | Arr: 2026-01-25T07:45:00 | Duration: PT10H15M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+BOM+to+TRV+on+2026-01-24)\\n\\n- **Airline: AI** | Price: 139.81 EUR\\n  Dep: 2026-01-24T17:30:00 | Arr: 2026-01-24T22:15:00 | Duration: PT4H45M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+BOM+to+TRV+on+2026-01-24)\\n\\n' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,29 @@
+[
+  {
+    "role": "user",
+    "content": "I want to go to Goa from Mumbai. Find me some travel advice and some flights for January 17th."
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's break this down step-by-step:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01Geb3eGSehrziwmuinDvRRy",
+        "input": {
+          "params": {
+            "user_prefs": {
+              "location": "Mumbai",
+              "interests": [],
+              "trip_style": ""
+            }
+          }
+        },
+        "name": "scrape_and_extract_travel_advice",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

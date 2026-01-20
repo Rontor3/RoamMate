@@ -1,0 +1,84 @@
+[
+  {
+    "role": "user",
+    "content": "I want to go to goa for chill weekend"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan a trip to Goa for a chill weekend!",
+        "type": "text"
+      },
+      {
+        "id": "toolu_017zXWzeJGS4RLhrLyUGPrc6",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_017zXWzeJGS4RLhrLyUGPrc6",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Fatehpur, Uttar Pradesh, India\\n\ud83d\udcc5 Date: 15/01/2026 (Thursday)\\n\ud83d\udcc6 ISO Date: 2026-01-15\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Since you mentioned wanting to go to Goa for a chill weekend, let's plan a trip from your current location in Fatehpur, Uttar Pradesh.\n\nThe nearest major airport to Goa is Goa International Airport (GOI). Let's search for flights from Fatehpur (nearest major airport is Indira Gandhi International Airport, DEL) to Goa (GOI) for this weekend.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_013zd1PKryF1a3sNrqUmaXaw",
+        "input": {
+          "origin": "DEL",
+          "destination": "GOI",
+          "departure_date": "2026-01-17"
+        },
+        "name": "search_flights",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_013zd1PKryF1a3sNrqUmaXaw",
+        "content": [
+          "type='text' text='Real-time flight options for DEL to GOI on 2026-01-17:\\n\\n- **Airline: AI** | Price: 53.55 EUR\\n  Dep: 2026-01-17T18:10:00 | Arr: 2026-01-17T20:45:00 | Duration: PT2H35M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+DEL+to+GOI+on+2026-01-17)\\n\\n- **Airline: AI** | Price: 93.21 EUR\\n  Dep: 2026-01-17T08:30:00 | Arr: 2026-01-17T14:45:00 | Duration: PT6H15M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+DEL+to+GOI+on+2026-01-17)\\n\\n- **Airline: AI** | Price: 97.41 EUR\\n  Dep: 2026-01-17T09:00:00 | Arr: 2026-01-17T14:45:00 | Duration: PT5H45M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+DEL+to+GOI+on+2026-01-17)\\n\\n- **Airline: AI** | Price: 102.50 EUR\\n  Dep: 2026-01-17T14:45:00 | Arr: 2026-01-17T19:50:00 | Duration: PT5H5M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+DEL+to+GOI+on+2026-01-17)\\n\\n- **Airline: AI** | Price: 102.50 EUR\\n  Dep: 2026-01-17T12:30:00 | Arr: 2026-01-17T19:50:00 | Duration: PT7H20M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+DEL+to+GOI+on+2026-01-17)\\n\\n' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Based on the flight options, it looks like you can fly from Delhi (DEL) to Goa (GOI) on Friday, January 17th. The cheapest option is 53.55 EUR with Air India, with a flight duration of around 2.5 hours.\n\nNow let's look for some hotel options in Goa for your chill weekend:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_0195foCJxNDXrmEBvKRsaCqg",
+        "input": {
+          "city_code": "GOI",
+          "budget": "affordable"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

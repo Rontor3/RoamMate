@@ -1,0 +1,72 @@
+[
+  {
+    "role": "user",
+    "content": "Where am I and what is the date?"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's find out your current location and the date.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01WrLYKGV6ajaFmbNpcUkxAR",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01WrLYKGV6ajaFmbNpcUkxAR",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Unknown City, Unknown Region, Unknown Country\\n\ud83d\udcc5 Date: 13/01/2026 (Tuesday)\\n\ud83d\udcc6 ISO Date: 2026-01-13\\n\ud83c\udf0d Timezone: UTC' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the IP address you provided (127.0.0.1), your current location is unknown. However, the date is January 13th, 2026, which is a Tuesday. The timezone is UTC.\n\nDoes this information help? Let me know if you need anything else!"
+  },
+  {
+    "role": "user",
+    "content": "I want pricing in inr"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, got it. Let me look up your location and current date again, this time with the currency preference in INR.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01JVa6woqnn5jznJQC5e7sJi",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01JVa6woqnn5jznJQC5e7sJi",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Unknown City, Unknown Region, Unknown Country\\n\ud83d\udcc5 Date: 13/01/2026 (Tuesday)\\n\ud83d\udcc6 ISO Date: 2026-01-13\\n\ud83c\udf0d Timezone: UTC' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

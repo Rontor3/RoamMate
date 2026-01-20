@@ -1,0 +1,194 @@
+[
+  {
+    "role": "user",
+    "content": "I want to go to goa for chill weekend"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan a trip to Goa for a chill weekend!",
+        "type": "text"
+      },
+      {
+        "id": "toolu_017zXWzeJGS4RLhrLyUGPrc6",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_017zXWzeJGS4RLhrLyUGPrc6",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Fatehpur, Uttar Pradesh, India\\n\ud83d\udcc5 Date: 15/01/2026 (Thursday)\\n\ud83d\udcc6 ISO Date: 2026-01-15\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Since you mentioned wanting to go to Goa for a chill weekend, let's plan a trip from your current location in Fatehpur, Uttar Pradesh.\n\nThe nearest major airport to Goa is Goa International Airport (GOI). Let's search for flights from Fatehpur (nearest major airport is Indira Gandhi International Airport, DEL) to Goa (GOI) for this weekend.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_013zd1PKryF1a3sNrqUmaXaw",
+        "input": {
+          "origin": "DEL",
+          "destination": "GOI",
+          "departure_date": "2026-01-17"
+        },
+        "name": "search_flights",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_013zd1PKryF1a3sNrqUmaXaw",
+        "content": [
+          "type='text' text='Real-time flight options for DEL to GOI on 2026-01-17:\\n\\n- **Airline: AI** | Price: 53.55 EUR\\n  Dep: 2026-01-17T18:10:00 | Arr: 2026-01-17T20:45:00 | Duration: PT2H35M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+DEL+to+GOI+on+2026-01-17)\\n\\n- **Airline: AI** | Price: 93.21 EUR\\n  Dep: 2026-01-17T08:30:00 | Arr: 2026-01-17T14:45:00 | Duration: PT6H15M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+DEL+to+GOI+on+2026-01-17)\\n\\n- **Airline: AI** | Price: 97.41 EUR\\n  Dep: 2026-01-17T09:00:00 | Arr: 2026-01-17T14:45:00 | Duration: PT5H45M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+DEL+to+GOI+on+2026-01-17)\\n\\n- **Airline: AI** | Price: 102.50 EUR\\n  Dep: 2026-01-17T14:45:00 | Arr: 2026-01-17T19:50:00 | Duration: PT5H5M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+DEL+to+GOI+on+2026-01-17)\\n\\n- **Airline: AI** | Price: 102.50 EUR\\n  Dep: 2026-01-17T12:30:00 | Arr: 2026-01-17T19:50:00 | Duration: PT7H20M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+DEL+to+GOI+on+2026-01-17)\\n\\n' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Based on the flight options, it looks like you can fly from Delhi (DEL) to Goa (GOI) on Friday, January 17th. The cheapest option is 53.55 EUR with Air India, with a flight duration of around 2.5 hours.\n\nNow let's look for some hotel options in Goa for your chill weekend:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_0195foCJxNDXrmEBvKRsaCqg",
+        "input": {
+          "city_code": "GOI",
+          "budget": "affordable"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_0195foCJxNDXrmEBvKRsaCqg",
+        "content": [
+          "type='text' text='\u2728 **Top 5 Hotels in GOI**\\n\\n**1. RAMADA CARAVELA BEACH RESORT**\\n   \u2b50 Rating: 8.9/10\\n   \ud83d\udccd Location: 15.2106, 73.93518\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=RAGOIGRX&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DRAMADA%2BCARAVELA%2BBEACH%2BRESORT%2BGOI)\\n\\n**2. PEROLA DO MAR**\\n   \u2b50 Rating: 8.3/10\\n   \ud83d\udccd Location: 15.51189, 73.77624\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=ILGOI081&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DPEROLA%2BDO%2BMAR%2BGOI)\\n\\n**3. VIVANTA BY TAJ PANAJI**\\n   \u2b50 Rating: 9.0/10\\n   \ud83d\udccd Location: 15.49397, 73.82049\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=TJGOIVIT&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DVIVANTA%2BBY%2BTAJ%2BPANAJI%2BGOI)\\n\\n**4. COUNTRY INN SUITES GOA**\\n   \u2b50 Rating: 8.4/10\\n   \ud83d\udccd Location: 15.51059, 73.77182\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=CXGOI550&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DCOUNTRY%2BINN%2BSUITES%2BGOA%2BGOI)\\n\\n**5. RESORT TERRA PARAISO**\\n   \u2b50 Rating: 8.9/10\\n   \ud83d\udccd Location: 15.55086, 73.7591\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=ILGOI077&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DRESORT%2BTERRA%2BPARAISO%2BGOI)\\n\\n\\n\ud83d\udcb0 *Your budget: affordable. Click the links above to check availability and current prices.*' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Based on the hotel search results, it looks like you have some great affordable options to choose from for your chill weekend in Goa. The Ramada Caravela Beach Resort, Perola do Mar, and Resort Terra Paraiso seem to be top picks within your budget.\n\nLet me know if you need any other help planning your trip to Goa! I'm happy to provide more recommendations or assist with booking flights and hotels."
+  },
+  {
+    "role": "user",
+    "content": "sorry I want to varakakla for"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, no problem! Let's plan a trip to Varakala instead.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01Y23nXQvu3YwDzUYF6fq6gm",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01Y23nXQvu3YwDzUYF6fq6gm",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Fatehpur, Uttar Pradesh, India\\n\ud83d\udcc5 Date: 15/01/2026 (Thursday)\\n\ud83d\udcc6 ISO Date: 2026-01-15\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Since Varakala is a coastal town in Kerala, let's search for flights from your current location in Fatehpur, Uttar Pradesh to the nearest major airport in Kerala, which is Cochin International Airport (COK).",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01VQxieEPKc813ucSgdsnqYQ",
+        "input": {
+          "origin": "DEL",
+          "destination": "COK",
+          "departure_date": "2026-01-17"
+        },
+        "name": "search_flights",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01VQxieEPKc813ucSgdsnqYQ",
+        "content": [
+          "type='text' text='Real-time flight options for DEL to COK on 2026-01-17:\\n\\n- **Airline: AI** | Price: 86.26 EUR\\n  Dep: 2026-01-17T19:20:00 | Arr: 2026-01-17T22:20:00 | Duration: PT3H\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+DEL+to+COK+on+2026-01-17)\\n\\n- **Airline: AI** | Price: 86.26 EUR\\n  Dep: 2026-01-17T08:10:00 | Arr: 2026-01-17T11:20:00 | Duration: PT3H10M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+DEL+to+COK+on+2026-01-17)\\n\\n- **Airline: AI** | Price: 86.26 EUR\\n  Dep: 2026-01-17T16:20:00 | Arr: 2026-01-17T19:30:00 | Duration: PT3H10M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+DEL+to+COK+on+2026-01-17)\\n\\n- **Airline: AI** | Price: 86.26 EUR\\n  Dep: 2026-01-17T04:55:00 | Arr: 2026-01-17T08:10:00 | Duration: PT3H15M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+DEL+to+COK+on+2026-01-17)\\n\\n- **Airline: AI** | Price: 86.26 EUR\\n  Dep: 2026-01-17T09:30:00 | Arr: 2026-01-17T12:45:00 | Duration: PT3H15M\\n  [Book on Google Flights](https://www.google.com/travel/flights?q=Flight+from+DEL+to+COK+on+2026-01-17)\\n\\n' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "The flight options from Delhi (DEL) to Cochin (COK) on January 17th look good, with prices around 86 EUR and flight durations of 3-3.5 hours. You can choose the departure time that works best for your schedule.\n\nNow let's look for some hotel options in Varakala:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01JrZ7jz6MeNBHGW3VuEEpnt",
+        "input": {
+          "city_code": "COK",
+          "budget": "affordable"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01JrZ7jz6MeNBHGW3VuEEpnt",
+        "content": [
+          "type='text' text='\u2728 **Top 5 Hotels in COK**\\n\\n**1. PUNNAMADA BACKWATER RESORT**\\n   \u2b50 Rating: 7.5/10\\n   \ud83d\udccd Location: 9.52643, 76.35664\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=ILCOK229&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DPUNNAMADA%2BBACKWATER%2BRESORT%2BCOK)\\n\\n**2. VASUNDHARA SAROVAR PREMIERE**\\n   \u2b50 Rating: 8.8/10\\n   \ud83d\udccd Location: 9.5946, 76.43095\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=YXCOKVSP&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DVASUNDHARA%2BSAROVAR%2BPREMIERE%2BCOK)\\n\\n**3. VIVANTA BY TAJ KUMARAKOM**\\n   \u2b50 Rating: 7.9/10\\n   \ud83d\udccd Location: 9.62325, 76.42597\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=TJCOKTAJ&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DVIVANTA%2BBY%2BTAJ%2BKUMARAKOM%2BCOK)\\n\\n**4. THE SENATE**\\n   \u2b50 Rating: 8.0/10\\n   \ud83d\udccd Location: 9.9863, 76.28112\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=ILCOK002&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DTHE%2BSENATE%2BCOK)\\n\\n**5. CROWNE PLAZA KOCHI**\\n   \u2b50 Rating: 9.3/10\\n   \ud83d\udccd Location: 9.93397, 76.31864\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=CPCOKDA5&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DCROWNE%2BPLAZA%2BKOCHI%2BCOK)\\n\\n\\n\ud83d\udcb0 *Your budget: affordable. Click the links above to check availability and current prices.*' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

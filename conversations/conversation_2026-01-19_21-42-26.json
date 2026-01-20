@@ -1,0 +1,69 @@
+[
+  {
+    "role": "user",
+    "content": "I want to go to Varkala"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan your trip to Varkala!",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01FF7ShSKyiBdWVsMLTycHNx",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01FF7ShSKyiBdWVsMLTycHNx",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Mumbai, Maharashtra, India\\n\ud83d\udcc5 Date: 19/01/2026 (Monday)\\n\ud83d\udcc6 ISO Date: 2026-01-19\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Since your current location is Mumbai, let's search for travel options from Mumbai to Varkala.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_013Hcr1znmprzW4R6Eqc61md",
+        "input": {
+          "origin": "Mumbai",
+          "destination": "Varkala"
+        },
+        "name": "search_travel_routes",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_013Hcr1znmprzW4R6Eqc61md",
+        "content": [
+          "type='text' text='\u26a0\ufe0f Google Custom Search API is not configured.\\n\\nPlease add the following to your .env file:\\n- GOOGLE_API_KEY=your_api_key\\n- GOOGLE_SEARCH_ENGINE_ID=your_cx_id\\n\\nMeanwhile, here are typical travel options:\\n\u2708\ufe0f Flights - Ask me to search for specific flights from Mumbai to Varkala\\n\ud83d\ude82 Trains - Check https://www.irctc.co.in\\n\ud83d\ude8c Buses - Check https://www.redbus.in' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Okay, since the Google Custom Search API is not set up, let me know if you'd like me to search for specific flights from Mumbai to Varkala. I can also help you find train or bus options if you prefer those modes of transportation."
+  }
+]

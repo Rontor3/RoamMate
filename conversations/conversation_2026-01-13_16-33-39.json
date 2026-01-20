@@ -1,0 +1,59 @@
+[
+  {
+    "role": "user",
+    "content": "What is my current location and the date today?"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Let me check your current location and today's date:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_019dHTHVWaG78pxXWDw7Z8zD",
+        "input": {},
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_019dHTHVWaG78pxXWDw7Z8zD",
+        "content": [
+          "type='text' text='User Location: B\u0101z\u0101r, India' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Today's date is 2026-01-13."
+  },
+  {
+    "role": "user",
+    "content": "Find me hotels nearby for next Monday. Budget is cheap."
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let me search for hotels near your current location in B\u0101z\u0101r, India for next Monday, January 20, 2026, with a cheap budget.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01MSukrP7YFaZtyAGQRagDo3",
+        "input": {
+          "city_code": "BZR",
+          "budget": "cheap"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

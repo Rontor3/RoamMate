@@ -1,0 +1,62 @@
+[
+  {
+    "role": "user",
+    "content": "Hi I would like to travel to varakala next weekend for a chill trip"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan your trip to Varkala next weekend!",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01Bts5gHcrLV1JtcdoGZdDww",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01Bts5gHcrLV1JtcdoGZdDww",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Mumbai, Maharashtra, India\\n\ud83d\udcc5 Date: 20/01/2026 (Tuesday)\\n\ud83d\udcc6 ISO Date: 2026-01-20\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Based on the current information, your starting location is Mumbai. And the date today is January 20, 2026, which means next weekend would be January 25-26, 2026.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01JxVLB7oQbGaS8QVHk44CQW",
+        "input": {
+          "params": {
+            "user_prefs": {
+              "location": "Mumbai",
+              "interests": [
+                "relaxation",
+                "nature"
+              ],
+              "trip_style": "chill"
+            },
+            "post_limit": null
+          }
+        },
+        "name": "scrape_and_extract_travel_advice",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

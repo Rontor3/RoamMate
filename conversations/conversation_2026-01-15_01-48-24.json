@@ -1,0 +1,35 @@
+[
+  {
+    "role": "user",
+    "content": "hi I would like to plan a trip to varakala from lko next weekend"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan your trip to Varkala from Lucknow for next weekend.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_013smRChe1smD2KnZV6BcbBY",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_013smRChe1smD2KnZV6BcbBY",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Hyderabad, Telangana, India\\n\ud83d\udcc5 Date: 15/01/2026 (Thursday)\\n\ud83d\udcc6 ISO Date: 2026-01-15\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

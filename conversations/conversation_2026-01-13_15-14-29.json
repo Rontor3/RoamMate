@@ -1,0 +1,10 @@
+[
+  {
+    "role": "user",
+    "content": "I would like to plan a trip for goa"
+  },
+  {
+    "role": "assistant",
+    "content": "Okay, let's plan your trip to Goa! To get started, I'll need a few more details:\n\n1. What are your preferred travel dates? When would you like to depart and return?\n2. What is your preferred budget for hotels?\n\nOnce I have those details, I can use our travel planning tools to provide some recommendations and suggestions for your trip to Goa. Please provide the travel dates and hotel budget, and I'll be happy to assist further."
+  }
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "role": "user",
+    "content": "I want to go to Varkala"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let me help you plan your trip to Varkala.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01Wcmc1vcsX2kQtXcmgPY8Tf",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01Wcmc1vcsX2kQtXcmgPY8Tf",
+        "content": [
+          "type='text' text='Error fetching location: 429 Client Error: Too Many Requests for url: https://ipapi.co/json/. Falling back to default context.\\n\ud83d\udccd Location: India\\n\ud83d\udcc5 Date: 15/01/2026 (Thursday)\\n\ud83d\udcc6 ISO Date: 2026-01-15' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

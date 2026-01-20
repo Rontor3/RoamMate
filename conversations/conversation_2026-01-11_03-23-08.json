@@ -1,0 +1,37 @@
+[
+  {
+    "role": "user",
+    "content": "Find flights from Mumbai to Goa for tomorrow."
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Here is the information for flights from Mumbai (BOM) to Goa (GOI) for tomorrow:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_0197XkFBNAddLULkTWPxMGyw",
+        "input": {
+          "origin": "BOM",
+          "destination": "GOI",
+          "date": "2023-04-26"
+        },
+        "name": "search_flights",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_0197XkFBNAddLULkTWPxMGyw",
+        "content": [
+          "type='text' text='Flight options for BOM to GOI on 2023-04-26:\\n\\n- Air India: \u20b95,200 | Departure: 08:00 AM | Duration: 1h 15m\\n- IndiGo: \u20b94,800 | Departure: 10:30 AM | Duration: 1h 20m\\n- Vistara: \u20b96,100 | Departure: 02:15 PM | Duration: 1h 10m\\n' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

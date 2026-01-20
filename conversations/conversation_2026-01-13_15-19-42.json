@@ -1,0 +1,40 @@
+[
+  {
+    "role": "user",
+    "content": "Find me hotels in GOI (Goa) with a budget of 2000."
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let me help you find hotels in Goa within your budget.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_0125MUHvx1cSQDPgVnR2259j",
+        "input": {
+          "city_code": "GOI",
+          "budget": "2000 EUR"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_0125MUHvx1cSQDPgVnR2259j",
+        "content": [
+          "type='text' text='Top hotels in GOI (via Amadeus):\\n\\n- **DONA ALCINA RESORTS** (ID: ONGOIDON)\\n  [Check Rates on Booking.com](https://www.booking.com/searchresults.html?ss=DONA+ALCINA+RESORTS+hotel+GOI) | [View on Google](https://www.google.com/search?q=DONA+ALCINA+RESORTS+hotel+GOI)\\n\\n- **GRAND MERCURE GOA SHREM RESORT** (ID: RTGOIMER)\\n  [Check Rates on Booking.com](https://www.booking.com/searchresults.html?ss=GRAND+MERCURE+GOA+SHREM+RESORT+hotel+GOI) | [View on Google](https://www.google.com/search?q=GRAND+MERCURE+GOA+SHREM+RESORT+hotel+GOI)\\n\\n- **RESORTE SANTA MONICA** (ID: ILGOI078)\\n  [Check Rates on Booking.com](https://www.booking.com/searchresults.html?ss=RESORTE+SANTA+MONICA+hotel+GOI) | [View on Google](https://www.google.com/search?q=RESORTE+SANTA+MONICA+hotel+GOI)\\n\\n- **RAHI CORAL BEACH RESORT** (ID: ILGOI074)\\n  [Check Rates on Booking.com](https://www.booking.com/searchresults.html?ss=RAHI+CORAL+BEACH+RESORT+hotel+GOI) | [View on Google](https://www.google.com/search?q=RAHI+CORAL+BEACH+RESORT+hotel+GOI)\\n\\n- **NIRVANA HERMITAGE** (ID: IMGOI042)\\n  [Check Rates on Booking.com](https://www.booking.com/searchresults.html?ss=NIRVANA+HERMITAGE+hotel+GOI) | [View on Google](https://www.google.com/search?q=NIRVANA+HERMITAGE+hotel+GOI)\\n\\n\\n*Note: You mentioned a budget of 2000 EUR. Please check the links above for specific pricing.*' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Let me know if you need any other assistance in planning your trip to Goa!"
+  }
+]

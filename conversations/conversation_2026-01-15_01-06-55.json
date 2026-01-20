@@ -1,0 +1,35 @@
+[
+  {
+    "role": "user",
+    "content": "I want to go to goa for chill weekend"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan a trip to Goa for a chill weekend!",
+        "type": "text"
+      },
+      {
+        "id": "toolu_017zXWzeJGS4RLhrLyUGPrc6",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_017zXWzeJGS4RLhrLyUGPrc6",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Fatehpur, Uttar Pradesh, India\\n\ud83d\udcc5 Date: 15/01/2026 (Thursday)\\n\ud83d\udcc6 ISO Date: 2026-01-15\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

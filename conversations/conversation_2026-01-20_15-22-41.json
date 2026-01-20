@@ -1,0 +1,52 @@
+[
+  {
+    "role": "user",
+    "content": "Hi I want to plan a trip to varakala next weekend for chill outing, how can I plan it"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan your trip to Varkala next weekend! Here's how we can do it:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01Wzs1uLajqy16UwDCSjXv64",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01Wzs1uLajqy16UwDCSjXv64",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Mumbai, Maharashtra, India\\n\ud83d\udcc5 Date: 20/01/2026 (Tuesday)\\n\ud83d\udcc6 ISO Date: 2026-01-20\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Based on the current date and your location in Mumbai, I'm assuming you would like to travel to Varkala next weekend, which would be 24-26 January 2026.\n\nLet's start the 5-stage travel planning process:\n\n1. **Intent Parsing:**\n   - Origin: Mumbai\n   - Destination: Varkala\n\n2. **Search Execution:**",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01ESuG5gh2Zeh7UGPnRNLWhg",
+        "input": {
+          "query": "best hotels in varkala"
+        },
+        "name": "perform_live_search",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "role": "user",
+    "content": "hi I want to travel to Varkala next weekend"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let me help you plan your trip to Varkala!",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01XYNSUPWJMhWVkcTCxGcXiR",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

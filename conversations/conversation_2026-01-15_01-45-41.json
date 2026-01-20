@@ -1,0 +1,145 @@
+[
+  {
+    "role": "user",
+    "content": "I want to go to Varkala"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan your trip to Varkala!",
+        "type": "text"
+      },
+      {
+        "id": "toolu_016pSb6TVeGtXNwKnaoniZ9v",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_016pSb6TVeGtXNwKnaoniZ9v",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Hyderabad, Telangana, India\\n\ud83d\udcc5 Date: 15/01/2026 (Thursday)\\n\ud83d\udcc6 ISO Date: 2026-01-15\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Based on your current location in Hyderabad, India, here are the travel options to get to Varkala:",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01KCgaQqFBbPaR7RqUNN9i9F",
+        "input": {
+          "origin": "Hyderabad",
+          "destination": "Varkala"
+        },
+        "name": "search_travel_routes",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01KCgaQqFBbPaR7RqUNN9i9F",
+        "content": [
+          "type='text' text=\"Error calling tool 'search_travel_routes': No module named 'bs4'\" annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Oops, it looks like the tool to search travel routes is not working at the moment. Let me try to find flight options instead.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_015ZoYUESp9bTrLNaPwTm5eY",
+        "input": {
+          "origin": "HYD",
+          "destination": "VKL",
+          "departure_date": "2026-01-15"
+        },
+        "name": "search_flights",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_015ZoYUESp9bTrLNaPwTm5eY",
+        "content": [
+          "type='text' text='Error: Departure date 2026-01-15 is in the past. Please choose a future date.' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Hmm, the departure date I had was in the past. Let me try again with a future date.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_019jNShNmh6h6X1BmJiU8mk8",
+        "input": {
+          "origin": "HYD",
+          "destination": "VKL",
+          "departure_date": "2026-01-20"
+        },
+        "name": "search_flights",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_019jNShNmh6h6X1BmJiU8mk8",
+        "content": [
+          "type='text' text='Error fetching flight data (Status 400): [400]\\n' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "It seems the flight search is not working as expected. Let me try to find hotel options in Varkala instead.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01SvhyZQ2BbpfRTC2WHqW3AZ",
+        "input": {
+          "city_code": "VKL",
+          "budget": "medium"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

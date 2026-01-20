@@ -1,0 +1,35 @@
+[
+  {
+    "role": "user",
+    "content": "Hi I want to plan a trip to varakala next weekend for chill outing, how can I plan it"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "*Voya here, your friendly travel consultant. Let's plan an amazing getaway to Varkala for you next weekend!*\n\nBased on the details you provided, it seems like you're looking for a relaxing trip to the picturesque town of Varkala. As your current location is Mumbai, I'll focus on finding the best options to get you there and suggest some top accommodation and activity choices.\n\nFirst, let me check on the current travel situation. ",
+        "type": "text"
+      },
+      {
+        "id": "toolu_014VJVrxGR91owPiy3CwgvtC",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_014VJVrxGR91owPiy3CwgvtC",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Mumbai, Maharashtra, India\\n\ud83d\udcc5 Date: 20/01/2026 (Tuesday)\\n\ud83d\udcc6 ISO Date: 2026-01-20\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "role": "user",
+    "content": "hi  I would like to travel to varakala next weekend"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Okay, let's plan your trip to Varkala next weekend!\n\nFirst, let me check your current location. ",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01PpaDnUTRtdsGHEuyU9uP2g",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01PpaDnUTRtdsGHEuyU9uP2g",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Mumbai, Maharashtra, India\\n\ud83d\udcc5 Date: 20/01/2026 (Tuesday)\\n\ud83d\udcc6 ISO Date: 2026-01-20\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Great, so you're currently located in Mumbai. Let's search for travel options from Mumbai to Varkala for next weekend.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01FFrRz2UnHdCo7XLG8X6G1N",
+        "input": {
+          "origin": "Mumbai",
+          "destination": "Varkala"
+        },
+        "name": "search_travel_routes",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01FFrRz2UnHdCo7XLG8X6G1N",
+        "content": [
+          "type='text' text='\u26a0\ufe0f Google Custom Search API is not configured.\\n\\nPlease add the following to your .env file:\\n- GOOGLE_API_KEY=your_api_key\\n- GOOGLE_SEARCH_ENGINE_ID=your_cx_id\\n\\nMeanwhile, here are typical travel options:\\n\u2708\ufe0f Flights - Ask me to search for specific flights from Mumbai to Varkala\\n\ud83d\ude82 Trains - Check https://www.irctc.co.in\\n\ud83d\ude8c Buses - Check https://www.redbus.in' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]
