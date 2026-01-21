@@ -880,3 +880,9 @@
 2026-01-20 16:35:37,003 - MCPClient - INFO - Calling LLM
 2026-01-20 16:44:43,091 - MCPClient - INFO - Processing query: Hi I want to travel to varakala next weekend for chill trip (Client IP: 127.0.0.1)
 2026-01-20 16:44:43,092 - MCPClient - INFO - Calling LLM
+2026-01-21 00:16:53,252 - MCPClient - INFO - Processing query: hi I want to travel to manali (Client IP: 127.0.0.1)
+2026-01-21 00:16:53,252 - MCPClient - INFO - Calling LLM
+2026-01-21 00:18:45,756 - MCPClient - INFO - Processing query: I want to go to goa (Client IP: 127.0.0.1)
+2026-01-21 00:18:45,757 - MCPClient - INFO - Calling LLM
+2026-01-21 00:19:07,050 - MCPClient - INFO - Processing query: I want flight details for 24 th jan (Client IP: 127.0.0.1)
+2026-01-21 00:19:07,050 - MCPClient - INFO - Calling LLM

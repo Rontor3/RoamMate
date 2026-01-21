@@ -1,0 +1,58 @@
+[
+  {
+    "role": "user",
+    "content": "Hi I want to go to varakala"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "id": "toolu_01QH6Enei1gZpZpeP7UXygaa",
+        "input": {},
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01QH6Enei1gZpZpeP7UXygaa",
+        "content": [
+          "type='text' text='Error fetching location: 429 Client Error: Too Many Requests for url: https://ipapi.co/192.168.65.1/json/. Falling back to default context.\\n\ud83d\udccd Location: India\\n\ud83d\udcc5 Date: 21/01/2026 (Wednesday)\\n\ud83d\udcc6 ISO Date: 2026-01-21' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Varkala is a charming coastal town in the southern Indian state of Kerala, renowned for its picturesque clifftops and serene beaches. The town has a laidback vibe with a mix of Ayurvedic retreats, yoga centers, and quaint cafes along the cliff-lined promenade. \n\nTo get to Varkala, you have a few transit options from major cities in India. From the nearest airport in Trivandrum, you can take a 45-minute taxi or Uber ride to Varkala. Alternatively, you can take a train from cities like Mumbai, Bangalore, or Chennai, with the journey taking around 12-15 hours. Another option is to take a bus, which is often more affordable but can take longer depending on the departure city.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_0131c1UR8TyrqrpQpW7VAB3K",
+        "input": {
+          "city_code": "TRV"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_0131c1UR8TyrqrpQpW7VAB3K",
+        "content": [
+          "type='text' text='Error: Amadeus API is not configured. Please check your API keys.' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

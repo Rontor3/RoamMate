@@ -6,16 +6,20 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Dict, Any
 from contextlib import asynccontextmanager
-from mcp_client import MCPClient
+from app.mcp_client import MCPClient
 from dotenv import load_dotenv
 from pydantic_settings import BaseSettings
-from utils.logger import logger
+from app.utils.logger import logger
 
 load_dotenv()
 
 
 class Settings(BaseSettings):
-    server_script_path: str = "/Users/rakshitsingh/Desktop/My_project/RoamMate/main.py"
+    # Get the project root directory (one level up from /app)
+    project_root: str = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    @property
+    def server_script_path(self) -> str:
+        return os.path.join(self.project_root, "main.py")
 
 settings = Settings()
 

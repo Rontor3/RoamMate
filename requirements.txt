@@ -1,44 +1,24 @@
-# requirements.txt
-# Consolidated dependencies (merged from requirments.txt)
-
-# Core LLM Agent Framework
+# Core Frameworks
+fastapi==0.116.1
+uvicorn==0.35.0
 fastmcp==2.10.6
 
-# LLMs
-openai>=1.30.0
-anthropic
-transformers>=4.41.2
-torch>=2.2.2
+# LLMs & AI
+anthropic==0.69.0
+tiktoken==0.11.0
 
-# Geolocation and maps
-geopy>=2.4.1
-requests>=2.31.0
+# API Clients & Networking
+requests==2.32.4
+httpx==0.28.1
+aiohttp==3.12.15
+amadeus==12.0.0
+asyncpraw==7.8.1
 
-# Weather / env
-python-dotenv>=1.0.1
+# Utilities & Configuration
+python-dotenv==1.1.1
+pydantic==2.11.7
+pydantic-settings==2.10.1
 
-# Vector store & embeddings (if doing RAG)
-sentence-transformers>=2.6.1
-faiss-cpu>=1.8.0
-
-# Speech-to-text and text-to-speech
-SpeechRecognition>=3.10.0
-pyttsx3>=2.90
-pyaudio>=0.2.13
-
-# FastAPI server (optional for API interface)
-fastapi>=0.111.0
-uvicorn>=0.30.1
-
-# Android interface (via HTTP or WebSocket bridge)
-httpx>=0.27.0
-
-# Utility
-pandas>=2.2.2
-rich>=13.7.1
-
-# Voice (optional advanced TTS)
-TTS==0.22.0
-
-# API Integrations
-amadeus>=9.0.0beautifulsoup4>=4.12.0
+# Web Server Utilities
+sse-starlette==2.4.1
+python-multipart==0.0.20

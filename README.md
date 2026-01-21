@@ -53,14 +53,41 @@ uv sync
 ```
 
 ### 4. Run the Application
-Start the backend server:
+
+#### Option A: Local Run
 ```bash
 uv run python app/main.py
 # OR
 python app/main.py
 ```
 
-Visit **http://localhost:8000** (or the port specified in logs) to start planning!
+#### Option B: Docker (Recommended)
+This is the easiest way to run the app with all dependencies pre-configured.
+
+**1. Using Docker Compose (Fastest)**
+```bash
+# Build and start in background
+docker compose up -d --build
+```
+
+**2. Manual Build & Run**
+```bash
+# Build the image
+docker build -t roammate .
+
+# Run the container (injecting .env)
+docker run -p 8080:8080 --env-file .env roammate
+```
+
+**3. Useful Commands**
+- **View Logs**: `docker compose logs -f`
+- **Stop App**: `docker compose down`
+- **Check Status**: `docker ps`
+
+> [!TIP]
+> **Persistence**: Conversational history is stored in the `./conversations` folder. The Docker Compose setup automatically mounts this as a volume, so your history is preserved even if the container is deleted.
+
+Visit **http://localhost:8080** to start planning!
 
 ## 📂 Project Structure
 

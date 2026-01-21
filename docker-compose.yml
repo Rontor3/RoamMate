@@ -1,0 +1,12 @@
+services:
+  roammate:
+    build: .
+    image: roammate-app:latest
+    container_name: roammate
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - ./conversations:/app/conversations
