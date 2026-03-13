@@ -1,0 +1,35 @@
+[
+  {
+    "role": "user",
+    "content": "Hi I am planing to travel to laddkh, suggest me best time for that and since I am biker tell me the best route"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "id": "toolu_01TdXXLJG8Ams2wK6S9aX7i4",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01TdXXLJG8Ams2wK6S9aX7i4",
+        "content": [
+          "type='text' text='Error fetching location: 429 Client Error: Too Many Requests for url: https://ipapi.co/json/. Falling back to default context.\\n\ud83d\udccd Location: India\\n\ud83d\udcc5 Date: 27/01/2026 (Tuesday)\\n\ud83d\udcc6 ISO Date: 2026-01-27' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Leh, the capital of Ladakh, is a stunning high-altitude desert region known for its rugged beauty, Buddhist monasteries, and exhilarating motorcycle rides. The best time to visit Ladakh is during the summer months from June to September, when the weather is mild and the roads are clear of snow. As an avid biker, the journey to Ladakh itself will be an unforgettable adventure.\n\nThe most popular and scenic route to reach Ladakh is the Manali-Leh Highway, also known as the Leh-Manali Highway. This winding 490 km road takes you through some of the most breathtaking landscapes, including the Rohtang Pass, Baralacha La, and Tanglang La. Along the way, you'll encounter stunning views of the Himalayas, quaint villages, and challenging mountain passes that will test your riding skills. [Manali to Leh Bike Trip](https://www.indiahikes.com/manali-to-leh-bike-trip/) provides a detailed guide on this iconic route.\n\nAlternatively, you can also consider the Srinagar-Leh Highway, which is slightly longer at 434 km but offers a different set of landscapes and experiences. This route takes you through the picturesque Kashmir Valley, the Zoji La pass, and the awe-inspiring Kargil region before reaching Leh. [Srinagar to Leh Bike Trip](https://www.adventureshine.com/srinagar-to-leh-bike-trip/) has more information on this scenic journey."
+  }
+]

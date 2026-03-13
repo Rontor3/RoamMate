@@ -1,0 +1,68 @@
+[
+  {
+    "role": "user",
+    "content": "I want to go to goa"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "id": "toolu_01SkyEJdb1BWYDTwmJxuRC8m",
+        "input": {},
+        "name": "get_current_info",
+        "type": "tool_use",
+        "caller": {
+          "type": "direct"
+        }
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01SkyEJdb1BWYDTwmJxuRC8m",
+        "content": [
+          "type='text' text='Error fetching location: 429 Client Error: Too Many Requests for url: https://ipapi.co/json/. Falling back to default context.\\n\ud83d\udccd Location: India\\n\ud83d\udcc5 Date: 01/03/2026 (Sunday)\\n\ud83d\udcc6 ISO Date: 2026-03-01' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Ahh, Goa - the jewel of India's west coast! This vibrant state is known for its lush, palm-fringed beaches, colorful Portuguese-influenced architecture, and laid-back beach culture. As a fellow traveler, I think you'll love exploring Goa's beautiful coastal towns like Anjuna, Baga, and Palolem.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01Ubtf3Fk4krVp8F4BadW8vo",
+        "input": {
+          "city_code": "GOI"
+        },
+        "name": "search_hotels",
+        "type": "tool_use",
+        "caller": {
+          "type": "direct"
+        }
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01Ubtf3Fk4krVp8F4BadW8vo",
+        "content": [
+          "type='text' text='\u2728 **Top 5 Hotels in GOI**\\n\\n**1. VIVANTA BY TAJ PANAJI**\\n   \u2b50 Rating: 8.1/10\\n   \ud83d\udccd Location: 15.49397, 73.82049\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=TJGOIVIT&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DVIVANTA%2BBY%2BTAJ%2BPANAJI%2BGOI)\\n\\n**2. MARIA ROSA RESORT**\\n   \u2b50 Rating: 8.6/10\\n   \ud83d\udccd Location: 15.55086, 73.7591\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=ILGOI059&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DMARIA%2BROSA%2BRESORT%2BGOI)\\n\\n**3. ROYAL PALACE BEACH RESORT**\\n   \u2b50 Rating: 9.1/10\\n   \ud83d\udccd Location: 15.53328, 73.76139\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=HSGOIABI&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DROYAL%2BPALACE%2BBEACH%2BRESORT%2BGOI)\\n\\n**4. JEWEL INN AND SPA**\\n   \u2b50 Rating: 9.4/10\\n   \ud83d\udccd Location: 15.4911, 73.91361\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=ILGOI057&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DJEWEL%2BINN%2BAND%2BSPA%2BGOI)\\n\\n**5. STAY SIMPLE JESANT VALLEY**\\n   \u2b50 Rating: 8.6/10\\n   \ud83d\udccd Location: 15.4911, 73.91361\\n   \ud83d\udd17 [Book on Booking.com (Affiliate)](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=ILGOI365&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DSTAY%2BSIMPLE%2BJESANT%2BVALLEY%2BGOI)\\n\\n' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "The coastal city of Goa has a vibrant mix of Portuguese and Indian cultures, making it a truly unique travel destination. Whether you're looking to relax on the stunning beaches, explore historic sites like old Goa, or indulge in the lively beach parties, there's something for everyone.\n\nFrom the luxury VIVANTA BY TAJ PANAJI to the more budget-friendly STAY SIMPLE JESANT VALLEY, Goa offers a range of accommodation options to fit your travel style and budget. For a quintessential Goan experience, I'd recommend checking out the [MARIA ROSA RESORT](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=ILGOI059&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DMARIA%2BROSA%2BRESORT%2BGOI) or the [ROYAL PALACE BEACH RESORT](https://www.awin1.com/cread.php?awinmid=18117&awinaffid=15db61ca-2edc-4f18-aaab-b8db9663a0f5&clickref=HSGOIABI&p=https%3A%2F%2Fwww.booking.com%2Fsearchresults.html%3Fss%3DROYAL%2BPALACE%2BBEACH%2BRESORT%2BGOI).\n\nSome insider tips for your trip: Be sure to visit the colorful Anjuna Flea Market, try the delicious Goan seafood curries, and catch a sunset at Arambol Beach. Let me know if you need any other Goa recommendations - I'm happy to help you plan the perfect trip!"
+  }
+]

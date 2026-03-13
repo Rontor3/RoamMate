@@ -1,0 +1,29 @@
+[
+  {
+    "role": "user",
+    "content": "hey I am planning to go to kochi, how can I do that"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "id": "toolu_016PZs7S371rP45g17JmDgeq",
+        "input": {},
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_016PZs7S371rP45g17JmDgeq",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Kochi, Kerala, India\\n\ud83d\udcc5 Date: 07/02/2026 (Saturday)\\n\ud83d\udcc6 ISO Date: 2026-02-07\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

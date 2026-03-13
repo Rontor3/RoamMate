@@ -1,0 +1,19 @@
+[
+  {
+    "role": "user",
+    "content": "Hi I am planing to travel to laddkh, suggest me best time for that and since I am biker tell me the best route"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "id": "toolu_01TdXXLJG8Ams2wK6S9aX7i4",
+        "input": {
+          "ip": "127.0.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

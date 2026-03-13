@@ -1,0 +1,49 @@
+[
+  {
+    "role": "user",
+    "content": "hey I am planning to go to kochi, how can I do that"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "id": "toolu_016PZs7S371rP45g17JmDgeq",
+        "input": {},
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_016PZs7S371rP45g17JmDgeq",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Kochi, Kerala, India\\n\ud83d\udcc5 Date: 07/02/2026 (Saturday)\\n\ud83d\udcc6 ISO Date: 2026-02-07\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Kochi, the vibrant port city of Kerala, is a fantastic destination to explore. Known for its rich history, diverse culture, and stunning natural beauty, it's easy to see why Kochi is a top pick for many travelers.\n\nGetting to Kochi from your location is quite straightforward. As Kochi is a major transportation hub in southern India, you have several options to consider. ",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01MGB7v5gLfxsMmCtSdCFgDU",
+        "input": {
+          "origin": "BOM",
+          "destination": "COK",
+          "departure_date": "2026-02-15",
+          "currency_code": "INR"
+        },
+        "name": "search_flights",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "role": "user",
+    "content": "Hey, I want to travel to silliguri next month and have the intention to all the hidden spots"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "id": "toolu_019b9PEo1vX2CVwTi4JiSFeH",
+        "input": {
+          "ip": "172.18.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

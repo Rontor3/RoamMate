@@ -115,7 +115,7 @@ async def generate_travel_links(resource_type: str, names: list[str]) -> str:
 import requests
 
 @mcp.tool()
-async def search_flights(origin: str, destination: str, departure_date: str, currency_code: str = "USD") -> str:
+async def search_flights(origin: str, destination: str, departure_date: str, currency_code: str = "INR") -> str:
     """
     Search for flights between two cities on a specific date using Amadeus API.
     
@@ -305,7 +305,12 @@ async def search_hotels(city_code: str, budget: Optional[str] = None) -> str:
         return output
 
     except ResponseError as error:
-        return f"Error fetching hotel data: {error}"
+        # Check for 400 Bad Request which often means city not found in hotel DB
+        if hasattr(error, 'response') and error.response.status_code == 400:
+            return f"Error: City code '{city_code}' not supported by Amadeus Hotel Search. ACTION: Please use 'perform_live_search' for '{city_code} hotels' instead."
+        return f"Error fetching hotel data: [Status {getattr(error.response, 'status_code', 'Unknown')}] {error}"
+    except Exception as e:
+        return f"Unexpected error in search_hotels: {str(e)}"
 
 if __name__ == "__main__":
     mcp.run()

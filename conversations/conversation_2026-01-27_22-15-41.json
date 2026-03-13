@@ -1,0 +1,95 @@
+[
+  {
+    "role": "user",
+    "content": "hi I want to travel to Itanagar when and how should I plan it"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "id": "toolu_01LYvxRvbscBYf5XF616u5yF",
+        "input": {},
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01LYvxRvbscBYf5XF616u5yF",
+        "content": [
+          "type='text' text='\ud83d\udccd Location: Fatehpur, Uttar Pradesh, India\\n\ud83d\udcc5 Date: 27/01/2026 (Tuesday)\\n\ud83d\udcc6 ISO Date: 2026-01-27\\n\ud83c\udf0d Timezone: Asia/Kolkata' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Itanagar, the capital city of Arunachal Pradesh, is a vibrant destination nestled in the Eastern Himalayas. The city boasts a unique blend of natural beauty, rich cultural heritage, and traditional architecture. To plan your visit, the best time would be during the spring or autumn months when the weather is pleasant and mild.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01HbZF6G33yud8YPBE2yszKH",
+        "input": {
+          "origin": "DEL",
+          "destination": "IXT",
+          "departure_date": "2026-04-15",
+          "currency_code": "INR"
+        },
+        "name": "search_flights",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01HbZF6G33yud8YPBE2yszKH",
+        "content": [
+          "type='text' text='No flights found from DEL to IXT on 2026-04-15.' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "It appears that there are no direct flights available from Delhi (DEL) to Itanagar (IXT) on the desired date. However, you can consider taking a flight to the nearest major airport, Guwahati (GAU), and then taking a scenic road trip to Itanagar, which is approximately 4-5 hours away. This will allow you to experience the breathtaking landscapes and explore the region's rich cultural heritage along the way.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01RU8mfdRvX7AKXAcywdeUNk",
+        "input": {
+          "city_code": "IXT",
+          "budget": "moderate"
+        },
+        "name": "search_hotels",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01RU8mfdRvX7AKXAcywdeUNk",
+        "content": [
+          "type='text' text='Error fetching hotel data: [400]\\n' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Unfortunately, the Amadeus API was unable to retrieve hotel data for Itanagar (IXT). As an alternative, you can explore accommodations through popular online travel platforms like Booking.com, Tripadvisor, or Airbnb, which offer a wide range of options in the city, from budget-friendly homestays to mid-range hotels and resorts. This will allow you to find the perfect place to stay that aligns with your preferences and budget.\n\nBy combining a flight to Guwahati with a road trip to Itanagar, you can fully immerse yourself in the natural beauty, rich cultural heritage, and warm hospitality of this enchanting region. With some flexibility and research, you can curate an unforgettable travel experience in Itanagar."
+  }
+]

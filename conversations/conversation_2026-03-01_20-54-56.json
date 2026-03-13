@@ -1,0 +1,52 @@
+[
+  {
+    "role": "user",
+    "content": "I want to go to goa"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "id": "toolu_01SkyEJdb1BWYDTwmJxuRC8m",
+        "input": {},
+        "name": "get_current_info",
+        "type": "tool_use",
+        "caller": {
+          "type": "direct"
+        }
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_01SkyEJdb1BWYDTwmJxuRC8m",
+        "content": [
+          "type='text' text='Error fetching location: 429 Client Error: Too Many Requests for url: https://ipapi.co/json/. Falling back to default context.\\n\ud83d\udccd Location: India\\n\ud83d\udcc5 Date: 01/03/2026 (Sunday)\\n\ud83d\udcc6 ISO Date: 2026-03-01' annotations=None meta=None"
+        ]
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "text": "Ahh, Goa - the jewel of India's west coast! This vibrant state is known for its lush, palm-fringed beaches, colorful Portuguese-influenced architecture, and laid-back beach culture. As a fellow traveler, I think you'll love exploring Goa's beautiful coastal towns like Anjuna, Baga, and Palolem.",
+        "type": "text"
+      },
+      {
+        "id": "toolu_01Ubtf3Fk4krVp8F4BadW8vo",
+        "input": {
+          "city_code": "GOI"
+        },
+        "name": "search_hotels",
+        "type": "tool_use",
+        "caller": {
+          "type": "direct"
+        }
+      }
+    ]
+  }
+]

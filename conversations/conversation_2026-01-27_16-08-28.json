@@ -1,0 +1,31 @@
+[
+  {
+    "role": "user",
+    "content": "Hey, I want to travel to silliguri next month and have the intention to all the hidden spots"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "id": "toolu_019b9PEo1vX2CVwTi4JiSFeH",
+        "input": {
+          "ip": "172.18.0.1"
+        },
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "tool_result",
+        "tool_use_id": "toolu_019b9PEo1vX2CVwTi4JiSFeH",
+        "content": [
+          "type='text' text='Error fetching location: 429 Client Error: Too Many Requests for url: https://ipapi.co/172.18.0.1/json/. Falling back to default context.\\n\ud83d\udccd Location: India\\n\ud83d\udcc5 Date: 27/01/2026 (Tuesday)\\n\ud83d\udcc6 ISO Date: 2026-01-27' annotations=None meta=None"
+        ]
+      }
+    ]
+  }
+]

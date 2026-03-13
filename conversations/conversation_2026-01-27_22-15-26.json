@@ -1,0 +1,17 @@
+[
+  {
+    "role": "user",
+    "content": "hi I want to travel to Itanagar when and how should I plan it"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "id": "toolu_01LYvxRvbscBYf5XF616u5yF",
+        "input": {},
+        "name": "get_current_info",
+        "type": "tool_use"
+      }
+    ]
+  }
+]

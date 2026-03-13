@@ -1,0 +1,20 @@
+[
+  {
+    "role": "user",
+    "content": "I want to go to goa"
+  },
+  {
+    "role": "assistant",
+    "content": [
+      {
+        "id": "toolu_01SkyEJdb1BWYDTwmJxuRC8m",
+        "input": {},
+        "name": "get_current_info",
+        "type": "tool_use",
+        "caller": {
+          "type": "direct"
+        }
+      }
+    ]
+  }
+]
