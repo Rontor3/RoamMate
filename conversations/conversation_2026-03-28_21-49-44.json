@@ -1,0 +1,26 @@
+[
+  {
+    "role": "human",
+    "content": "Hi I want to explore south goa"
+  },
+  {
+    "role": "ai",
+    "content": "**\ud83d\udccd Must-See Spots**\n* Explore the stunning **Colva Beach**, known for its pristine white sand and crystal-clear waters.\n* Visit the historic **Cabo de Rama Fort**, which offers breathtaking views of the Arabian Sea.\n* Take a boat tour to **Netravali Wildlife Sanctuary**, home to diverse flora and fauna.\n* Relax on the serene **Palolem Beach**, a favorite among travelers.\n\n**\ud83c\udf5c Local Food & Drinks**\n* Savor the famous **Goan Fish Curry** with rice or bread.\n* Try the unique **Feni** (cashew liquor) or **Kingfisher Beer**.\n* Enjoy a traditional **Goan Breakfast** with poi, pao, and chutneys.\n\n**\ud83d\udcc5 Best Time to Go**\nSouth Goa is best visited from October to February, when the weather is pleasant and perfect for beach activities.\n\nWhat kind of vibe are you looking for in South Goa: relaxation, adventure, or cultural experiences?"
+  },
+  {
+    "role": "human",
+    "content": "relaxing and cultural experience , how should plan my one week itenary"
+  },
+  {
+    "role": "ai",
+    "content": "For a relaxing and cultural experience in South Goa, I've got just the right plan for you.\n\nStart your week with a tranquil stay at **Wildernest**, where you can enjoy your private swimming pool and waterfall views. Spend a day or two unwinding and rejuvenating in nature.\n\nNext, head to **Palolem Beach**, where you can relax on the serene shores and take a yoga class or simply soak up the laid-back atmosphere. Visit the nearby **Palolem Chapel**, a quaint church that showcases Goa's rich cultural heritage.\n\nIn the evenings, explore the local markets and try some traditional **Goan cuisine**, like **Xacuti** or ** Vindaloo**. You can also visit the **Cabo de Rama Fort** and watch the sunset over the Arabian Sea.\n\nHere's a sample itinerary:\n\nDay 1-2: **Wildernest** (relaxation and nature)\nDay 3-4: **Palolem Beach** (beach relaxation and yoga)\nDay 5: **Cabo de Rama Fort** and local markets (cultural experience)\nDay 6-7: **Colva Beach** (relaxation and water activities)\n\nFeel free to adjust the itinerary to fit your preferences. Would you like more recommendations on local eateries or activities?",
+    "tools_used": [
+      "[Groq/intent] dest=Goa vibe=chill,cultural confidence=0.80",
+      "[Reddit] 49 posts retrieved for 'Goa'",
+      "[Tavily/blog] 8 sources for 'Goa'",
+      "[MCP/google_maps] 0 places returned",
+      "[MCP/booking] 0 hotels returned",
+      "[Groq/responder] 1109 chars generated (phase=Phase.PLANNING)"
+    ]
+  }
+]

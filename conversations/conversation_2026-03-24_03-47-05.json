@@ -1,0 +1,30 @@
+[
+  {
+    "role": "human",
+    "content": "I want to explore north east, how do I plan it"
+  },
+  {
+    "role": "ai",
+    "content": "**\ud83d\udccd Must-See Spots**\n* Visit **Tawang** in Arunachal Pradesh for its stunning monastery and scenic valleys.\n* Explore **Shillong** in Meghalaya, known for its picturesque hills, waterfalls, and vibrant markets.\n* Discover **Kaziranga National Park** in Assam, a UNESCO World Heritage Site and home to rhinos and other wildlife.\n* Head to **Silk Road** in Sikkim for breathtaking Himalayan views and Tibetan culture.\n\n**\ud83c\udf5c Local Food & Drinks**\n* Savor **Thukpa**, a hearty noodle soup popular in Sikkim and Arunachal Pradesh.\n* Try **Jadoh**, a traditional Khasi dish from Meghalaya made with rice and meat or fish.\n* Enjoy **Masoor Tenga**, a flavorful fish curry from Assam.\n* Quench your thirst with **Chhurpi**, a type of yak cheese tea.\n\n**\ud83d\udcc5 Best Time to Go**\nThe best time to visit North East India is from October to April, when the weather is pleasant and sunny. Avoid the monsoon season from June to September.\n\nWhat's your travel vibe: are you looking for adventure, cultural experiences, or relaxation?"
+  },
+  {
+    "role": "human",
+    "content": "I want a more adventures and local experience rather than touristy experience"
+  },
+  {
+    "role": "ai",
+    "content": "I found some great options in North East India! Let me know if you'd like more specific recommendations."
+  },
+  {
+    "role": "human",
+    "content": "what are the recommendations"
+  },
+  {
+    "role": "ai",
+    "content": "I found some great options in North East India! Let me know if you'd like more specific recommendations.",
+    "tools_used": [
+      "[Groq/intent] dest=North East India vibe=adventure,cultural confidence=0.80",
+      "[Groq/responder] 104 chars generated (phase=Phase.DISCOVERY)"
+    ]
+  }
+]

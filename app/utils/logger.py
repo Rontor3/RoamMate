@@ -1,21 +1,43 @@
+"""
+Shared logger for RoamMate. Use get_logger(__name__) in every module.
+Files in tools/ (MCP server processes) cannot import from app/ — use logging.getLogger(__name__) directly.
+"""
 import logging
+import os
 import sys
 
-logger=logging.getLogger('MCPClient')
-logger.setLevel(logging.DEBUG)
+os.makedirs("logs", exist_ok=True)
 
-#FILE Handler with debug level
-file_handler=logging.FileHandler("mcp_client.log")
-file_handler.setLevel(logging.DEBUG)
-file_handler.setFormatter(
-    logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-)
-logger.addHandler(file_handler)
+_handler_added = False
 
-#Console handler with INFO level
-console_handler = logging.StreamHandler(sys.stdout)
-console_handler.setLevel(logging.INFO)
-console_handler.setFormatter(
-    logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-)
-logger.addHandler(console_handler)
+def get_logger(name: str) -> logging.Logger:
+    global _handler_added
+    log = logging.getLogger(name)
+    log.setLevel(logging.DEBUG)
+
+    if not _handler_added:
+        fmt = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+
+        # File handler
+        fh = logging.FileHandler("logs/roammate.log")
+        fh.setLevel(logging.DEBUG)
+        fh.setFormatter(fmt)
+
+        # Console handler
+        ch = logging.StreamHandler(sys.stdout)
+        ch.setLevel(logging.INFO)
+        ch.setFormatter(fmt)
+
+        # Attach to the "app" namespace so Uvicorn doesn't swallow or duplicate logs
+        app_logger = logging.getLogger("app")
+        app_logger.setLevel(logging.DEBUG)
+        app_logger.addHandler(fh)
+        app_logger.addHandler(ch)
+        app_logger.propagate = False
+        
+        _handler_added = True
+
+    return log
+
+# Backwards-compatible alias used by legacy modules
+logger = get_logger("roammate")

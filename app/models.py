@@ -56,6 +56,7 @@ class Destination:
     city: Optional[str] = None
     country: Optional[str] = None
     area: Optional[str] = None
+    region: Optional[str] = None  # e.g. "North East India", "Scottish Highlands"
 
 
 @dataclass

@@ -1,0 +1,1232 @@
+2026-03-20 04:37:03,716 - app.services.intent_extractor - WARNING - GROQ_API key not set
+2026-03-20 04:37:13,542 - app.services.intent_extractor - WARNING - GROQ_API key not set
+2026-03-20 04:37:13,595 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 04:37:13,607 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 04:37:13,608 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 04:37:13,608 - app.api.server - INFO - Server shutting down
+2026-03-20 04:37:26,420 - app.services.intent_extractor - WARNING - GROQ_API key not set
+2026-03-20 04:37:26,451 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 04:37:26,458 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 04:37:26,458 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 04:37:50,705 - app.api.server - INFO - Server shutting down
+2026-03-20 04:44:27,333 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 04:44:27,343 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 04:44:27,343 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 04:44:27,343 - app.api.server - INFO - Server shutting down
+2026-03-20 04:47:06,971 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 04:47:06,980 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 04:47:06,981 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 04:50:44,726 - app.api.server - INFO - Server shutting down
+2026-03-20 04:50:51,613 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 04:50:51,622 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 04:50:51,622 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 04:53:17,636 - app.api.server - ERROR - /chat error for thread thread_4pctjeqp8: threads can only be started once
+2026-03-20 04:55:43,566 - app.api.server - INFO - Server shutting down
+2026-03-20 04:55:49,711 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 04:55:49,720 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 04:55:49,721 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 04:57:03,908 - app.api.server - ERROR - /chat error for thread thread_4pctjeqp8: threads can only be started once
+2026-03-20 04:57:12,667 - app.api.server - ERROR - /chat error for thread thread_4pctjeqp8: threads can only be started once
+2026-03-20 14:28:37,483 - app.api.server - INFO - Server shutting down
+2026-03-20 14:28:42,897 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 14:28:42,910 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 14:28:42,910 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 14:28:53,447 - app.api.server - ERROR - /chat error for thread thread_4pctjeqp8: 'HumanMessage' object has no attribute 'get'
+2026-03-20 15:01:37,206 - app.api.server - INFO - Server shutting down
+2026-03-20 15:02:30,499 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 15:02:30,510 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 15:02:30,510 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 15:03:02,658 - app.graph.nodes.intent - INFO - detect_intent: processing 'hi'
+2026-03-20 15:03:03,438 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+2026-03-20 15:03:03,446 - app.api.server - ERROR - /chat error for thread thread_4pctjeqp8: name 'logger' is not defined
+2026-03-20 15:10:50,044 - app.api.server - INFO - Server shutting down
+2026-03-20 15:10:59,176 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 15:10:59,187 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 15:10:59,187 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 15:11:07,622 - app.graph.nodes.intent - INFO - detect_intent: processing 'hi'
+2026-03-20 15:11:08,437 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+2026-03-20 15:11:08,446 - app.utils.conversation_logger - DEBUG - Saved conversation for thread thread_4pctjeqp8 → conversations/thread_4pctjeqp8.json
+2026-03-20 15:11:20,629 - app.graph.nodes.intent - INFO - detect_intent: processing 'i want to explore goa'
+2026-03-20 15:11:21,542 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+2026-03-20 15:11:21,550 - app.utils.conversation_logger - DEBUG - Saved conversation for thread thread_4pctjeqp8 → conversations/thread_4pctjeqp8.json
+2026-03-20 15:11:38,007 - app.graph.nodes.intent - INFO - detect_intent: processing 'maybe a week what would you sugest'
+2026-03-20 15:11:38,644 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+2026-03-20 15:11:38,652 - app.utils.conversation_logger - DEBUG - Saved conversation for thread thread_4pctjeqp8 → conversations/thread_4pctjeqp8.json
+2026-03-20 15:11:52,285 - app.graph.nodes.intent - INFO - detect_intent: processing 'goa'
+2026-03-20 15:11:53,070 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+2026-03-20 15:11:53,078 - app.utils.conversation_logger - DEBUG - Saved conversation for thread thread_4pctjeqp8 → conversations/thread_4pctjeqp8.json
+2026-03-20 15:12:00,257 - app.graph.nodes.intent - INFO - detect_intent: processing '1 week'
+2026-03-20 15:12:01,116 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+2026-03-20 15:12:01,125 - app.utils.conversation_logger - DEBUG - Saved conversation for thread thread_4pctjeqp8 → conversations/thread_4pctjeqp8.json
+2026-03-20 15:22:09,978 - app.api.server - INFO - Server shutting down
+2026-03-20 15:22:10,374 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 15:22:10,385 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 15:22:10,385 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 15:41:52,998 - app.api.server - INFO - Server shutting down
+2026-03-20 15:41:53,414 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 15:41:53,424 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 15:41:53,424 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 15:47:05,853 - app.api.server - INFO - Server shutting down
+2026-03-20 15:47:06,213 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 15:47:06,222 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 15:47:06,222 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 16:26:02,100 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 16:26:02,111 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 16:26:02,111 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 16:26:02,111 - app.api.server - INFO - Server shutting down
+2026-03-20 16:26:12,216 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 16:26:12,226 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 16:26:12,226 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 16:26:12,227 - app.api.server - INFO - Server shutting down
+2026-03-20 16:27:29,389 - app.api.server - INFO - Server shutting down
+2026-03-20 16:29:39,643 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 16:29:39,655 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 16:29:39,655 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 17:05:20,902 - app.api.server - INFO - Server shutting down
+2026-03-20 17:05:27,418 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 17:05:27,429 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 17:05:27,429 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 17:05:32,355 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-20 17:05:32,967 - app.api.server - ERROR - /chat error for thread thread_4pctjeqp8: name 'latest_msg' is not defined
+Traceback (most recent call last):
+  File "/Users/rakshitsingh/Desktop/My_project/RoamMate/app/api/server.py", line 97, in chat
+    final_state = await graph.ainvoke(state_input, config=config)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rakshitsingh/Desktop/My_project/RoamMate/.venv/lib/python3.13/site-packages/langgraph/pregel/main.py", line 3462, in ainvoke
+    async for chunk in self.astream(
+    ...<29 lines>...
+            chunks.append(chunk)
+  File "/Users/rakshitsingh/Desktop/My_project/RoamMate/.venv/lib/python3.13/site-packages/langgraph/pregel/main.py", line 3111, in astream
+    async for _ in runner.atick(
+    ...<16 lines>...
+            yield o
+  File "/Users/rakshitsingh/Desktop/My_project/RoamMate/.venv/lib/python3.13/site-packages/langgraph/pregel/_runner.py", line 304, in atick
+    await arun_with_retry(
+    ...<15 lines>...
+    )
+  File "/Users/rakshitsingh/Desktop/My_project/RoamMate/.venv/lib/python3.13/site-packages/langgraph/pregel/_retry.py", line 211, in arun_with_retry
+    return await task.proc.ainvoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rakshitsingh/Desktop/My_project/RoamMate/.venv/lib/python3.13/site-packages/langgraph/_internal/_runnable.py", line 705, in ainvoke
+    input = await asyncio.create_task(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        step.ainvoke(input, config, **kwargs), context=context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/rakshitsingh/Desktop/My_project/RoamMate/.venv/lib/python3.13/site-packages/langgraph/_internal/_runnable.py", line 473, in ainvoke
+    ret = await self.afunc(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rakshitsingh/Desktop/My_project/RoamMate/app/graph/nodes/intent.py", line 66, in detect_intent
+    msg_lower = latest_msg.lower()
+                ^^^^^^^^^^
+NameError: name 'latest_msg' is not defined
+During task with name 'detect_intent' and id 'ae0f8b0a-40b3-18ec-4e13-b03e7907e27f'
+2026-03-20 17:08:05,973 - app.api.server - INFO - Server shutting down
+2026-03-20 17:08:09,600 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 17:08:09,613 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 17:08:09,613 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 17:08:21,570 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-20 17:08:22,209 - app.api.server - ERROR - /chat error for thread thread_dz7vkt4hf: name 'latest_msg' is not defined
+Traceback (most recent call last):
+  File "/Users/rakshitsingh/Desktop/My_project/RoamMate/app/api/server.py", line 97, in chat
+    final_state = await graph.ainvoke(state_input, config=config)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rakshitsingh/Desktop/My_project/RoamMate/.venv/lib/python3.13/site-packages/langgraph/pregel/main.py", line 3462, in ainvoke
+    async for chunk in self.astream(
+    ...<29 lines>...
+            chunks.append(chunk)
+  File "/Users/rakshitsingh/Desktop/My_project/RoamMate/.venv/lib/python3.13/site-packages/langgraph/pregel/main.py", line 3111, in astream
+    async for _ in runner.atick(
+    ...<16 lines>...
+            yield o
+  File "/Users/rakshitsingh/Desktop/My_project/RoamMate/.venv/lib/python3.13/site-packages/langgraph/pregel/_runner.py", line 304, in atick
+    await arun_with_retry(
+    ...<15 lines>...
+    )
+  File "/Users/rakshitsingh/Desktop/My_project/RoamMate/.venv/lib/python3.13/site-packages/langgraph/pregel/_retry.py", line 211, in arun_with_retry
+    return await task.proc.ainvoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rakshitsingh/Desktop/My_project/RoamMate/.venv/lib/python3.13/site-packages/langgraph/_internal/_runnable.py", line 705, in ainvoke
+    input = await asyncio.create_task(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+        step.ainvoke(input, config, **kwargs), context=context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/rakshitsingh/Desktop/My_project/RoamMate/.venv/lib/python3.13/site-packages/langgraph/_internal/_runnable.py", line 473, in ainvoke
+    ret = await self.afunc(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/rakshitsingh/Desktop/My_project/RoamMate/app/graph/nodes/intent.py", line 66, in detect_intent
+    msg_lower = latest_msg.lower()
+                ^^^^^^^^^^
+NameError: name 'latest_msg' is not defined
+During task with name 'detect_intent' and id '75b42147-f245-bf29-782c-fb51c67e172c'
+2026-03-20 17:10:26,047 - app.api.server - INFO - Server shutting down
+2026-03-20 17:10:26,544 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 17:10:26,556 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 17:10:26,556 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 17:11:49,003 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 17:11:49,013 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 17:11:49,013 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 17:11:49,013 - app.api.server - INFO - Server shutting down
+2026-03-20 17:12:25,435 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 17:12:25,445 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 17:12:25,445 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 17:16:45,179 - app.graph.nodes.intent - INFO - detect_intent: processing context length 2
+2026-03-20 17:16:45,891 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+2026-03-20 17:16:45,902 - app.utils.conversation_logger - DEBUG - Saved conversation for thread thread_dz7vkt4hf → conversations/thread_dz7vkt4hf.json
+2026-03-20 17:16:47,868 - app.utils.conversation_logger - DEBUG - Saved conversation for thread thread_dz7vkt4hf → conversations/thread_dz7vkt4hf.json
+2026-03-20 17:16:52,182 - app.utils.conversation_logger - DEBUG - Saved conversation for thread thread_dz7vkt4hf → conversations/thread_dz7vkt4hf.json
+2026-03-20 17:17:07,665 - app.utils.conversation_logger - DEBUG - Saved conversation for thread thread_dz7vkt4hf → conversations/thread_dz7vkt4hf.json
+2026-03-20 17:17:10,156 - app.utils.conversation_logger - DEBUG - Saved conversation for thread thread_dz7vkt4hf → conversations/thread_dz7vkt4hf.json
+2026-03-20 17:21:33,054 - app.api.server - INFO - Server shutting down
+2026-03-20 17:21:33,483 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 17:21:33,495 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 17:21:33,495 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 17:27:14,040 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 17:27:14,051 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 17:27:14,051 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 17:27:14,051 - app.api.server - INFO - Server shutting down
+2026-03-20 17:27:40,682 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 17:27:40,691 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 17:27:40,691 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 17:31:40,966 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-20 17:31:41,600 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+2026-03-20 17:31:41,610 - app.utils.conversation_logger - DEBUG - Saved conversation for thread thread_dz7vkt4hf → conversations/thread_dz7vkt4hf.json
+2026-03-20 17:31:45,762 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-20 17:31:46,597 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+2026-03-20 17:31:46,603 - app.utils.conversation_logger - DEBUG - Saved conversation for thread thread_dz7vkt4hf → conversations/thread_dz7vkt4hf.json
+2026-03-20 17:36:11,056 - app.api.server - INFO - Server shutting down
+2026-03-20 17:36:11,499 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 17:36:11,511 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 17:36:11,511 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 23:38:50,799 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 23:38:50,809 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 23:38:50,809 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 23:38:50,810 - app.api.server - INFO - Server shutting down
+2026-03-20 23:39:35,668 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 23:39:35,679 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 23:39:35,679 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 23:39:50,569 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-20 23:39:51,131 - app.services.intent_extractor - ERROR - Intent extraction failed: Could not parse JSON from response: No conversation transcript to extract from. Please provide a conversation transcript between a user (human) and an assistant. I will extract structured travel preferences specifically stated by the us
+2026-03-20 23:39:51,131 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+2026-03-20 23:39:51,140 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-20_23-39-50 → conversations/conversation_2026-03-20_23-39-50.json
+2026-03-20 23:40:01,897 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-20 23:40:02,556 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+2026-03-20 23:40:02,562 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-20_23-39-50 → conversations/conversation_2026-03-20_23-39-50.json
+2026-03-20 23:41:00,107 - app.api.server - INFO - Server shutting down
+2026-03-20 23:43:07,408 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 23:43:07,420 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 23:43:07,420 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 23:47:33,813 - app.api.server - INFO - Server shutting down
+2026-03-20 23:47:34,273 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 23:47:34,284 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 23:47:34,284 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 23:58:46,880 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 23:58:46,890 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 23:58:46,890 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 23:58:46,891 - app.api.server - INFO - Server shutting down
+2026-03-20 23:58:52,995 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 23:58:53,004 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 23:58:53,004 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-20 23:58:53,004 - app.api.server - INFO - Server shutting down
+2026-03-20 23:59:20,131 - app.api.server - INFO - Starting RoamMate server...
+2026-03-20 23:59:20,140 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-20 23:59:20,140 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-21 00:24:45,023 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-21 00:24:45,923 - app.services.intent_extractor - ERROR - ask_conversationally failed: 'choices'
+2026-03-21 00:24:45,923 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+2026-03-21 00:24:45,930 - app.utils.conversation_logger - DEBUG - Saved conversation for thread test_debug_001 → conversations/test_debug_001.json
+2026-03-21 00:24:54,888 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-21 00:24:55,500 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=goa, quick_setup=False
+2026-03-21 00:24:55,504 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'goa' (vibe=chill)
+2026-03-21 00:24:55,543 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:24:55,544 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:24:55,544 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:24:55,545 - app.tools.registry - ERROR - MCP call failed [openweather/get_current_weather]: All connection attempts failed
+2026-03-21 00:24:55,545 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'goa': All connection attempts failed
+2026-03-21 00:24:55,545 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-21 00:24:55,545 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-21 00:24:56,992 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-21 00:24:56,997 - app.utils.conversation_logger - DEBUG - Saved conversation for thread test_debug_001 → conversations/test_debug_001.json
+2026-03-21 00:26:48,141 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-21 00:26:49,130 - app.services.intent_extractor - ERROR - ask_conversationally failed: 'choices'
+2026-03-21 00:26:49,131 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+2026-03-21 00:26:49,138 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-21_00-26-48 → conversations/conversation_2026-03-21_00-26-48.json
+2026-03-21 00:27:02,908 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-21 00:27:03,556 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=goa, quick_setup=False
+2026-03-21 00:27:03,563 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'goa' (vibe=chill)
+2026-03-21 00:27:03,585 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:27:03,586 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:27:03,586 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:27:03,587 - app.tools.registry - ERROR - MCP call failed [openweather/get_current_weather]: All connection attempts failed
+2026-03-21 00:27:03,587 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'goa': All connection attempts failed
+2026-03-21 00:27:03,587 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-21 00:27:03,588 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-21 00:27:04,693 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-21 00:27:04,697 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-21_00-26-48 → conversations/conversation_2026-03-21_00-26-48.json
+2026-03-21 00:32:59,463 - app.api.server - INFO - Server shutting down
+2026-03-21 00:32:59,897 - app.api.server - INFO - Starting RoamMate server...
+2026-03-21 00:32:59,908 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-21 00:32:59,909 - app.api.server - INFO - LangGraph compiled and ready
+2026-03-21 00:33:03,364 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-21 00:33:04,347 - app.services.intent_extractor - ERROR - ask_conversationally failed: 'choices'
+2026-03-21 00:33:04,348 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+2026-03-21 00:33:04,357 - app.utils.conversation_logger - DEBUG - Saved conversation for thread test_format_001 → conversations/test_format_001.json
+2026-03-21 00:33:04,374 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-21 00:33:04,937 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=goa, quick_setup=False
+2026-03-21 00:33:04,943 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'goa' (vibe=chill)
+2026-03-21 00:33:04,983 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:33:04,983 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:33:04,983 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:33:04,984 - app.tools.registry - ERROR - MCP call failed [openweather/get_current_weather]: All connection attempts failed
+2026-03-21 00:33:04,984 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'goa': All connection attempts failed
+2026-03-21 00:33:04,984 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-21 00:33:04,985 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-21 00:33:06,118 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-21 00:33:06,122 - app.utils.conversation_logger - DEBUG - Saved conversation for thread test_format_001 → conversations/test_format_001.json
+2026-03-21 00:34:44,384 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-21 00:34:45,201 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=Goa, quick_setup=False
+2026-03-21 00:34:45,204 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'Goa' (vibe=chill)
+2026-03-21 00:34:45,229 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:34:45,230 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:34:45,230 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:34:45,231 - app.tools.registry - ERROR - MCP call failed [openweather/get_current_weather]: All connection attempts failed
+2026-03-21 00:34:45,231 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'Goa': All connection attempts failed
+2026-03-21 00:34:45,231 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-21 00:34:45,232 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-21 00:34:46,722 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-21 00:34:46,728 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-21_00-34-44 → conversations/conversation_2026-03-21_00-34-44.json
+2026-03-21 00:36:22,563 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-21 00:36:23,221 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.PLANNING, dest=Goa, quick_setup=False
+2026-03-21 00:36:23,225 - app.graph.nodes.planning - INFO - planning: starting for 'Goa' (vibe=chill)
+2026-03-21 00:36:23,937 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:36:23,937 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:36:23,939 - app.tools.registry - ERROR - MCP call failed [google_maps/search_places]: All connection attempts failed
+2026-03-21 00:36:23,939 - app.graph.nodes.planning - WARNING - Maps places fetch failed: All connection attempts failed
+2026-03-21 00:36:23,939 - app.tools.registry - ERROR - MCP call failed [booking/search_hotels]: All connection attempts failed
+2026-03-21 00:36:23,939 - app.graph.nodes.planning - WARNING - Hotel fetch failed: All connection attempts failed
+2026-03-21 00:36:24,728 - app.services.reddit_signals - WARNING - Reddit search failed for 'chill things to do Goa': received 401 HTTP response
+2026-03-21 00:36:24,730 - app.services.reddit_signals - WARNING - Reddit search failed for 'nature in Goa': received 401 HTTP response
+2026-03-21 00:36:24,730 - app.services.reddit_signals - WARNING - Reddit search failed for 'best places Goa': received 401 HTTP response
+2026-03-21 00:36:24,730 - app.services.reddit_signals - WARNING - Reddit search failed for 'Goa hidden gems locals recommend': received 401 HTTP response
+2026-03-21 00:36:24,731 - app.services.reddit_signals - WARNING - No Reddit posts retrieved
+2026-03-21 00:36:24,731 - app.graph.nodes.planning - INFO - planning complete: 0 places ranked
+2026-03-21 00:36:24,733 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-21 00:36:26,638 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-21 00:36:26,643 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-21_00-34-44 → conversations/conversation_2026-03-21_00-34-44.json
+2026-03-21 00:37:09,806 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-21 00:37:10,496 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.PLANNING, dest=Goa, quick_setup=False
+2026-03-21 00:37:10,500 - app.graph.nodes.planning - INFO - planning: starting for 'Goa' (vibe=chill)
+2026-03-21 00:37:10,542 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:37:10,542 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:37:10,544 - app.tools.registry - ERROR - MCP call failed [google_maps/search_places]: All connection attempts failed
+2026-03-21 00:37:10,544 - app.graph.nodes.planning - WARNING - Maps places fetch failed: All connection attempts failed
+2026-03-21 00:37:10,545 - app.tools.registry - ERROR - MCP call failed [booking/search_hotels]: All connection attempts failed
+2026-03-21 00:37:10,545 - app.graph.nodes.planning - WARNING - Hotel fetch failed: All connection attempts failed
+2026-03-21 00:37:11,159 - app.services.reddit_signals - WARNING - Reddit search failed for 'Goa hidden gems locals recommend': received 401 HTTP response
+2026-03-21 00:37:11,162 - app.services.reddit_signals - WARNING - Reddit search failed for 'chill things to do Goa': received 401 HTTP response
+2026-03-21 00:37:11,168 - app.services.reddit_signals - WARNING - Reddit search failed for 'best places Goa': received 401 HTTP response
+2026-03-21 00:37:11,183 - app.services.reddit_signals - WARNING - Reddit search failed for 'nature in Goa': received 401 HTTP response
+2026-03-21 00:37:11,184 - app.services.reddit_signals - WARNING - No Reddit posts retrieved
+2026-03-21 00:37:11,185 - app.graph.nodes.planning - INFO - planning complete: 0 places ranked
+2026-03-21 00:37:11,186 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-21 00:37:13,271 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-21 00:37:13,276 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-21_00-34-44 → conversations/conversation_2026-03-21_00-34-44.json
+2026-03-23 19:53:07,266 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-23 19:56:26,981 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-23 19:56:27,824 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.PLANNING, dest=Goa, quick_setup=False
+2026-03-23 19:56:27,828 - app.graph.nodes.planning - INFO - planning: starting for 'Goa' (vibe=chill_adventure_cultural)
+2026-03-23 19:56:28,536 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-23 19:56:28,536 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-23 19:56:28,538 - app.tools.registry - ERROR - MCP call failed [google_maps/search_places]: All connection attempts failed
+2026-03-23 19:56:28,538 - app.graph.nodes.planning - WARNING - Maps places fetch failed: All connection attempts failed
+2026-03-23 19:56:28,538 - app.tools.registry - ERROR - MCP call failed [booking/search_hotels]: All connection attempts failed
+2026-03-23 19:56:28,538 - app.graph.nodes.planning - WARNING - Hotel fetch failed: All connection attempts failed
+2026-03-23 19:56:29,297 - app.services.reddit_signals - WARNING - Reddit search failed for 'best places Goa': received 401 HTTP response
+2026-03-23 19:56:29,300 - app.services.reddit_signals - WARNING - Reddit search failed for 'Goa hidden gems locals recommend': received 401 HTTP response
+2026-03-23 19:56:29,967 - app.services.reddit_signals - WARNING - Reddit search failed for 'hiking in Goa': received 401 HTTP response
+2026-03-23 19:56:29,969 - app.services.reddit_signals - WARNING - Reddit search failed for 'chill things to do Goa': received 401 HTTP response
+2026-03-23 19:56:29,970 - app.services.reddit_signals - WARNING - No Reddit posts retrieved
+2026-03-23 19:56:29,970 - app.graph.nodes.planning - INFO - planning complete: 0 places ranked
+2026-03-23 19:56:29,972 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-23 19:56:31,303 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-23 19:56:31,310 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-21_00-34-44 → conversations/conversation_2026-03-21_00-34-44.json
+2026-03-23 19:57:25,804 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-23 19:57:26,598 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.PLANNING, dest=Goa, quick_setup=False
+2026-03-23 19:57:26,602 - app.graph.nodes.planning - INFO - planning: starting for 'Goa' (vibe=chill_adventure_cultural)
+2026-03-23 19:57:26,643 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-23 19:57:26,643 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-23 19:57:26,645 - app.tools.registry - ERROR - MCP call failed [google_maps/search_places]: All connection attempts failed
+2026-03-23 19:57:26,645 - app.graph.nodes.planning - WARNING - Maps places fetch failed: All connection attempts failed
+2026-03-23 19:57:26,646 - app.tools.registry - ERROR - MCP call failed [booking/search_hotels]: All connection attempts failed
+2026-03-23 19:57:26,646 - app.graph.nodes.planning - WARNING - Hotel fetch failed: All connection attempts failed
+2026-03-23 19:57:27,419 - app.services.reddit_signals - WARNING - Reddit search failed for 'chill things to do Goa': received 401 HTTP response
+2026-03-23 19:57:27,421 - app.services.reddit_signals - WARNING - Reddit search failed for 'hiking in Goa': received 401 HTTP response
+2026-03-23 19:57:27,422 - app.services.reddit_signals - WARNING - Reddit search failed for 'best places Goa': received 401 HTTP response
+2026-03-23 19:57:27,422 - app.services.reddit_signals - WARNING - Reddit search failed for 'Goa hidden gems locals recommend': received 401 HTTP response
+2026-03-23 19:57:27,423 - app.services.reddit_signals - WARNING - No Reddit posts retrieved
+2026-03-23 19:57:27,424 - app.graph.nodes.planning - INFO - planning complete: 0 places ranked
+2026-03-23 19:57:27,425 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-23 19:57:28,564 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-23 19:57:28,571 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-21_00-34-44 → conversations/conversation_2026-03-21_00-34-44.json
+2026-03-23 20:07:57,505 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-23 20:08:50,109 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-23 20:08:51,176 - app.services.intent_extractor - ERROR - ask_conversationally failed: 'choices'
+2026-03-23 20:08:51,177 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+2026-03-23 20:08:51,179 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-23_20-08-50 → conversations/conversation_2026-03-23_20-08-50.json
+2026-03-23 20:09:50,154 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-23 20:09:51,121 - app.services.intent_extractor - ERROR - ask_conversationally failed: 'choices'
+2026-03-23 20:09:51,122 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+2026-03-23 20:09:51,131 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-23_20-08-50 → conversations/conversation_2026-03-23_20-08-50.json
+2026-03-23 20:10:17,753 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-23 20:10:18,612 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=kasol, quick_setup=False
+2026-03-23 20:10:18,617 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'kasol' (vibe=adventure)
+2026-03-23 20:10:18,652 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-23 20:10:18,652 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-23 20:10:18,652 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-23 20:10:18,653 - app.tools.registry - ERROR - MCP call failed [openweather/get_current_weather]: All connection attempts failed
+2026-03-23 20:10:18,653 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'kasol': All connection attempts failed
+2026-03-23 20:10:18,653 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-23 20:10:18,654 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-23 20:10:19,738 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-23 20:10:19,745 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-23_20-08-50 → conversations/conversation_2026-03-23_20-08-50.json
+2026-03-24 00:05:06,387 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-24 00:05:27,344 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-24 00:05:28,053 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.PLANNING, dest=kasol, quick_setup=False
+2026-03-24 00:05:28,059 - app.graph.nodes.planning - INFO - planning: starting for 'kasol' (vibe=adventure_chill_cultural)
+2026-03-24 00:05:28,843 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:05:28,843 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:05:28,845 - app.tools.registry - ERROR - MCP call failed [google_maps/search_places]: All connection attempts failed
+2026-03-24 00:05:28,845 - app.graph.nodes.planning - WARNING - Maps places fetch failed: All connection attempts failed
+2026-03-24 00:05:28,845 - app.tools.registry - ERROR - MCP call failed [booking/search_hotels]: All connection attempts failed
+2026-03-24 00:05:28,845 - app.graph.nodes.planning - WARNING - Hotel fetch failed: All connection attempts failed
+2026-03-24 00:05:29,712 - app.services.reddit_signals - WARNING - Reddit search failed for 'nature in kasol': received 401 HTTP response
+2026-03-24 00:05:29,714 - app.services.reddit_signals - WARNING - Reddit search failed for 'adventure things to do kasol': received 401 HTTP response
+2026-03-24 00:05:29,714 - app.services.reddit_signals - WARNING - Reddit search failed for 'kasol hidden gems locals recommend': received 401 HTTP response
+2026-03-24 00:05:29,714 - app.services.reddit_signals - WARNING - Reddit search failed for 'best places kasol': received 401 HTTP response
+2026-03-24 00:05:29,716 - app.services.reddit_signals - WARNING - No Reddit posts retrieved
+2026-03-24 00:05:29,716 - app.graph.nodes.planning - INFO - planning complete: 0 places ranked
+2026-03-24 00:05:29,718 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-24 00:05:30,837 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 00:05:30,845 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-23_20-08-50 → conversations/conversation_2026-03-23_20-08-50.json
+2026-03-24 00:06:03,617 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-24 00:06:04,485 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=Northeast, quick_setup=False
+2026-03-24 00:06:04,489 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'Northeast' (vibe=adventure)
+2026-03-24 00:06:04,512 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:06:04,512 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:06:04,512 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:06:04,514 - app.tools.registry - ERROR - MCP call failed [openweather/get_current_weather]: All connection attempts failed
+2026-03-24 00:06:04,514 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'Northeast': All connection attempts failed
+2026-03-24 00:06:04,514 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 00:06:04,514 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-24 00:06:05,656 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 00:06:05,663 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_00-06-03 → conversations/conversation_2026-03-24_00-06-03.json
+2026-03-24 00:06:29,406 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-24 00:06:30,099 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-24 00:06:30,103 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=cultural)
+2026-03-24 00:06:30,125 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:06:30,126 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:06:30,126 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:06:30,127 - app.tools.registry - ERROR - MCP call failed [openweather/get_current_weather]: All connection attempts failed
+2026-03-24 00:06:30,127 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-24 00:06:30,127 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 00:06:30,131 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-24 00:06:31,124 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 00:06:31,131 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_00-06-03 → conversations/conversation_2026-03-24_00-06-03.json
+2026-03-24 00:10:45,343 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-24 00:10:46,026 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-24 00:10:46,031 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=cultural)
+2026-03-24 00:10:46,054 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:10:46,054 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:10:46,054 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:10:46,056 - app.tools.registry - ERROR - MCP call failed [openweather/get_current_weather]: All connection attempts failed
+2026-03-24 00:10:46,056 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-24 00:10:46,056 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 00:10:46,056 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-24 00:10:47,091 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 00:10:47,097 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_00-06-03 → conversations/conversation_2026-03-24_00-06-03.json
+2026-03-24 00:11:18,234 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-24 00:11:19,101 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-24 00:11:19,106 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=cultural)
+2026-03-24 00:11:19,130 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:11:19,130 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:11:19,130 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:11:19,131 - app.tools.registry - ERROR - MCP call failed [openweather/get_current_weather]: All connection attempts failed
+2026-03-24 00:11:19,131 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-24 00:11:19,132 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 00:11:19,132 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-24 00:11:20,230 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 00:11:20,235 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_00-06-03 → conversations/conversation_2026-03-24_00-06-03.json
+2026-03-24 00:30:34,198 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-24 00:31:27,979 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-24 00:31:28,743 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-24 00:31:28,748 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=None)
+2026-03-24 00:31:28,789 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:31:28,789 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:31:28,789 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:31:28,790 - app.tools.registry - ERROR - MCP call failed [openweather/get_current_weather]: All connection attempts failed
+2026-03-24 00:31:28,791 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-24 00:31:28,791 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 00:31:28,791 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-24 00:31:29,865 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 00:31:29,872 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_00-31-27 → conversations/conversation_2026-03-24_00-31-27.json
+2026-03-24 00:32:20,103 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-24 00:32:20,987 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-24 00:32:20,991 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=adventure)
+2026-03-24 00:32:21,014 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:32:21,014 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:32:21,014 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:32:21,015 - app.tools.registry - ERROR - MCP call failed [openweather/get_current_weather]: All connection attempts failed
+2026-03-24 00:32:21,015 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-24 00:32:21,016 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 00:32:21,016 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-24 00:32:21,801 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 00:32:21,808 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_00-31-27 → conversations/conversation_2026-03-24_00-31-27.json
+2026-03-24 00:34:00,022 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-24 00:34:00,792 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-24 00:34:00,796 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=adventure)
+2026-03-24 00:34:00,820 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:34:00,821 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:34:00,821 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:34:00,822 - app.tools.registry - ERROR - MCP call failed [openweather/get_current_weather]: All connection attempts failed
+2026-03-24 00:34:00,822 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-24 00:34:00,822 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 00:34:00,823 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-24 00:34:02,042 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 00:34:02,049 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_00-31-27 → conversations/conversation_2026-03-24_00-31-27.json
+2026-03-24 00:35:19,370 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-24 00:35:20,597 - app.services.intent_extractor - ERROR - Intent extraction failed: Could not parse JSON from response: Here's a revised 2-week itinerary for North East India, focusing on a more feasible travel plan:
+
+### Day 1-4: **Shillong**, Meghalaya
+* Explore **Umiam Lake** and **Nohkalikai Falls**
+* Visit the **S
+2026-03-24 00:35:20,597 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-24 00:35:20,601 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=adventure)
+2026-03-24 00:35:20,624 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:35:20,625 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:35:20,625 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 00:35:20,626 - app.tools.registry - ERROR - MCP call failed [openweather/get_current_weather]: All connection attempts failed
+2026-03-24 00:35:20,626 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-24 00:35:20,627 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 00:35:20,627 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-24 00:35:21,621 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 00:35:21,624 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_00-31-27 → conversations/conversation_2026-03-24_00-31-27.json
+2026-03-24 01:31:06,695 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-24 01:31:08,478 - app.services.intent_extractor - ERROR - Intent extraction failed: Could not parse JSON from response: Here's a breakdown of transportation options between the destinations:
+
+### **Shillong to Dzukou Valley**
+* **Distance:** 65 km, 2 hours
+* **Transportation:**
+	+ **Taxi:** readily available from Shill
+2026-03-24 01:31:08,478 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-24 01:31:08,483 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=adventure)
+2026-03-24 01:31:08,506 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 01:31:08,507 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 01:31:08,507 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 01:31:08,508 - app.tools.registry - ERROR - MCP call failed [openweather/get_current_weather]: All connection attempts failed
+2026-03-24 01:31:08,508 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-24 01:31:08,508 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 01:31:08,509 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-24 01:31:10,014 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 01:31:10,021 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_00-31-27 → conversations/conversation_2026-03-24_00-31-27.json
+2026-03-24 01:57:49,994 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-24 01:57:51,827 - app.services.intent_extractor - ERROR - Intent extraction failed: Could not parse JSON from response: Here's an overview of car and bike rental options in the mentioned areas:
+
+### **Shillong**
+* **Car Rental**:
+	+ Local operators: **Shillong Car Rental**, **Meghalaya Car Rental** ( approx. ₹2,500 - ₹
+2026-03-24 01:57:51,827 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-24 01:57:51,832 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=adventure)
+2026-03-24 01:57:51,856 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 01:57:51,856 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 01:57:51,856 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 01:57:51,857 - app.tools.registry - ERROR - MCP call failed [openweather/get_current_weather]: All connection attempts failed
+2026-03-24 01:57:51,857 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-24 01:57:51,858 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 01:57:51,858 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-24 01:57:53,145 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 01:57:53,152 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_00-31-27 → conversations/conversation_2026-03-24_00-31-27.json
+2026-03-24 01:58:43,767 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-24 01:58:45,147 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-24 01:58:45,161 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=adventure)
+2026-03-24 01:58:45,180 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 01:58:45,180 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 01:58:45,180 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-24 01:58:45,181 - app.tools.registry - ERROR - MCP call failed [openweather/get_current_weather]: All connection attempts failed
+2026-03-24 01:58:45,181 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-24 01:58:45,182 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 01:58:45,182 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-24 01:58:46,351 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 01:58:46,358 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_00-31-27 → conversations/conversation_2026-03-24_00-31-27.json
+2026-03-24 03:29:40,778 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-24 03:30:56,442 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-24 03:30:56,442 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 1 messages
+2026-03-24 03:30:57,388 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=North East India vibe=[] confidence=0.5
+2026-03-24 03:30:57,388 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-24 03:30:57,392 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=None)
+2026-03-24 03:30:57,393 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-24 03:30:57,427 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 03:30:57,427 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 03:30:57,427 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 03:30:57,428 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-24 03:30:57,428 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-24 03:30:57,428 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 03:30:57,429 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=1 msgs
+2026-03-24 03:30:58,471 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 1147 chars generated
+2026-03-24 03:30:58,472 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 03:30:58,477 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_03-29-40 → conversations/conversation_2026-03-24_03-29-40.json
+2026-03-24 03:32:10,558 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-24 03:32:10,558 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 3 messages
+2026-03-24 03:32:11,253 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=North East India vibe=['adventure', 'cultural'] confidence=0.8
+2026-03-24 03:32:11,253 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-24 03:32:11,256 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=cultural)
+2026-03-24 03:32:11,256 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-24 03:32:11,273 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 03:32:11,273 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 03:32:11,273 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 03:32:11,274 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-24 03:32:11,274 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-24 03:32:11,274 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 03:32:11,275 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=3 msgs
+2026-03-24 03:32:12,510 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 1289 chars generated
+2026-03-24 03:32:12,511 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 03:32:12,516 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_03-29-40 → conversations/conversation_2026-03-24_03-29-40.json
+2026-03-24 03:32:27,187 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-24 03:32:27,187 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 5 messages
+2026-03-24 03:32:27,869 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=Goa vibe=['party', 'chill'] confidence=0.9
+2026-03-24 03:32:27,869 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.PLANNING, dest=Goa, quick_setup=False
+2026-03-24 03:32:27,872 - app.graph.nodes.planning - INFO - planning: starting for 'Goa' (vibe=chill_cultural_adventure_party)
+2026-03-24 03:32:27,872 - app.services.reddit_signals - INFO - [Reddit] → searching 4 queries for 'Goa'
+2026-03-24 03:32:28,890 - app.tools.registry - INFO - [MCP] → google_maps/search_places | args={'location': 'Goa', 'query': 'top attractions in Goa'}
+2026-03-24 03:32:28,910 - app.tools.registry - INFO - [MCP] → booking/search_hotels | args={'destination': 'Goa', 'guests': 2}
+2026-03-24 03:32:28,927 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 03:32:28,930 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 03:32:28,932 - app.tools.registry - ERROR - [MCP] ✗ google_maps/search_places: All connection attempts failed
+2026-03-24 03:32:28,932 - app.graph.nodes.planning - WARNING - Maps places fetch failed: All connection attempts failed
+2026-03-24 03:32:28,932 - app.tools.registry - ERROR - [MCP] ✗ booking/search_hotels: All connection attempts failed
+2026-03-24 03:32:28,932 - app.graph.nodes.planning - WARNING - Hotel fetch failed: All connection attempts failed
+2026-03-24 03:32:29,654 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'chill things to do Goa': received 401 HTTP response
+2026-03-24 03:32:29,654 - app.services.reddit_signals - INFO - [Reddit] ✓ 'chill things to do Goa' → 0 posts
+2026-03-24 03:32:29,659 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'nature in Goa': received 401 HTTP response
+2026-03-24 03:32:29,659 - app.services.reddit_signals - INFO - [Reddit] ✓ 'nature in Goa' → 0 posts
+2026-03-24 03:32:29,662 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'Goa hidden gems locals recommend': received 401 HTTP response
+2026-03-24 03:32:29,663 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa hidden gems locals recommend' → 0 posts
+2026-03-24 03:32:29,665 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'best places Goa': received 401 HTTP response
+2026-03-24 03:32:29,665 - app.services.reddit_signals - INFO - [Reddit] ✓ 'best places Goa' → 0 posts
+2026-03-24 03:32:29,665 - app.services.reddit_signals - WARNING - No Reddit posts retrieved
+2026-03-24 03:32:29,666 - app.graph.nodes.planning - INFO - planning complete: 0 places ranked
+2026-03-24 03:32:29,667 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.PLANNING dest=Goa history=5 msgs
+2026-03-24 03:32:30,747 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 1132 chars generated
+2026-03-24 03:32:30,748 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 03:32:30,753 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_03-29-40 → conversations/conversation_2026-03-24_03-29-40.json
+2026-03-24 03:33:07,374 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-24 03:33:07,374 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 5 messages
+2026-03-24 03:33:08,066 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=Goa vibe=['chill'] confidence=1.0
+2026-03-24 03:33:08,066 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.PLANNING, dest=Goa, quick_setup=False
+2026-03-24 03:33:08,070 - app.graph.nodes.planning - INFO - planning: starting for 'Goa' (vibe=chill_cultural_adventure_party)
+2026-03-24 03:33:08,070 - app.services.reddit_signals - INFO - [Reddit] → searching 4 queries for 'Goa'
+2026-03-24 03:33:08,071 - app.tools.registry - INFO - [MCP] → google_maps/search_places | args={'location': 'Goa', 'query': 'top attractions in Goa'}
+2026-03-24 03:33:08,090 - app.tools.registry - INFO - [MCP] → booking/search_hotels | args={'destination': 'Goa', 'guests': 2}
+2026-03-24 03:33:08,108 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 03:33:08,108 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 03:33:08,112 - app.tools.registry - ERROR - [MCP] ✗ booking/search_hotels: All connection attempts failed
+2026-03-24 03:33:08,112 - app.graph.nodes.planning - WARNING - Hotel fetch failed: All connection attempts failed
+2026-03-24 03:33:08,112 - app.tools.registry - ERROR - [MCP] ✗ google_maps/search_places: All connection attempts failed
+2026-03-24 03:33:08,112 - app.graph.nodes.planning - WARNING - Maps places fetch failed: All connection attempts failed
+2026-03-24 03:33:08,785 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'chill things to do Goa': received 401 HTTP response
+2026-03-24 03:33:08,785 - app.services.reddit_signals - INFO - [Reddit] ✓ 'chill things to do Goa' → 0 posts
+2026-03-24 03:33:08,786 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'best places Goa': received 401 HTTP response
+2026-03-24 03:33:08,786 - app.services.reddit_signals - INFO - [Reddit] ✓ 'best places Goa' → 0 posts
+2026-03-24 03:33:08,788 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'nature in Goa': received 401 HTTP response
+2026-03-24 03:33:08,789 - app.services.reddit_signals - INFO - [Reddit] ✓ 'nature in Goa' → 0 posts
+2026-03-24 03:33:08,790 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'Goa hidden gems locals recommend': received 401 HTTP response
+2026-03-24 03:33:08,790 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa hidden gems locals recommend' → 0 posts
+2026-03-24 03:33:08,791 - app.services.reddit_signals - WARNING - No Reddit posts retrieved
+2026-03-24 03:33:08,791 - app.graph.nodes.planning - INFO - planning complete: 0 places ranked
+2026-03-24 03:33:08,793 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.PLANNING dest=Goa history=7 msgs
+2026-03-24 03:33:10,003 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 1003 chars generated
+2026-03-24 03:33:10,003 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 03:33:10,008 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_03-29-40 → conversations/conversation_2026-03-24_03-29-40.json
+2026-03-24 03:34:54,267 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-24 03:34:54,267 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 5 messages
+2026-03-24 03:34:55,155 - app.services.intent_extractor - ERROR - [Groq/intent] ✗ Could not parse JSON from response: For local food in Morjim, try:
+
+* **The Morjim Fish Market**: Fresh seafood and local delicacies.
+* **Shiva Valley Restaurant**: Traditional Goan cuisine, including **Fish Curry** and **Beef Vindaloo*
+2026-03-24 03:34:55,155 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.PLANNING, dest=Goa, quick_setup=False
+2026-03-24 03:34:55,159 - app.graph.nodes.planning - INFO - planning: starting for 'Goa' (vibe=chill_cultural_adventure_party)
+2026-03-24 03:34:55,159 - app.services.reddit_signals - INFO - [Reddit] → searching 4 queries for 'Goa'
+2026-03-24 03:34:55,159 - app.tools.registry - INFO - [MCP] → google_maps/search_places | args={'location': 'Goa', 'query': 'top attractions in Goa'}
+2026-03-24 03:34:55,180 - app.tools.registry - INFO - [MCP] → booking/search_hotels | args={'destination': 'Goa', 'guests': 2}
+2026-03-24 03:34:55,198 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 03:34:55,198 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 03:34:55,200 - app.tools.registry - ERROR - [MCP] ✗ google_maps/search_places: All connection attempts failed
+2026-03-24 03:34:55,200 - app.graph.nodes.planning - WARNING - Maps places fetch failed: All connection attempts failed
+2026-03-24 03:34:55,200 - app.tools.registry - ERROR - [MCP] ✗ booking/search_hotels: All connection attempts failed
+2026-03-24 03:34:55,200 - app.graph.nodes.planning - WARNING - Hotel fetch failed: All connection attempts failed
+2026-03-24 03:34:55,923 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'chill things to do Goa': received 401 HTTP response
+2026-03-24 03:34:55,923 - app.services.reddit_signals - INFO - [Reddit] ✓ 'chill things to do Goa' → 0 posts
+2026-03-24 03:34:55,943 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'Goa hidden gems locals recommend': received 401 HTTP response
+2026-03-24 03:34:55,943 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa hidden gems locals recommend' → 0 posts
+2026-03-24 03:34:55,944 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'best places Goa': received 401 HTTP response
+2026-03-24 03:34:55,944 - app.services.reddit_signals - INFO - [Reddit] ✓ 'best places Goa' → 0 posts
+2026-03-24 03:34:55,988 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'nature in Goa': received 401 HTTP response
+2026-03-24 03:34:55,988 - app.services.reddit_signals - INFO - [Reddit] ✓ 'nature in Goa' → 0 posts
+2026-03-24 03:34:55,988 - app.services.reddit_signals - WARNING - No Reddit posts retrieved
+2026-03-24 03:34:55,989 - app.graph.nodes.planning - INFO - planning complete: 0 places ranked
+2026-03-24 03:34:55,990 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.PLANNING dest=Goa history=9 msgs
+2026-03-24 03:34:56,865 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 773 chars generated
+2026-03-24 03:34:56,866 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 03:34:56,871 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_03-29-40 → conversations/conversation_2026-03-24_03-29-40.json
+2026-03-24 03:47:05,018 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-24 03:53:01,774 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-24 03:53:01,775 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 1 messages
+2026-03-24 03:53:02,969 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=North East India vibe=['adventure', 'cultural'] confidence=0.8
+2026-03-24 03:53:02,970 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-24 03:53:02,973 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=adventure)
+2026-03-24 03:53:02,973 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-24 03:53:03,010 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 03:53:03,010 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 03:53:03,010 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 03:53:03,011 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-24 03:53:03,011 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-24 03:53:03,011 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 03:53:03,012 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=1 msgs
+2026-03-24 03:53:04,095 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 1012 chars generated
+2026-03-24 03:53:04,097 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 03:53:04,102 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_03-47-05 → conversations/conversation_2026-03-24_03-47-05.json
+2026-03-24 23:52:15,911 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-24 23:52:15,912 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 3 messages
+2026-03-24 23:52:15,914 - app.services.intent_extractor - ERROR - [Groq/intent] ✗ Cannot connect to host api.groq.com:443 ssl:default [nodename nor servname provided, or not known]
+2026-03-24 23:52:15,914 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-24 23:52:15,917 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=adventure)
+2026-03-24 23:52:15,917 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-24 23:52:15,939 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 23:52:15,939 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 23:52:15,939 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 23:52:15,940 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-24 23:52:15,940 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-24 23:52:15,940 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 23:52:15,941 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=3 msgs
+2026-03-24 23:52:15,942 - app.graph.nodes.responder - ERROR - [Groq/responder] ✗ Cannot connect to host api.groq.com:443 ssl:default [nodename nor servname provided, or not known]
+2026-03-24 23:52:15,942 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 23:52:15,944 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_03-47-05 → conversations/conversation_2026-03-24_03-47-05.json
+2026-03-24 23:52:32,401 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-24 23:52:32,401 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 5 messages
+2026-03-24 23:52:32,403 - app.services.intent_extractor - ERROR - [Groq/intent] ✗ Cannot connect to host api.groq.com:443 ssl:default [nodename nor servname provided, or not known]
+2026-03-24 23:52:32,403 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-24 23:52:32,406 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=adventure)
+2026-03-24 23:52:32,406 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-24 23:52:32,425 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 23:52:32,425 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 23:52:32,425 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 23:52:32,426 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-24 23:52:32,426 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-24 23:52:32,426 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 23:52:32,427 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=5 msgs
+2026-03-24 23:52:32,428 - app.graph.nodes.responder - ERROR - [Groq/responder] ✗ Cannot connect to host api.groq.com:443 ssl:default [nodename nor servname provided, or not known]
+2026-03-24 23:52:32,428 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 23:52:32,429 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_03-47-05 → conversations/conversation_2026-03-24_03-47-05.json
+2026-03-24 23:53:06,088 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-24 23:53:46,056 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-24 23:53:46,057 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 1 messages
+2026-03-24 23:53:46,059 - app.services.intent_extractor - ERROR - [Groq/intent] ✗ Cannot connect to host api.groq.com:443 ssl:default [nodename nor servname provided, or not known]
+2026-03-24 23:53:46,059 - app.services.intent_extractor - INFO - [Groq/clarify] → generating conversational question
+2026-03-24 23:53:46,060 - app.services.intent_extractor - ERROR - [Groq/clarify] ✗ Cannot connect to host api.groq.com:443 ssl:default [nodename nor servname provided, or not known]
+2026-03-24 23:53:46,060 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+2026-03-24 23:53:46,063 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_23-53-06 → conversations/conversation_2026-03-24_23-53-06.json
+2026-03-24 23:56:19,744 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-24 23:56:19,745 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 3 messages
+2026-03-24 23:56:21,349 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=North East India vibe=[] confidence=0.5
+2026-03-24 23:56:21,349 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-24 23:56:21,352 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=None)
+2026-03-24 23:56:21,353 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-24 23:56:21,379 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 23:56:21,379 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 23:56:21,379 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 23:56:21,380 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-24 23:56:21,380 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-24 23:56:21,380 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 23:56:21,380 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=3 msgs
+2026-03-24 23:56:22,325 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 200 chars generated
+2026-03-24 23:56:22,326 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 23:56:22,328 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_23-53-06 → conversations/conversation_2026-03-24_23-53-06.json
+2026-03-24 23:56:56,586 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-24 23:56:56,586 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 5 messages
+2026-03-24 23:56:57,441 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=North East India vibe=['adventure', 'cultural'] confidence=0.8
+2026-03-24 23:56:57,441 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-24 23:56:57,445 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=adventure)
+2026-03-24 23:56:57,445 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-24 23:56:57,467 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 23:56:57,467 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 23:56:57,467 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 23:56:57,468 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-24 23:56:57,468 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-24 23:56:57,469 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 23:56:57,469 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=5 msgs
+2026-03-24 23:56:58,404 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 491 chars generated
+2026-03-24 23:56:58,405 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 23:56:58,411 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_23-53-06 → conversations/conversation_2026-03-24_23-53-06.json
+2026-03-24 23:57:20,630 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-24 23:57:20,631 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 5 messages
+2026-03-24 23:57:21,353 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=North East India vibe=['adventure', 'cultural'] confidence=0.8
+2026-03-24 23:57:21,353 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-24 23:57:21,357 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=adventure)
+2026-03-24 23:57:21,357 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-24 23:57:21,381 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 23:57:21,381 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 23:57:21,381 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-24 23:57:21,383 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-24 23:57:21,383 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-24 23:57:21,383 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-24 23:57:21,383 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=7 msgs
+2026-03-24 23:57:22,211 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 645 chars generated
+2026-03-24 23:57:22,212 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-24 23:57:22,215 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_23-53-06 → conversations/conversation_2026-03-24_23-53-06.json
+2026-03-25 00:02:32,450 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-25 00:02:32,450 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 5 messages
+2026-03-25 00:02:34,056 - app.services.intent_extractor - ERROR - [Groq/intent] ✗ Could not parse JSON from response: Here's a curated 2-week itinerary for exploring less-explored places in North East India:
+
+### Day 1-3: **Meghalaya**
+- **Nongpoh**: Explore the scenic beauty of Riñiu and Lum Nehru Park.
+- **Mawsmram
+2026-03-25 00:02:34,056 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-25 00:02:34,060 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=adventure)
+2026-03-25 00:02:34,060 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-25 00:02:34,084 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 00:02:34,084 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 00:02:34,084 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 00:02:34,085 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-25 00:02:34,085 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-25 00:02:34,085 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-25 00:02:34,086 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=9 msgs
+2026-03-25 00:02:35,316 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 1356 chars generated
+2026-03-25 00:02:35,317 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-25 00:02:35,322 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_23-53-06 → conversations/conversation_2026-03-24_23-53-06.json
+2026-03-25 00:04:07,797 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-25 00:04:07,797 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 5 messages
+2026-03-25 00:04:10,005 - app.services.intent_extractor - ERROR - [Groq/intent] ✗ Could not parse JSON from response: Here's a detailed 2-week itinerary for exploring lesser-known places in North East India:
+
+### Day 1: **Guwahati, Assam**
+- Arrive in **Guwahati**, the largest city in Assam.
+- Explore **Kamakhya Temp
+2026-03-25 00:04:10,005 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-25 00:04:10,009 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=adventure)
+2026-03-25 00:04:10,010 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-25 00:04:10,033 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 00:04:10,033 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 00:04:10,033 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 00:04:10,035 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-25 00:04:10,035 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-25 00:04:10,035 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-25 00:04:10,035 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=11 msgs
+2026-03-25 00:04:11,695 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 1611 chars generated
+2026-03-25 00:04:11,696 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-25 00:04:11,701 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_23-53-06 → conversations/conversation_2026-03-24_23-53-06.json
+2026-03-25 00:06:34,804 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-25 00:06:34,805 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 5 messages
+2026-03-25 00:06:36,540 - app.services.intent_extractor - ERROR - [Groq/intent] ✗ Could not parse JSON from response: ```json
+{
+  "destination": {
+    "city": "Aizawl",
+    "country": "India",
+    "area": null,
+    "region": "North East India"
+  },
+  "vibe": [
+    "adventure",
+    "cultural"
+  ],
+  "crowd_preference"
+2026-03-25 00:06:36,540 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-25 00:06:36,554 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=adventure)
+2026-03-25 00:06:36,554 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-25 00:06:36,573 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 00:06:36,573 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 00:06:36,573 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 00:06:36,574 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-25 00:06:36,574 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-25 00:06:36,574 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-25 00:06:36,575 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=13 msgs
+2026-03-25 00:06:38,485 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 1786 chars generated
+2026-03-25 00:06:38,486 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-25 00:06:38,490 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-24_23-53-06 → conversations/conversation_2026-03-24_23-53-06.json
+2026-03-25 00:18:38,275 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-25 00:19:10,102 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-25 00:19:10,102 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 1 messages
+2026-03-25 00:19:10,976 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=North East India vibe=[] confidence=0.8
+2026-03-25 00:19:10,977 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-25 00:19:10,981 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=None)
+2026-03-25 00:19:10,981 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-25 00:19:11,017 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 00:19:11,017 - app.services.reddit_signals - INFO - [Reddit] → searching 0 queries for 'North East India'
+2026-03-25 00:19:11,829 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 00:19:11,829 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 00:19:11,830 - app.services.reddit_signals - WARNING - No Reddit posts retrieved
+2026-03-25 00:19:11,832 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-25 00:19:11,832 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-25 00:19:11,832 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0, reddit_posts=False
+2026-03-25 00:19:11,833 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=1 msgs
+2026-03-25 00:19:12,906 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 936 chars generated
+2026-03-25 00:19:12,907 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-25 00:19:12,912 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-25_00-18-38 → conversations/conversation_2026-03-25_00-18-38.json
+2026-03-25 00:27:32,164 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-25 00:27:32,164 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 3 messages
+2026-03-25 00:27:33,023 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=North East India vibe=['adventure', 'cultural'] confidence=0.8
+2026-03-25 00:27:33,023 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-25 00:27:33,027 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=cultural)
+2026-03-25 00:27:33,027 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-25 00:27:33,050 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 00:27:33,050 - app.services.reddit_signals - INFO - [Reddit] → searching 0 queries for 'North East India'
+2026-03-25 00:27:33,051 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 00:27:33,051 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 00:27:33,051 - app.services.reddit_signals - WARNING - No Reddit posts retrieved
+2026-03-25 00:27:33,052 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-25 00:27:33,052 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-25 00:27:33,052 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0, reddit_posts=False
+2026-03-25 00:27:33,053 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=3 msgs
+2026-03-25 00:27:33,868 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 720 chars generated
+2026-03-25 00:27:33,869 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-25 00:27:33,873 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-25_00-18-38 → conversations/conversation_2026-03-25_00-18-38.json
+2026-03-25 00:28:29,910 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-25 00:28:29,910 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 5 messages
+2026-03-25 00:28:30,668 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=North East India vibe=['adventure', 'cultural'] confidence=0.8
+2026-03-25 00:28:30,668 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.PLANNING, dest=North East India, quick_setup=False
+2026-03-25 00:28:30,672 - app.graph.nodes.planning - INFO - planning: starting for 'North East India' (vibe=adventure_cultural)
+2026-03-25 00:28:30,673 - app.services.reddit_signals - INFO - [Reddit] → searching 0 queries for 'North East India'
+2026-03-25 00:28:30,673 - app.tools.registry - INFO - [MCP] → google_maps/search_places | args={'location': 'North East India', 'query': 'top attractions in North East India'}
+2026-03-25 00:28:30,696 - app.tools.registry - INFO - [MCP] → booking/search_hotels | args={'destination': 'North East India', 'guests': 2}
+2026-03-25 00:28:30,712 - app.services.reddit_signals - WARNING - No Reddit posts retrieved
+2026-03-25 00:28:30,712 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 00:28:30,712 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 00:28:30,713 - app.tools.registry - ERROR - [MCP] ✗ google_maps/search_places: All connection attempts failed
+2026-03-25 00:28:30,713 - app.graph.nodes.planning - WARNING - Maps places fetch failed: All connection attempts failed
+2026-03-25 00:28:30,713 - app.tools.registry - ERROR - [MCP] ✗ booking/search_hotels: All connection attempts failed
+2026-03-25 00:28:30,713 - app.graph.nodes.planning - WARNING - Hotel fetch failed: All connection attempts failed
+2026-03-25 00:28:30,714 - app.graph.nodes.planning - INFO - planning complete: 0 places ranked
+2026-03-25 00:28:30,714 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.PLANNING dest=North East India history=5 msgs
+2026-03-25 00:28:32,340 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 1728 chars generated
+2026-03-25 00:28:32,341 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-25 00:28:32,346 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-25_00-18-38 → conversations/conversation_2026-03-25_00-18-38.json
+2026-03-25 03:20:56,865 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-25 03:24:47,411 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-25 03:24:47,411 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 1 messages
+2026-03-25 03:24:48,292 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=North East India vibe=['adventure', 'cultural'] confidence=0.8
+2026-03-25 03:24:48,292 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-25 03:24:48,295 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=adventure)
+2026-03-25 03:24:48,295 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-25 03:24:48,330 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:24:48,330 - app.services.reddit_signals - INFO - [Reddit] → searching 4 queries for 'North East India'
+2026-03-25 03:24:49,059 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:24:49,060 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:24:49,063 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-25 03:24:49,064 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-25 03:24:50,159 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'North East India travel': received 401 HTTP response
+2026-03-25 03:24:50,160 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India travel' → 0 posts
+2026-03-25 03:24:50,170 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'North East India nature': received 401 HTTP response
+2026-03-25 03:24:50,170 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India nature' → 0 posts
+2026-03-25 03:24:50,176 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'North East India adventure': received 401 HTTP response
+2026-03-25 03:24:50,177 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India adventure' → 0 posts
+2026-03-25 03:24:50,180 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'North East India itinerary': received 401 HTTP response
+2026-03-25 03:24:50,181 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India itinerary' → 0 posts
+2026-03-25 03:24:50,182 - app.services.reddit_signals - WARNING - No Reddit posts retrieved
+2026-03-25 03:24:50,182 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0, reddit_posts=False
+2026-03-25 03:24:50,184 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=1 msgs
+2026-03-25 03:24:51,237 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 1068 chars generated
+2026-03-25 03:24:51,238 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-25 03:24:51,247 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-25_03-20-56 → conversations/conversation_2026-03-25_03-20-56.json
+2026-03-25 03:36:03,202 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-25 03:36:03,202 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 3 messages
+2026-03-25 03:36:04,196 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=North East India vibe=['adventure', 'cultural'] confidence=0.8
+2026-03-25 03:36:04,196 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-25 03:36:04,201 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=adventure)
+2026-03-25 03:36:04,201 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-25 03:36:04,223 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:36:04,223 - app.services.reddit_signals - INFO - [Reddit] → searching 4 queries for 'North East India'
+2026-03-25 03:36:04,224 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:36:04,224 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:36:04,226 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-25 03:36:04,226 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-25 03:36:05,015 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'North East India travel': received 401 HTTP response
+2026-03-25 03:36:05,015 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India travel' → 0 posts
+2026-03-25 03:36:05,017 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'North East India itinerary': received 401 HTTP response
+2026-03-25 03:36:05,017 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India itinerary' → 0 posts
+2026-03-25 03:36:05,017 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'North East India adventure': received 401 HTTP response
+2026-03-25 03:36:05,018 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India adventure' → 0 posts
+2026-03-25 03:36:05,628 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'North East India hiking': received 401 HTTP response
+2026-03-25 03:36:05,628 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India hiking' → 0 posts
+2026-03-25 03:36:05,629 - app.services.reddit_signals - WARNING - No Reddit posts retrieved
+2026-03-25 03:36:05,629 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0, reddit_posts=False
+2026-03-25 03:36:05,631 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=3 msgs
+2026-03-25 03:36:06,630 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 789 chars generated
+2026-03-25 03:36:06,632 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-25 03:36:06,637 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-25_03-20-56 → conversations/conversation_2026-03-25_03-20-56.json
+2026-03-25 03:39:35,577 - app.services.reddit_signals - WARNING - [Reddit] ✗ REDDIT_CLIENT_SECRET not set — skipping
+2026-03-25 03:39:48,749 - app.services.reddit_signals - INFO - [Reddit] → searching 4 queries for 'North East India'
+2026-03-25 03:39:49,538 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'North East India travel': received 401 HTTP response
+2026-03-25 03:39:49,539 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India travel' → 0 posts
+2026-03-25 03:39:49,572 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'North East India culture': received 401 HTTP response
+2026-03-25 03:39:49,572 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India culture' → 0 posts
+2026-03-25 03:39:49,593 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'North East India adventure': received 401 HTTP response
+2026-03-25 03:39:49,593 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India adventure' → 0 posts
+2026-03-25 03:39:50,157 - app.services.reddit_signals - WARNING - [Reddit] ✗ 'North East India itinerary': received 401 HTTP response
+2026-03-25 03:39:50,157 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India itinerary' → 0 posts
+2026-03-25 03:39:50,158 - app.services.reddit_signals - WARNING - No Reddit posts retrieved
+2026-03-25 03:40:19,515 - app.services.reddit_signals - INFO - [Reddit] → searching 4 queries for 'North East India'
+2026-03-25 03:40:31,088 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India itinerary' → 12 posts
+2026-03-25 03:40:33,689 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India adventure' → 12 posts
+2026-03-25 03:40:43,549 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India travel' → 12 posts
+2026-03-25 03:40:44,145 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India culture' → 12 posts
+2026-03-25 03:40:44,146 - app.services.reddit_signals - INFO - [Groq/reddit-extract] → extracting place signals for 'North East India'
+2026-03-25 03:40:46,315 - app.services.reddit_signals - INFO - [Groq/reddit-extract] ✓ extracted signals for 10 places
+2026-03-25 03:44:39,798 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-25 03:45:02,598 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-25 03:45:02,598 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 1 messages
+2026-03-25 03:45:03,474 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=North East India vibe=[] confidence=0.8
+2026-03-25 03:45:03,475 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-25 03:45:03,479 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=None)
+2026-03-25 03:45:03,479 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-25 03:45:03,516 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:45:03,516 - app.services.reddit_signals - INFO - [Reddit] → searching 3 queries for 'North East India'
+2026-03-25 03:45:03,517 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:45:03,517 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:45:03,518 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-25 03:45:03,518 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-25 03:45:15,395 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India itinerary' → 12 posts
+2026-03-25 03:45:25,084 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India' → 12 posts
+2026-03-25 03:45:26,198 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India travel' → 12 posts
+2026-03-25 03:45:26,199 - app.services.reddit_signals - INFO - [Groq/reddit-extract] → extracting place signals for 'North East India'
+2026-03-25 03:45:28,208 - app.services.reddit_signals - INFO - [Groq/reddit-extract] ✓ extracted signals for 10 places
+2026-03-25 03:45:28,209 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0, reddit_posts=True
+2026-03-25 03:45:28,211 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=1 msgs
+2026-03-25 03:45:29,292 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 1221 chars generated
+2026-03-25 03:45:29,294 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-25 03:45:29,299 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-25_03-44-39 → conversations/conversation_2026-03-25_03-44-39.json
+2026-03-25 03:46:05,139 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-25 03:46:05,139 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 3 messages
+2026-03-25 03:46:06,683 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=North East India vibe=['adventure', 'cultural'] confidence=0.8
+2026-03-25 03:46:06,683 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-25 03:46:06,685 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=cultural)
+2026-03-25 03:46:06,685 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-25 03:46:06,702 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:46:06,703 - app.services.reddit_signals - INFO - [Reddit] → searching 4 queries for 'North East India'
+2026-03-25 03:46:06,703 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:46:06,703 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:46:06,704 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-25 03:46:06,705 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-25 03:46:17,921 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India itinerary' → 12 posts
+2026-03-25 03:46:23,862 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India museums' → 12 posts
+2026-03-25 03:46:28,163 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India travel' → 12 posts
+2026-03-25 03:46:30,005 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India cultural' → 12 posts
+2026-03-25 03:46:30,006 - app.services.reddit_signals - INFO - [Groq/reddit-extract] → extracting place signals for 'North East India'
+2026-03-25 03:46:32,474 - app.services.reddit_signals - INFO - [Groq/reddit-extract] ✓ extracted signals for 10 places
+2026-03-25 03:46:32,475 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0, reddit_posts=True
+2026-03-25 03:46:32,477 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=3 msgs
+2026-03-25 03:46:33,482 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 851 chars generated
+2026-03-25 03:46:33,483 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-25 03:46:33,490 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-25_03-44-39 → conversations/conversation_2026-03-25_03-44-39.json
+2026-03-25 03:46:57,665 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-25 03:46:57,665 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 5 messages
+2026-03-25 03:46:58,570 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=North East India vibe=['adventure', 'cultural'] confidence=0.9
+2026-03-25 03:46:58,571 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-25 03:46:58,574 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=cultural)
+2026-03-25 03:46:58,574 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-25 03:46:58,597 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:46:58,597 - app.services.reddit_signals - INFO - [Reddit] → searching 4 queries for 'North East India'
+2026-03-25 03:46:58,598 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:46:58,598 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:46:58,599 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-25 03:46:58,599 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-25 03:47:09,304 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India itinerary' → 12 posts
+2026-03-25 03:47:13,731 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India museums' → 12 posts
+2026-03-25 03:47:19,568 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India travel' → 12 posts
+2026-03-25 03:47:20,184 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India cultural' → 12 posts
+2026-03-25 03:47:20,186 - app.services.reddit_signals - INFO - [Groq/reddit-extract] → extracting place signals for 'North East India'
+2026-03-25 03:47:22,327 - app.services.reddit_signals - INFO - [Groq/reddit-extract] ✓ extracted signals for 10 places
+2026-03-25 03:47:22,329 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0, reddit_posts=True
+2026-03-25 03:47:22,330 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=5 msgs
+2026-03-25 03:47:23,658 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 1313 chars generated
+2026-03-25 03:47:23,659 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-25 03:47:23,666 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-25_03-44-39 → conversations/conversation_2026-03-25_03-44-39.json
+2026-03-25 03:48:15,571 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-25 03:48:15,572 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 5 messages
+2026-03-25 03:48:16,702 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=North East India vibe=['adventure', 'cultural'] confidence=0.9
+2026-03-25 03:48:16,702 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-25 03:48:16,704 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=cultural)
+2026-03-25 03:48:16,704 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-25 03:48:16,720 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:48:16,720 - app.services.reddit_signals - INFO - [Reddit] → searching 4 queries for 'North East India'
+2026-03-25 03:48:16,721 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:48:16,721 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:48:16,722 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-25 03:48:16,722 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-25 03:48:27,174 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India itinerary' → 12 posts
+2026-03-25 03:48:32,090 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India museums' → 12 posts
+2026-03-25 03:48:37,334 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India cultural' → 12 posts
+2026-03-25 03:48:39,089 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India travel' → 12 posts
+2026-03-25 03:48:39,091 - app.services.reddit_signals - INFO - [Groq/reddit-extract] → extracting place signals for 'North East India'
+2026-03-25 03:48:41,603 - app.services.reddit_signals - INFO - [Groq/reddit-extract] ✓ extracted signals for 10 places
+2026-03-25 03:48:41,605 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0, reddit_posts=True
+2026-03-25 03:48:41,607 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=7 msgs
+2026-03-25 03:48:42,916 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 1411 chars generated
+2026-03-25 03:48:42,917 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-25 03:48:42,923 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-25_03-44-39 → conversations/conversation_2026-03-25_03-44-39.json
+2026-03-25 03:49:53,807 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-25 03:49:53,807 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 5 messages
+2026-03-25 03:49:54,499 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=North East India vibe=['adventure', 'cultural'] confidence=0.8
+2026-03-25 03:49:54,499 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=North East India, quick_setup=False
+2026-03-25 03:49:54,503 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'North East India' (vibe=cultural)
+2026-03-25 03:49:54,504 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'North East India'}
+2026-03-25 03:49:54,527 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:49:54,527 - app.services.reddit_signals - INFO - [Reddit] → searching 4 queries for 'North East India'
+2026-03-25 03:49:54,527 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:49:54,527 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-25 03:49:54,529 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-25 03:49:54,529 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'North East India': All connection attempts failed
+2026-03-25 03:50:19,248 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India itinerary' → 12 posts
+2026-03-25 03:50:22,065 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India museums' → 12 posts
+2026-03-25 03:50:24,653 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India cultural' → 12 posts
+2026-03-25 03:50:25,824 - app.services.reddit_signals - INFO - [Reddit] ✓ 'North East India travel' → 12 posts
+2026-03-25 03:50:25,826 - app.services.reddit_signals - INFO - [Groq/reddit-extract] → extracting place signals for 'North East India'
+2026-03-25 03:50:27,968 - app.services.reddit_signals - INFO - [Groq/reddit-extract] ✓ extracted signals for 10 places
+2026-03-25 03:50:27,969 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0, reddit_posts=True
+2026-03-25 03:50:27,971 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=North East India history=9 msgs
+2026-03-25 03:50:29,106 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 1109 chars generated
+2026-03-25 03:50:29,107 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-25 03:50:29,112 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-25_03-44-39 → conversations/conversation_2026-03-25_03-44-39.json
+2026-03-28 21:33:43,303 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-28 21:34:08,491 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-28 21:34:41,126 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-28 21:34:41,126 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 1 messages
+2026-03-28 21:34:41,922 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=India vibe=['chill', 'adventure'] confidence=0.8
+2026-03-28 21:34:41,923 - app.services.intent_extractor - INFO - [Groq/clarify] → generating conversational question
+2026-03-28 21:34:42,244 - app.services.intent_extractor - ERROR - [Groq/clarify] ✗ 'choices'
+2026-03-28 21:34:42,244 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+2026-03-28 21:34:42,248 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-28_21-34-08 → conversations/conversation_2026-03-28_21-34-08.json
+2026-03-28 21:35:00,573 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-28 21:35:00,574 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 3 messages
+2026-03-28 21:35:01,570 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=Goa vibe=['chill'] confidence=0.8
+2026-03-28 21:35:01,571 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=Goa, quick_setup=False
+2026-03-28 21:35:01,575 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'Goa' (vibe=adventure)
+2026-03-28 21:35:01,575 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'Goa'}
+2026-03-28 21:35:01,612 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-28 21:35:01,612 - app.services.reddit_signals - INFO - [Reddit] → searching 4 queries for 'Goa'
+2026-03-28 21:35:02,057 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-28 21:35:02,057 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-28 21:35:02,062 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-28 21:35:02,062 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'Goa': All connection attempts failed
+2026-03-28 21:35:13,728 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa itinerary' → 12 posts
+2026-03-28 21:35:14,121 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa adventure' → 12 posts
+2026-03-28 21:35:18,413 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa travel' → 12 posts
+2026-03-28 21:35:22,880 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa nature' → 12 posts
+2026-03-28 21:35:22,881 - app.services.reddit_signals - INFO - [Groq/reddit-extract] → extracting place signals for 'Goa'
+2026-03-28 21:35:25,146 - app.services.reddit_signals - INFO - [Groq/reddit-extract] ✓ extracted signals for 12 places
+2026-03-28 21:35:25,148 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0, reddit_posts=True
+2026-03-28 21:35:25,150 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=Goa history=3 msgs
+2026-03-28 21:35:25,823 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 356 chars generated
+2026-03-28 21:35:25,824 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-28 21:35:25,830 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-28_21-34-08 → conversations/conversation_2026-03-28_21-34-08.json
+2026-03-28 21:36:17,629 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-28 21:36:17,630 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 5 messages
+2026-03-28 21:36:18,334 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=India vibe=['chill', 'cultural'] confidence=0.8
+2026-03-28 21:36:18,334 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=Goa, quick_setup=False
+2026-03-28 21:36:18,339 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'Goa' (vibe=cultural)
+2026-03-28 21:36:18,339 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'Goa'}
+2026-03-28 21:36:18,362 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-28 21:36:18,362 - app.services.reddit_signals - INFO - [Reddit] → searching 4 queries for 'Goa'
+2026-03-28 21:36:18,362 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-28 21:36:18,362 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-28 21:36:18,364 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-28 21:36:18,364 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'Goa': All connection attempts failed
+2026-03-28 21:36:28,734 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa itinerary' → 12 posts
+2026-03-28 21:36:34,008 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa travel' → 12 posts
+2026-03-28 21:36:38,852 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa nature' → 12 posts
+2026-03-28 21:36:40,163 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa cultural' → 12 posts
+2026-03-28 21:36:40,164 - app.services.reddit_signals - INFO - [Groq/reddit-extract] → extracting place signals for 'Goa'
+2026-03-28 21:36:42,716 - app.services.reddit_signals - INFO - [Groq/reddit-extract] ✓ extracted signals for 10 places
+2026-03-28 21:36:42,717 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0, reddit_posts=True
+2026-03-28 21:36:42,717 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=Goa history=5 msgs
+2026-03-28 21:36:43,926 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 406 chars generated
+2026-03-28 21:36:43,927 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-28 21:36:43,929 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-28_21-34-08 → conversations/conversation_2026-03-28_21-34-08.json
+2026-03-28 21:37:56,543 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-28 21:37:56,545 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 5 messages
+2026-03-28 21:37:57,496 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=India vibe=['chill', 'cultural'] confidence=0.9
+2026-03-28 21:37:57,496 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.PLANNING, dest=Goa, quick_setup=False
+2026-03-28 21:37:57,502 - app.graph.nodes.planning - INFO - planning: starting for 'Goa' (vibe=cultural_adventure_chill)
+2026-03-28 21:37:57,502 - app.services.reddit_signals - INFO - [Reddit] → searching 4 queries for 'Goa'
+2026-03-28 21:37:57,503 - app.tools.registry - INFO - [MCP] → google_maps/search_places | args={'location': 'Goa', 'query': 'top attractions in Goa'}
+2026-03-28 21:37:57,526 - app.tools.registry - INFO - [MCP] → booking/search_hotels | args={'destination': 'Goa', 'guests': 2}
+2026-03-28 21:37:57,542 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-28 21:37:57,542 - app.services.blog_signals - WARNING - [Tavily] ✗ TAVILY_API_KEY not set — skipping
+2026-03-28 21:37:57,546 - app.tools.registry - ERROR - [MCP] ✗ google_maps/search_places: All connection attempts failed
+2026-03-28 21:37:57,546 - app.graph.nodes.planning - WARNING - Maps places fetch failed: All connection attempts failed
+2026-03-28 21:37:57,546 - app.tools.registry - ERROR - [MCP] ✗ booking/search_hotels: All connection attempts failed
+2026-03-28 21:37:57,546 - app.graph.nodes.planning - WARNING - Hotel fetch failed: All connection attempts failed
+2026-03-28 21:38:08,134 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa itinerary' → 12 posts
+2026-03-28 21:38:12,740 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa travel' → 12 posts
+2026-03-28 21:38:17,597 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa nature' → 12 posts
+2026-03-28 21:38:18,033 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa cultural' → 12 posts
+2026-03-28 21:38:18,034 - app.services.reddit_signals - INFO - [Groq/reddit-extract] → extracting place signals for 'Goa'
+2026-03-28 21:38:21,652 - app.services.reddit_signals - INFO - [Groq/reddit-extract] ✓ extracted signals for 10 places
+2026-03-28 21:38:21,655 - app.graph.nodes.planning - INFO - planning complete: 0 places ranked
+2026-03-28 21:38:21,657 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.PLANNING dest=Goa history=7 msgs
+2026-03-28 21:38:23,357 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 950 chars generated
+2026-03-28 21:38:23,358 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-28 21:38:23,364 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-28_21-34-08 → conversations/conversation_2026-03-28_21-34-08.json
+2026-03-28 21:49:44,023 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-28 21:50:09,413 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-28 21:50:09,413 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 1 messages
+2026-03-28 21:50:10,680 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=Goa vibe=['chill'] confidence=0.8
+2026-03-28 21:50:10,681 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=Goa, quick_setup=False
+2026-03-28 21:50:10,688 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'Goa' (vibe=chill)
+2026-03-28 21:50:10,689 - app.tools.registry - INFO - [MCP] → openweather/get_current_weather | args={'location': 'Goa'}
+2026-03-28 21:50:10,725 - app.services.blog_signals - INFO - [Tavily] → searching: 'events happening in Goa this month'
+2026-03-28 21:50:10,725 - app.services.reddit_signals - INFO - [Reddit] → searching 4 queries for 'Goa'
+2026-03-28 21:50:10,726 - app.services.blog_signals - INFO - [Tavily] → searching: 'best things to do in Goa travel guide'
+2026-03-28 21:50:10,726 - app.services.blog_signals - INFO - [Tavily] → searching: 'Goa hidden gems local tips chill'
+2026-03-28 21:50:10,729 - app.tools.registry - ERROR - [MCP] ✗ openweather/get_current_weather: All connection attempts failed
+2026-03-28 21:50:10,729 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'Goa': All connection attempts failed
+2026-03-28 21:50:14,241 - app.services.blog_signals - INFO - [Tavily] ✓ 'Goa hidden gems local tips chill' → 5 results
+2026-03-28 21:50:14,559 - app.services.blog_signals - INFO - [Tavily] ✓ 'best things to do in Goa travel guide' → 5 results
+2026-03-28 21:50:15,263 - app.services.blog_signals - INFO - [Tavily] ✓ 'events happening in Goa this month' → 4 results
+2026-03-28 21:50:22,217 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa itinerary' → 12 posts
+2026-03-28 21:50:27,008 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa travel' → 12 posts
+2026-03-28 21:50:29,119 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa beach' → 12 posts
+2026-03-28 21:50:31,797 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa chill' → 12 posts
+2026-03-28 21:50:31,799 - app.services.reddit_signals - INFO - [Groq/reddit-extract] → extracting place signals for 'Goa'
+2026-03-28 21:50:34,504 - app.services.reddit_signals - INFO - [Groq/reddit-extract] ✓ extracted signals for 10 places
+2026-03-28 21:50:34,505 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=8, reddit_posts=True
+2026-03-28 21:50:34,507 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.DISCOVERY dest=Goa history=1 msgs
+2026-03-28 21:50:35,425 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 835 chars generated
+2026-03-28 21:50:35,426 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-28 21:50:35,431 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-28_21-49-44 → conversations/conversation_2026-03-28_21-49-44.json
+2026-03-28 21:51:12,741 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-28 21:51:12,741 - app.services.intent_extractor - INFO - [Groq/intent] → extracting intent from 3 messages
+2026-03-28 21:51:13,488 - app.services.intent_extractor - INFO - [Groq/intent] ✓ dest=India vibe=['cultural'] confidence=0.8
+2026-03-28 21:51:13,488 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.PLANNING, dest=Goa, quick_setup=False
+2026-03-28 21:51:13,493 - app.graph.nodes.planning - INFO - planning: starting for 'Goa' (vibe=chill_cultural)
+2026-03-28 21:51:13,493 - app.services.reddit_signals - INFO - [Reddit] → searching 4 queries for 'Goa'
+2026-03-28 21:51:13,494 - app.tools.registry - INFO - [MCP] → google_maps/search_places | args={'location': 'Goa', 'query': 'top attractions in Goa'}
+2026-03-28 21:51:13,518 - app.tools.registry - INFO - [MCP] → booking/search_hotels | args={'destination': 'Goa', 'guests': 2}
+2026-03-28 21:51:13,534 - app.services.blog_signals - INFO - [Tavily] → searching: 'best things to do in Goa travel guide'
+2026-03-28 21:51:13,534 - app.services.blog_signals - INFO - [Tavily] → searching: 'Goa hidden gems local tips chill_cultural'
+2026-03-28 21:51:13,538 - app.tools.registry - ERROR - [MCP] ✗ booking/search_hotels: All connection attempts failed
+2026-03-28 21:51:13,538 - app.graph.nodes.planning - WARNING - Hotel fetch failed: All connection attempts failed
+2026-03-28 21:51:13,538 - app.tools.registry - ERROR - [MCP] ✗ google_maps/search_places: All connection attempts failed
+2026-03-28 21:51:13,538 - app.graph.nodes.planning - WARNING - Maps places fetch failed: All connection attempts failed
+2026-03-28 21:51:16,599 - app.services.blog_signals - INFO - [Tavily] ✓ 'best things to do in Goa travel guide' → 5 results
+2026-03-28 21:51:19,342 - app.services.blog_signals - INFO - [Tavily] ✓ 'Goa hidden gems local tips chill_cultural' → 5 results
+2026-03-28 21:51:23,648 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa itinerary' → 12 posts
+2026-03-28 21:51:28,185 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa travel' → 12 posts
+2026-03-28 21:51:29,669 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa beach' → 12 posts
+2026-03-28 21:51:31,069 - app.services.reddit_signals - INFO - [Reddit] ✓ 'Goa chill' → 12 posts
+2026-03-28 21:51:31,071 - app.services.reddit_signals - INFO - [Groq/reddit-extract] → extracting place signals for 'Goa'
+2026-03-28 21:51:33,070 - app.services.reddit_signals - INFO - [Groq/reddit-extract] ✓ extracted signals for 10 places
+2026-03-28 21:51:33,075 - app.graph.nodes.planning - INFO - planning complete: 0 places ranked
+2026-03-28 21:51:33,077 - app.graph.nodes.responder - INFO - [Groq/responder] → phase=Phase.PLANNING dest=Goa history=3 msgs
+2026-03-28 21:51:34,397 - app.graph.nodes.responder - INFO - [Groq/responder] ✓ 1109 chars generated
+2026-03-28 21:51:34,397 - app.graph.nodes.responder - INFO - responder: response generated
+2026-03-28 21:51:34,400 - app.utils.conversation_logger - DEBUG - Saved conversation for thread conversation_2026-03-28_21-49-44 → conversations/conversation_2026-03-28_21-49-44.json

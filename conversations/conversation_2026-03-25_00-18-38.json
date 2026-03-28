@@ -1,0 +1,34 @@
+[
+  {
+    "role": "human",
+    "content": "I want to travel to north east"
+  },
+  {
+    "role": "ai",
+    "content": "**\ud83d\udccd Must-See Spots**\n* Explore the **Kaziranga National Park** in Assam, home to rhinos and other wildlife.\n* Visit the **Tawang Monastery** in Arunachal Pradesh, one of the largest Buddhist monasteries in India.\n* Hike to the **Dzukou Valley** in Nagaland, known for its stunning natural beauty.\n* Discover the **Shillong** hill station in Meghalaya, with its picturesque lakes and waterfalls.\n\n**\ud83c\udf5c Local Food & Drinks**\n* Savor the **Smoked Pork** in Nagaland, often served with fermented bamboo shoots.\n* Try **Thukpa** in Sikkim, a hearty noodle soup.\n* Enjoy **Jadoh** in Meghalaya, a flavorful rice dish.\n* Drink **Chhang** in Sikkim, a traditional millet beer.\n\n**\ud83d\udcc5 Best Time to Go**\nThe best time to visit North East India is from October to April, when the weather is mild and pleasant. Avoid the monsoon season from May to September.\n\nWhat's your travel vibe \u2013 are you looking for adventure, cultural immersion, or relaxation?"
+  },
+  {
+    "role": "human",
+    "content": "I want adventures and local cousins"
+  },
+  {
+    "role": "ai",
+    "content": "For an adventurous and culturally immersive experience in North East India, I'd recommend exploring **Tawang** in Arunachal Pradesh. Hike to the **Gorichen Peak**, which offers breathtaking views of the Himalayas. Visit the **Tawang Monastery**, one of the largest Buddhist monasteries in India, and experience the local culture by attending a traditional **Monastery Festival**.\n\nFor a unique adventure, try **River Rafting** in **Siang River**, Arunachal Pradesh. If you're interested in trekking, consider the **Dzukou Valley Trek** in Nagaland, which takes you through stunning landscapes and local villages.\n\nHave you considered trying any local sports or activities, like **Archery**, which is popular in Nagaland?"
+  },
+  {
+    "role": "human",
+    "content": "yes sure why not give me curated list for 2 weeks how can I explore these place,keeping in travel in mind"
+  },
+  {
+    "role": "ai",
+    "content": "Here's a curated 2-week itinerary for exploring North East India, focusing on adventure and cultural experiences:\n\n**Day 1-3: Guwahati & Shillong**\n\n* Fly into **Guwahati**, Assam\n* Explore **Kamakhya Temple** and **Umananda Temple**\n* Drive to **Shillong**, Meghalaya (approx. 3 hours)\n* Visit **Elephant Falls** and **Umiam Lake**\n* Try **Jadoh** and **Smoked Pork** at a local restaurant\n\n**Day 4-6: Tawang**\n\n* Drive to **Tawang**, Arunachal Pradesh (approx. 10 hours)\n* Visit **Tawang Monastery** and **Gorichen Peak**\n* Attend a traditional **Monastery Festival** (if scheduled)\n* Hike to **Shonga Lake** for stunning views\n\n**Day 7-9: Dzukou Valley & Nagaland**\n\n* Drive to **Zunheboto**, Nagaland (approx. 6 hours)\n* Hike to **Dzukou Valley** (approx. 2 hours)\n* Explore **Zunheboto Town** and try **Smoked Pork** with fermented bamboo shoots\n* Visit **Keda Village** for a cultural experience\n\n**Day 10-12: Siang River & River Rafting**\n\n* Drive to **Pasighat**, Arunachal Pradesh (approx. 6 hours)\n* Go **River Rafting** in **Siang River** (approx. 3-4 hours)\n* Explore **Pasighat Town** and try **Thukpa** at a local restaurant\n\n**Day 13-14: Return to Guwahati**\n\n* Drive back to **Guwahati** (approx. 6 hours)\n* Explore **Guwahati City** and visit **Assam State Museum**\n\n**Travel Tips**\n\n* Obtain necessary permits and Inner Line Permits for Arunachal Pradesh and Nagaland\n* Hire a local guide or driver for better navigation and cultural insights\n* Pack layers for varying weather conditions\n* Try local transportation, like buses or shared taxis, for a more immersive experience\n\nThis itinerary provides a mix of adventure, culture, and natural beauty. Feel free to adjust based on your preferences and interests!",
+    "tools_used": [
+      "[Groq/intent] dest=North East India vibe=adventure,cultural confidence=0.80",
+      "[Reddit] 0 posts retrieved for 'North East India'",
+      "[Tavily/blog] 0 sources for 'North East India'",
+      "[MCP/google_maps] 0 places returned",
+      "[MCP/booking] 0 hotels returned",
+      "[Groq/responder] 1728 chars generated (phase=Phase.PLANNING)"
+    ]
+  }
+]

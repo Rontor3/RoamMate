@@ -1,0 +1,91 @@
+INFO:     Started server process [62804]
+INFO:     Waiting for application startup.
+2026-03-21 00:32:59,897 - app.api.server - INFO - Starting RoamMate server...
+2026-03-21 00:32:59,908 - app.graph.builder - INFO - Graph compiled with AsyncSqliteSaver at conversations/checkpoints.db
+2026-03-21 00:32:59,909 - app.api.server - INFO - LangGraph compiled and ready
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2026-03-21 00:33:03,364 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-21 00:33:04,347 - app.services.intent_extractor - ERROR - ask_conversationally failed: 'choices'
+2026-03-21 00:33:04,348 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=None, quick_setup=False
+INFO:     127.0.0.1:54124 - "POST /chat HTTP/1.1" 200 OK
+Deserializing unregistered type app.models.Destination from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.models', 'Destination')]
+Deserializing unregistered type app.models.IntentConfidence from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.models', 'IntentConfidence')]
+Deserializing unregistered type app.models.TravelIntent from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.models', 'TravelIntent')]
+Deserializing unregistered type app.graph.state.Phase from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.graph.state', 'Phase')]
+2026-03-21 00:33:04,374 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-21 00:33:04,937 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=goa, quick_setup=False
+2026-03-21 00:33:04,943 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'goa' (vibe=chill)
+2026-03-21 00:33:04,983 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:33:04,983 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:33:04,983 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:33:04,984 - app.tools.registry - ERROR - MCP call failed [openweather/get_current_weather]: All connection attempts failed
+2026-03-21 00:33:04,984 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'goa': All connection attempts failed
+2026-03-21 00:33:04,984 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-21 00:33:04,985 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-21 00:33:06,118 - app.graph.nodes.responder - INFO - responder: response generated
+INFO:     127.0.0.1:54131 - "POST /chat HTTP/1.1" 200 OK
+2026-03-21 00:34:44,384 - app.graph.nodes.intent - INFO - detect_intent: processing context length 1
+2026-03-21 00:34:45,201 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.DISCOVERY, dest=Goa, quick_setup=False
+2026-03-21 00:34:45,204 - app.graph.nodes.discovery - INFO - discovery: parallel fetch for 'Goa' (vibe=chill)
+2026-03-21 00:34:45,229 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:34:45,230 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:34:45,230 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:34:45,231 - app.tools.registry - ERROR - MCP call failed [openweather/get_current_weather]: All connection attempts failed
+2026-03-21 00:34:45,231 - app.graph.nodes.discovery - WARNING - Weather fetch failed for 'Goa': All connection attempts failed
+2026-03-21 00:34:45,231 - app.graph.nodes.discovery - INFO - discovery complete: weather=False, blog_sources=0
+2026-03-21 00:34:45,232 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-21 00:34:46,722 - app.graph.nodes.responder - INFO - responder: response generated
+INFO:     127.0.0.1:54151 - "POST /chat HTTP/1.1" 200 OK
+Deserializing unregistered type app.models.Destination from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.models', 'Destination')]
+Deserializing unregistered type app.models.Vibe from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.models', 'Vibe')]
+Deserializing unregistered type app.models.IntentConfidence from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.models', 'IntentConfidence')]
+Deserializing unregistered type app.models.TravelIntent from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.models', 'TravelIntent')]
+Deserializing unregistered type app.graph.state.Phase from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.graph.state', 'Phase')]
+2026-03-21 00:36:22,563 - app.graph.nodes.intent - INFO - detect_intent: processing context length 3
+2026-03-21 00:36:23,221 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.PLANNING, dest=Goa, quick_setup=False
+2026-03-21 00:36:23,225 - app.graph.nodes.planning - INFO - planning: starting for 'Goa' (vibe=chill)
+2026-03-21 00:36:23,937 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:36:23,937 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:36:23,939 - app.tools.registry - ERROR - MCP call failed [google_maps/search_places]: All connection attempts failed
+2026-03-21 00:36:23,939 - app.graph.nodes.planning - WARNING - Maps places fetch failed: All connection attempts failed
+2026-03-21 00:36:23,939 - app.tools.registry - ERROR - MCP call failed [booking/search_hotels]: All connection attempts failed
+2026-03-21 00:36:23,939 - app.graph.nodes.planning - WARNING - Hotel fetch failed: All connection attempts failed
+2026-03-21 00:36:24,728 - app.services.reddit_signals - WARNING - Reddit search failed for 'chill things to do Goa': received 401 HTTP response
+2026-03-21 00:36:24,730 - app.services.reddit_signals - WARNING - Reddit search failed for 'nature in Goa': received 401 HTTP response
+2026-03-21 00:36:24,730 - app.services.reddit_signals - WARNING - Reddit search failed for 'best places Goa': received 401 HTTP response
+2026-03-21 00:36:24,730 - app.services.reddit_signals - WARNING - Reddit search failed for 'Goa hidden gems locals recommend': received 401 HTTP response
+2026-03-21 00:36:24,731 - app.services.reddit_signals - WARNING - No Reddit posts retrieved
+2026-03-21 00:36:24,731 - app.graph.nodes.planning - INFO - planning complete: 0 places ranked
+2026-03-21 00:36:24,733 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-21 00:36:26,638 - app.graph.nodes.responder - INFO - responder: response generated
+INFO:     127.0.0.1:54205 - "POST /chat HTTP/1.1" 200 OK
+Deserializing unregistered type app.models.Destination from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.models', 'Destination')]
+Deserializing unregistered type app.models.Vibe from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.models', 'Vibe')]
+Deserializing unregistered type app.models.CrowdPreference from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.models', 'CrowdPreference')]
+Deserializing unregistered type app.models.Duration from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.models', 'Duration')]
+Deserializing unregistered type app.models.Budget from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.models', 'Budget')]
+Deserializing unregistered type app.models.IntentConfidence from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.models', 'IntentConfidence')]
+Deserializing unregistered type app.models.TravelIntent from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.models', 'TravelIntent')]
+Deserializing unregistered type app.graph.state.Phase from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.graph.state', 'Phase')]
+Deserializing unregistered type app.models.ScoreResult from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.models', 'ScoreResult')]
+Deserializing unregistered type app.models.ScoreResult from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.models', 'ScoreResult')]
+Deserializing unregistered type app.models.AreaScores from checkpoint. This will be blocked in a future version. Add to allowed_msgpack_modules to silence: [('app.models', 'AreaScores')]
+2026-03-21 00:37:09,806 - app.graph.nodes.intent - INFO - detect_intent: processing context length 5
+2026-03-21 00:37:10,496 - app.graph.nodes.intent - INFO - detect_intent → phase=Phase.PLANNING, dest=Goa, quick_setup=False
+2026-03-21 00:37:10,500 - app.graph.nodes.planning - INFO - planning: starting for 'Goa' (vibe=chill)
+2026-03-21 00:37:10,542 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:37:10,542 - app.services.blog_signals - WARNING - TAVILY_API_KEY not set
+2026-03-21 00:37:10,544 - app.tools.registry - ERROR - MCP call failed [google_maps/search_places]: All connection attempts failed
+2026-03-21 00:37:10,544 - app.graph.nodes.planning - WARNING - Maps places fetch failed: All connection attempts failed
+2026-03-21 00:37:10,545 - app.tools.registry - ERROR - MCP call failed [booking/search_hotels]: All connection attempts failed
+2026-03-21 00:37:10,545 - app.graph.nodes.planning - WARNING - Hotel fetch failed: All connection attempts failed
+2026-03-21 00:37:11,159 - app.services.reddit_signals - WARNING - Reddit search failed for 'Goa hidden gems locals recommend': received 401 HTTP response
+2026-03-21 00:37:11,162 - app.services.reddit_signals - WARNING - Reddit search failed for 'chill things to do Goa': received 401 HTTP response
+2026-03-21 00:37:11,168 - app.services.reddit_signals - WARNING - Reddit search failed for 'best places Goa': received 401 HTTP response
+2026-03-21 00:37:11,183 - app.services.reddit_signals - WARNING - Reddit search failed for 'nature in Goa': received 401 HTTP response
+2026-03-21 00:37:11,184 - app.services.reddit_signals - WARNING - No Reddit posts retrieved
+2026-03-21 00:37:11,185 - app.graph.nodes.planning - INFO - planning complete: 0 places ranked
+2026-03-21 00:37:11,186 - app.graph.nodes.responder - INFO - responder: generating response with Groq
+2026-03-21 00:37:13,271 - app.graph.nodes.responder - INFO - responder: response generated
+INFO:     127.0.0.1:54238 - "POST /chat HTTP/1.1" 200 OK

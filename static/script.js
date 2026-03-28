@@ -2,105 +2,94 @@ const messagesContainer = document.getElementById('messages');
 const queryInput = document.getElementById('query-input');
 const sendBtn = document.getElementById('send-btn');
 
-// Basic Markdown parser fallback if marked is not loaded
-function simpleMarkdown(text) {
-    // Bold
-    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    // Links [text](url)
-    text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-    // Newlines to <br>
-    text = text.replace(/\n/g, '<br>');
-    return text;
+// Fetch the server-generated thread_id on load.
+// A new thread_id is created each time the server starts, so restarting
+// the server automatically begins a fresh conversation.
+let _threadId = null;
+async function initSession() {
+    try {
+        const res = await fetch('/session');
+        const data = await res.json();
+        _threadId = data.thread_id;
+    } catch (e) {
+        // Fallback: generate client-side if /session is unreachable
+        _threadId = 'conversation_' + new Date().toISOString().replace(/[:.]/g, '-');
+    }
 }
+initSession();
 
 function addMessage(content, isUser = false) {
     const msgDiv = document.createElement('div');
     msgDiv.className = `message ${isUser ? 'user' : 'system'}`;
-
     const contentDiv = document.createElement('div');
     contentDiv.className = 'content';
 
-    // Parse Markdown
-    contentDiv.innerHTML = marked.parse(content);
+    if (typeof marked !== 'undefined') {
+        contentDiv.innerHTML = marked.parse(content);
+    } else {
+        contentDiv.innerHTML = content
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\n/g, '<br>');
+    }
 
-    // Ensure links open in new tab
-    const links = contentDiv.getElementsByTagName('a');
-    for (let link of links) {
+    for (let link of contentDiv.getElementsByTagName('a')) {
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
     }
 
     msgDiv.appendChild(contentDiv);
     messagesContainer.appendChild(msgDiv);
-
-    // Scroll to bottom
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+function addThinking() {
+    const div = document.createElement('div');
+    div.className = 'message system thinking';
+    div.id = 'thinking-indicator';
+    div.innerHTML = '<div class="content"><em>RoamMate is thinking…</em></div>';
+    messagesContainer.appendChild(div);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+function removeThinking() {
+    const el = document.getElementById('thinking-indicator');
+    if (el) el.remove();
 }
 
 async function sendQuery() {
     const query = queryInput.value.trim();
     if (!query) return;
 
-    // Add user message
     addMessage(query, true);
     queryInput.value = '';
     queryInput.disabled = true;
-
-    // Add loading indicator? For now just wait
-    // Could add a temporary "Thinking..." message
+    addThinking();
 
     try {
-        const response = await fetch('/query', {
+        const response = await fetch('/chat', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ query: query })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                message: query,
+                thread_id: _threadId
+            })
         });
 
+        removeThinking();
+
         if (!response.ok) {
-            throw new Error(`Error: ${response.status}`);
+            const errText = await response.text();
+            throw new Error(`Server error ${response.status}: ${errText}`);
         }
 
         const data = await response.json();
-        const messages = data.messages || [];
-
-        // Display responses
-        // We might get multiple messages if the tool calls return stuff, but the current API structure 
-        // in main.py seems to return {"messages": [...]}.
-        // We'll just JSON stringify complex objects for now if they aren't strings
-
-        // Actually, looking at main.py, it returns whatever client.process_query returns.
-        // Assuming it returns a list of strings or message objects.
-        // Let's handle string or objects.
-
-        if (Array.isArray(messages)) {
-            // Clear current messages to avoid duplication
-            messagesContainer.innerHTML = '';
-
-            messages.forEach(msg => {
-                let text = '';
-                const isUser = msg.role === 'user';
-
-                if (typeof msg.content === 'string') {
-                    text = msg.content;
-                } else if (Array.isArray(msg.content)) {
-                    // Filter out tool_use and tool_result blocks to remove "garbage"
-                    text = msg.content
-                        .filter(block => block.type === 'text')
-                        .map(block => block.text)
-                        .join('\n');
-                }
-
-                // Only add message if there is actual text content (omits raw tool blocks)
-                if (text.trim()) {
-                    addMessage(text, isUser);
-                }
-            });
-        }
+        // API returns { response: string, thread_id: string, phase: string }
+        const text = data.response || data.message || JSON.stringify(data);
+        addMessage(text);
 
     } catch (err) {
-        addMessage(`Error: ${err.message}`);
+        removeThinking();
+        addMessage(`⚠️ ${err.message}`);
     } finally {
         queryInput.disabled = false;
         queryInput.focus();
@@ -108,9 +97,6 @@ async function sendQuery() {
 }
 
 sendBtn.addEventListener('click', sendQuery);
-
 queryInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        sendQuery();
-    }
+    if (e.key === 'Enter') sendQuery();
 });

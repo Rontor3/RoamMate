@@ -1,0 +1,22 @@
+[
+  {
+    "role": "human",
+    "content": "I want to explore north east"
+  },
+  {
+    "role": "ai",
+    "content": "**\ud83d\udccd Must-See Spots**\n* Explore the **Kaziranga National Park** in Assam, a UNESCO World Heritage Site and home to the endangered one-horned rhinoceros.\n* Visit the **Tawang Monastery** in Arunachal Pradesh, one of the largest Buddhist monasteries in India.\n* Discover the **Shillong** hill station in Meghalaya, known for its picturesque landscapes and colonial architecture.\n* Hike to the **Drakshini** waterfall in Meghalaya, a breathtaking 80-foot cascade.\n\n**\ud83c\udf5c Local Food & Drinks**\n* Savor the **Momos** (Tibetan dumplings) and **Thukpa** (noodle soup) in Sikkim and Arunachal Pradesh.\n* Try the **Jadoh** (a traditional Khasi dish) and **Smoked Pork** in Meghalaya.\n* Enjoy the **Masoor Tenga** (a sour fish curry) in Assam.\n\n**\ud83d\udcc5 Best Time to Go**\nThe best time to visit North East India is from October to April, when the weather is pleasant and comfortable. Avoid the monsoon season (June to September) as some areas can be inaccessible due to landslides and floods.\n\nWhat's your travel vibe: are you looking for adventure, cultural experiences, or relaxation?"
+  },
+  {
+    "role": "human",
+    "content": "give me in brief trip details in for 2 week journey keeping travel in mind"
+  },
+  {
+    "role": "ai",
+    "content": "For a 2-week adventure in North East India, I'd suggest:\n\n* Day 1-3: **Shillong**, Meghalaya\n\t+ Explore the **Dawki** river, **Nohkalikai Falls**, and **Mawsmram** village.\n\t+ Hike to **David Scott Trail** or **Umiam Lake**.\n* Day 4-6: **Cherrapunji**, Meghalaya\n\t+ Visit **Nohkalikai Falls**, **Laitlum Canyon**, and **Mawphlang Sacred Forest**.\n* Day 7-9: **Tawang**, Arunachal Pradesh\n\t+ Explore **Tawang Monastery**, **Gurudongmar Lake**, and **Sela Lake**.\n* Day 10-12: **Kaziranga National Park**, Assam\n\t+ Take a jungle safari and spot the one-horned rhinoceros.\n* Day 13-14: **Guwahati**, Assam\n\t+ Visit **Kamakhya Temple** and **Assam State Museum**.\n\nThis itinerary mixes culture, nature, and adventure. Are you interested in adjusting the pace or adding any specific activities?",
+    "tools_used": [
+      "[Groq/intent] dest=North East India vibe=adventure,cultural confidence=0.80",
+      "[Groq/responder] 789 chars generated (phase=Phase.DISCOVERY)"
+    ]
+  }
+]

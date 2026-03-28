@@ -1,0 +1,42 @@
+[
+  {
+    "role": "human",
+    "content": "I want to explore South Goa, how should I make that iternary"
+  },
+  {
+    "role": "ai",
+    "content": "Sounds like a fun trip! Where are you thinking of going?"
+  },
+  {
+    "role": "human",
+    "content": "hi I want to explore south goa"
+  },
+  {
+    "role": "ai",
+    "content": "South Goa has a more laid-back vibe. For a nature and beach-focused trip, I'd recommend visiting **Palolem Beach** and **Cabo de Rama Fort**. \n\nIf you're up for a hike, **Bhagwan Mahaveer Sanctuary** offers some great trails. \n\nYou could also consider a sunset cruise or a relaxing day at **Colva Beach**. \n\nWhich one of these options excites you the most?"
+  },
+  {
+    "role": "human",
+    "content": "I want to a laid back trip with good authentic food,"
+  },
+  {
+    "role": "ai",
+    "content": "A chill trip with delicious food sounds perfect! For authentic Goan cuisine, head to **Benaulim** and try **Fish Curry Rice** at a local eatery. \n\nYou should also visit **Moira Village**, known for its traditional Goan homes and cuisine. \n\nFor a laid-back beach experience, **Varca Beach** is a great spot to unwind. \n\nHave you considered trying any specific type of Goan dish, like **Xacuti** or **Fado**?"
+  },
+  {
+    "role": "human",
+    "content": "nothing, plan an end to end internally for me , I am going to be staying there for 1 week"
+  },
+  {
+    "role": "ai",
+    "content": "Here's a 7-day plan for South Goa:\n\nDay 1: Arrive in **Margaon** and check-in to your accommodation. Head to **Benaulim** for lunch and try some authentic Goan food. Spend the evening relaxing at **Varca Beach**.\n\nDay 2: Visit **Cabo de Rama Fort** and enjoy the scenic views. Head to **Colva Beach** for a relaxing day and try some water sports.\n\nDay 3: Explore **Moira Village** and learn about traditional Goan culture. Have lunch at a local eatery and try **Fish Curry Rice**.\n\nDay 4: Take a hike at **Bhagwan Mahaveer Sanctuary** and enjoy the natural beauty. \n\nDay 5: Spend the day at **Palolem Beach** and enjoy the laid-back vibe. Try some yoga or meditation classes.\n\nDay 6: Take a sunset cruise or a boat ride to explore the coastline.\n\nDay 7: Visit **Assolna Beach** and enjoy the scenic views. Head back to **Margaon** for your departure.\n\nThis plan combines culture, adventure, and relaxation, and includes some amazing food experiences!",
+    "tools_used": [
+      "[Groq/intent] dest=Goa vibe=cultural,adventure,chill confidence=0.80",
+      "[Reddit] 49 posts retrieved for 'Goa'",
+      "[Tavily/blog] 0 sources for 'Goa'",
+      "[MCP/google_maps] 0 places returned",
+      "[MCP/booking] 0 hotels returned",
+      "[Groq/responder] 950 chars generated (phase=Phase.PLANNING)"
+    ]
+  }
+]
