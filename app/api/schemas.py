@@ -21,9 +21,9 @@ class ChatRequest(BaseModel):
     card_action: Optional[str] = None
     card_data: Optional[Dict[str, Any]] = None
     # Phase 0 structured fields — sent by frontend on first message
-    trip_mode: Optional[str] = None      # "plan" | "now"
-    trip_who: Optional[str] = None       # "solo" | "couple" | "friends" | "family_kids" | "family_elder"
-    trip_season: Optional[str] = None    # "summer" | "monsoon" | "winter" | "flex"
+    trip_mode: str | None = None      # "plan" | "now"
+    trip_who: str | None = None       # "solo" | "couple" | "friends" | "family_kids" | "family_elder"
+    trip_season: str | None = None    # "summer" | "monsoon" | "winter" | "flex"
 
 
 class ReverseGeocodeRequest(BaseModel):
