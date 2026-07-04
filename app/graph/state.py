@@ -4,7 +4,6 @@ app/graph/state.py — GraphState TypedDict for RoamMate LangGraph workflow.
 messages uses add_messages reducer so LangGraph merges per-turn additions
 into the persisted checkpoint automatically (enables multi-turn conversations).
 """
-import operator
 from enum import Enum
 from typing import Annotated, Any, Dict, List, Optional, TypedDict
 
@@ -65,20 +64,20 @@ class GraphState(TypedDict, total=False):
 
     # ── Card system state ──────────────────────────────────────────────────────
     conversation_stage: str          # see resolve_stage() for values
-    card_action: Optional[str]       # incoming from frontend: card interaction type
-    card_data: Optional[Dict[str, Any]]  # incoming from frontend: card interaction data
-    action: Optional[str]            # outgoing to frontend: what UI to render
-    payload: Optional[Dict[str, Any]]    # outgoing to frontend: data for that UI
+    card_action: str | None          # incoming from frontend: card interaction type
+    card_data: Dict[str, Any] | None  # incoming from frontend: card interaction data
+    action: str | None               # outgoing to frontend: what UI to render
+    payload: Dict[str, Any] | None   # outgoing to frontend: data for that UI
     vibes_confirmed: bool            # True once user has selected vibe cards
     selected_vibe_ids: List[str]     # e.g. ["adv", "hid"]
     places_shown: bool               # True once place cards have been sent
     selected_place_ids: List[str]    # place ids the user locked in
     pace_shown: bool                 # True once pace cards have been sent
-    selected_pace: Optional[str]     # "slow" | "mix" | "power"
+    selected_pace: str | None        # "slow" | "mix" | "power"
     routes_shown: bool               # True once route cards have been sent
     routes: List[Dict[str, Any]]     # route data for route cards
     show_scene_strip: bool           # flag to inject a scene strip next response
-    scene_strip_label: Optional[str] # label text for the scene strip
+    scene_strip_label: str | None    # label text for the scene strip
 
     # ── Phase 0 context — sent as structured fields from frontend ─────────────
     trip_mode: str                    # "plan" | "now"

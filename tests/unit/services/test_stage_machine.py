@@ -1,5 +1,4 @@
 """Unit tests for stage_machine resolve_stage."""
-import pytest
 from app.graph.state import GraphState
 
 
