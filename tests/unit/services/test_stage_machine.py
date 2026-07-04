@@ -1,5 +1,7 @@
-"""Unit tests for stage_machine resolve_stage."""
+"""Unit tests for stage_machine resolve_stage and determine_action."""
+import pytest
 from app.graph.state import GraphState
+from app.services.stage_machine import resolve_stage, determine_action
 
 
 def test_graphstate_has_trip_mode():
@@ -40,3 +42,108 @@ def test_chat_request_phase0_fields_optional():
     assert req.trip_mode is None
     assert req.trip_who is None
     assert req.trip_season is None
+
+
+# ── resolve_stage tests ────────────────────────────────────────────────────────
+
+def test_resolve_stage_no_context_returns_experience_type_unknown():
+    assert resolve_stage({}) == "experience_type_unknown"
+
+
+def test_resolve_stage_experience_types_set_returns_known():
+    state = {"experience_types": ["hills_nature"]}
+    assert resolve_stage(state) == "experience_type_known"
+
+
+def test_resolve_stage_destination_known_skips_experience():
+    state = {"destination": "Goa"}
+    assert resolve_stage(state) == "destination_known"
+
+
+def test_resolve_stage_destination_and_vibes_confirmed():
+    state = {"destination": "Goa", "vibes_confirmed": True}
+    assert resolve_stage(state) == "vibe_selected"
+
+
+def test_resolve_stage_places_shown_no_duration():
+    state = {"destination": "Goa", "vibes_confirmed": True, "places_shown": True}
+    assert resolve_stage(state) == "duration_pending"
+
+
+def test_resolve_stage_places_shown_with_duration():
+    state = {
+        "destination": "Goa",
+        "vibes_confirmed": True,
+        "places_shown": True,
+        "trip_duration": 3,
+    }
+    assert resolve_stage(state) == "places_shown"
+
+
+def test_resolve_stage_activities_selected():
+    state = {
+        "destination": "Goa",
+        "vibes_confirmed": True,
+        "places_shown": True,
+        "trip_duration": 3,
+        "selected_activities": ["beach", "nightlife"],
+    }
+    assert resolve_stage(state) == "activities_selected"
+
+
+def test_resolve_stage_pace_selected():
+    state = {
+        "destination": "Goa",
+        "vibes_confirmed": True,
+        "places_shown": True,
+        "trip_duration": 3,
+        "selected_activities": ["beach"],
+        "selected_pace": "mix",
+    }
+    assert resolve_stage(state) == "pace_selected"
+
+
+def test_resolve_stage_route_arc_selected():
+    state = {
+        "destination": "Goa",
+        "route_arc": {"direction": "south_to_north"},
+    }
+    assert resolve_stage(state) == "route_arc_selected"
+
+
+def test_resolve_stage_destination_known_beats_experience_type():
+    # destination takes priority over experience_type_known
+    state = {"destination": "Coorg", "experience_types": ["hills_nature"]}
+    assert resolve_stage(state) == "destination_known"
+
+
+# ── determine_action tests ─────────────────────────────────────────────────────
+
+@pytest.mark.asyncio
+async def test_determine_action_experience_type_unknown_returns_chips():
+    action, payload = await determine_action("experience_type_unknown", {})
+    assert action == "show_experience_chips"
+    assert "chips" in payload
+    assert isinstance(payload["chips"], list)
+    assert len(payload["chips"]) > 0
+
+
+@pytest.mark.asyncio
+async def test_determine_action_destination_known_returns_vibe_cards():
+    action, payload = await determine_action("destination_known", {"destination": "Goa"})
+    assert action == "show_vibe_cards"
+    assert "vibes" in payload
+
+
+@pytest.mark.asyncio
+async def test_determine_action_duration_pending_returns_ask():
+    action, payload = await determine_action("duration_pending", {})
+    assert action == "ask_trip_duration"
+    assert payload == {}
+
+
+@pytest.mark.asyncio
+async def test_determine_action_unknown_stage_returns_none():
+    action, payload = await determine_action("nonexistent_stage", {})
+    assert action is None
+    assert payload is None
