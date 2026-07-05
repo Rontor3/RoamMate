@@ -161,3 +161,15 @@ async def test_determine_action_vibe_selected_returns_place_cards():
     action, payload = await determine_action("vibe_selected", state)
     assert action == "show_place_cards"
     assert payload["places"][0]["name"] == "Palolem Beach"
+
+
+def test_should_clarify_returns_skip_when_skip_graph_set():
+    from app.graph.nodes.intent import should_clarify
+    state = {"skip_graph": True}
+    assert should_clarify(state) == "skip_to_responder"
+
+
+def test_should_clarify_returns_route_phase_normally():
+    from app.graph.nodes.intent import should_clarify
+    state = {"skip_graph": False, "missing_info": False}
+    assert should_clarify(state) == "route_phase"

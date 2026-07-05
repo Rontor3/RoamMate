@@ -221,7 +221,9 @@ async def detect_intent(state: GraphState) -> GraphState:
 
 # ─── Conditional edge functions ───────────────────────────────────────────────
 
-def should_clarify(state: GraphState) -> Literal["clarify", "route_phase"]:
+def should_clarify(state: GraphState) -> Literal["clarify", "route_phase", "skip_to_responder"]:
+    if state.get("skip_graph"):
+        return "skip_to_responder"
     if state.get("missing_info") and not state.get("needs_quick_setup"):
         return "clarify"
     return "route_phase"
