@@ -147,3 +147,17 @@ async def test_determine_action_unknown_stage_returns_none():
     action, payload = await determine_action("nonexistent_stage", {})
     assert action is None
     assert payload is None
+
+
+@pytest.mark.asyncio
+async def test_determine_action_vibe_selected_returns_place_cards():
+    from app.services.stage_machine import determine_action
+    state = {
+        "ranked_places": [
+            {"name": "Palolem Beach", "rating": 4.5, "place_id": "p1",
+             "explanation": {"top_factor": "authenticity"}}
+        ]
+    }
+    action, payload = await determine_action("vibe_selected", state)
+    assert action == "show_place_cards"
+    assert payload["places"][0]["name"] == "Palolem Beach"
