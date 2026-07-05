@@ -10,7 +10,6 @@ from app.services.stage_machine import resolve_stage, determine_action as _stage
 from app.models import Vibe
 from app.services.intent_extractor import IntentExtractor
 from app.utils.logger import get_logger
-from app.utils.message_utils import last_user_content
 
 logger = get_logger(__name__)
 _intent_extractor = IntentExtractor()

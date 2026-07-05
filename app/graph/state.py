@@ -63,7 +63,7 @@ class GraphState(TypedDict, total=False):
     response: str
 
     # ── Card system state ──────────────────────────────────────────────────────
-    conversation_stage: str          # see resolve_stage() for values
+    conversation_stage: str          # see stage_machine.resolve_stage() for values
     card_action: str | None          # incoming from frontend: card interaction type
     card_data: Dict[str, Any] | None  # incoming from frontend: card interaction data
     action: str | None               # outgoing to frontend: what UI to render
@@ -80,9 +80,9 @@ class GraphState(TypedDict, total=False):
     scene_strip_label: str | None    # label text for the scene strip
 
     # ── Phase 0 context — sent as structured fields from frontend ─────────────
-    trip_mode: str                    # "plan" | "now"
-    trip_who: str                     # "solo" | "couple" | "friends" | "family_kids" | "family_elder"
-    trip_season: str                  # "summer" | "monsoon" | "winter" | "flex"
+    trip_mode: str | None              # "plan" | "now"
+    trip_who: str | None               # "solo" | "couple" | "friends" | "family_kids" | "family_elder"
+    trip_season: str | None            # "summer" | "monsoon" | "winter" | "flex"
 
     # ── Experience type — multi-select, dynamic chips ─────────────────────────
     experience_types: List[str]       # e.g. ["hills_nature", "festival_events"]
@@ -101,12 +101,3 @@ class GraphState(TypedDict, total=False):
     card_context_by_vibe: Dict[str, Any]  # { "adv": { "text": "...", "tags": [...] } }
     free_text_context: Dict[str, Any]     # constraints from free text across all turns
     in_destination_saves: List[str]       # place ids saved from in-destination tab
-
-
-def resolve_stage(state: "GraphState") -> str:
-    """Stub: will be replaced by stage_machine.resolve_stage in Task 3.
-
-    Temporary implementation to avoid breaking existing imports.
-    Returns 'destination_unknown' as default.
-    """
-    return "destination_unknown"
