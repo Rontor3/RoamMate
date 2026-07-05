@@ -7,9 +7,6 @@ determine_action: takes stage, returns (action, payload) for the frontend.
 Both are imported by responder.py and intent.py. Nothing else should
 define conversation stage logic.
 """
-from typing import Any
-
-
 # ── Stage resolution ───────────────────────────────────────────────────────────
 
 def resolve_stage(state: dict) -> str:
