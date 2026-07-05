@@ -1,39 +1,126 @@
 """
 nodes/intent.py — Node 1: detect_intent
 Calls IntentExtractor, sets Phase enum, manages routing conditional edges.
+Phase and proximity detection are fully LLM-driven — no keyword lists.
 """
-import asyncio
 from typing import Literal
 
 from app.graph.state import GraphState, Phase
+from app.services.stage_machine import resolve_stage, determine_action as _stage_determine_action
+from app.models import Vibe
 from app.services.intent_extractor import IntentExtractor
 from app.utils.logger import get_logger
-from app.utils.message_utils import last_user_content, messages_to_dicts
+from app.utils.message_utils import last_user_content
 
 logger = get_logger(__name__)
 _intent_extractor = IntentExtractor()
+
+_PHASE_MAP = {
+    "discovery": Phase.DISCOVERY,
+    "planning": Phase.PLANNING,
+    "in_destination": Phase.IN_DESTINATION,
+}
 
 
 async def detect_intent(state: GraphState) -> GraphState:
     """Extract TravelIntent from latest user message, set phase and routing flags."""
     messages = state.get("messages", [])
+
+    # ── Card action handling — short-circuit LLM extraction ──────────────────
+    card_action = state.get("card_action")
+    card_data = state.get("card_data") or {}
+
+    if card_action == "vibes_selected":
+        vibe_ids = card_data.get("vibe_ids", [])
+        state["vibes_confirmed"] = True
+        state["selected_vibe_ids"] = vibe_ids
+        VIBE_MAP = {
+            "adv": "adventure", "loc": "cultural",
+            "spt": "cultural",  "hid": "adventure",
+        }
+        intent = state.get("travel_intent")
+        if intent:
+            try:
+                intent.vibe = list({Vibe(VIBE_MAP.get(v, "adventure")) for v in vibe_ids})
+                state["travel_intent"] = intent
+            except Exception:
+                pass
+        state["show_scene_strip"] = True
+        state["scene_strip_label"] = "Finding your places"
+        state["card_action"] = None
+        state["skip_graph"] = False   # planning node must run to fetch ranked_places
+        state["conversation_stage"] = resolve_stage(state)
+        return state
+
+    elif card_action == "experience_type_selected":
+        state["experience_types"] = card_data.get("types", [])
+        state["card_action"] = None
+        state["skip_graph"] = False   # discovery node fetches destination suggestions
+        state["conversation_stage"] = resolve_stage(state)
+        return state
+
+    elif card_action == "destination_selected":
+        state["destination"] = card_data.get("destination", "")
+        state["card_action"] = None
+        state["skip_graph"] = False   # planning node fetches vibe cards
+        state["conversation_stage"] = resolve_stage(state)
+        return state
+
+    elif card_action == "places_selected":
+        state["selected_place_ids"] = card_data.get("place_ids", [])
+        state["card_action"] = None
+        state["skip_graph"] = True    # no data fetch needed
+        stage = resolve_stage(state)
+        state["conversation_stage"] = stage
+        action, payload = await _stage_determine_action(stage, state)
+        state["action"] = action
+        state["payload"] = payload
+        return state
+
+    elif card_action == "pace_selected":
+        state["selected_pace"] = card_data.get("pace")
+        state["card_action"] = None
+        state["skip_graph"] = True    # no data fetch needed
+        stage = resolve_stage(state)
+        state["conversation_stage"] = stage
+        action, payload = await _stage_determine_action(stage, state)
+        state["action"] = action
+        state["payload"] = payload
+        return state
+
+    elif card_action == "route_arc_selected":
+        state["route_arc"] = card_data.get("arc", {})
+        state["card_action"] = None
+        state["skip_graph"] = True    # no data fetch needed
+        stage = resolve_stage(state)
+        state["conversation_stage"] = stage
+        action, payload = await _stage_determine_action(stage, state)
+        state["action"] = action
+        state["payload"] = payload
+        return state
+
+    elif card_action == "route_selected":
+        state["selected_route_id"] = card_data.get("route_id")
+        state["card_action"] = None
+        state["skip_graph"] = True
+        state["conversation_stage"] = resolve_stage(state)
+        return state
+
     if not messages:
         return state
 
-    # Pass up to last 5 messages as structured dicts to the IntentExtractor
-    # so it remembers previous answers and understands follow-up context.
+    # Pass up to last 5 messages so the LLM has conversation context
     recent_msgs = messages[-5:]
-    # Normalize to plain dicts so the extractor can serialize roles cleanly
     recent_dicts = [
         {"role": m.get("role", "user") if isinstance(m, dict) else getattr(m, "type", "user"),
          "content": m.get("content", "") if isinstance(m, dict) else getattr(m, "content", "")}
         for m in recent_msgs
     ]
-    
-    logger.info(f"detect_intent: processing context length {len(recent_dicts)}")
+
+    logger.info(f"detect_intent: processing {len(recent_dicts)} messages")
 
     try:
-        intent = await _intent_extractor.extract(recent_dicts)
+        intent, phase_hint = await _intent_extractor.extract(recent_dicts)
     except Exception as e:
         logger.error(f"IntentExtractor failed: {e}")
         state["tool_events"] = state.get("tool_events") or []
@@ -41,115 +128,106 @@ async def detect_intent(state: GraphState) -> GraphState:
         state["needs_quick_setup"] = True
         return state
 
-    # Intelligently merge the newly extracted intent with any previous intent
-    # so we never lose fields (like vibe, duration, budget) when old messages
-    # fall out of the 5-message context window to the LLM.
-    existing_intent = state.get("travel_intent")
-    if existing_intent:
+    # Merge with existing intent so fields don't get lost across turns
+    existing = state.get("travel_intent")
+    if existing:
         if intent.destination.city:
-            existing_intent.destination.city = intent.destination.city
+            existing.destination.city = intent.destination.city
         if intent.destination.country:
-            existing_intent.destination.country = intent.destination.country
+            existing.destination.country = intent.destination.country
         if intent.destination.region:
-            existing_intent.destination.region = intent.destination.region
+            existing.destination.region = intent.destination.region
+        if intent.origin_city:
+            existing.origin_city = intent.origin_city
         if intent.vibe:
-            existing_intent.vibe = list(set(existing_intent.vibe + intent.vibe))
+            existing.vibe = list(set(existing.vibe + intent.vibe))
         if intent.crowd_preference:
-            existing_intent.crowd_preference = intent.crowd_preference
+            existing.crowd_preference = intent.crowd_preference
         if intent.duration:
-            existing_intent.duration = intent.duration
+            existing.duration = intent.duration
         if intent.needs_flight is not None:
-            existing_intent.needs_flight = intent.needs_flight
+            existing.needs_flight = intent.needs_flight
         if intent.needs_hotel is not None:
-            existing_intent.needs_hotel = intent.needs_hotel
+            existing.needs_hotel = intent.needs_hotel
         if intent.interests:
-            existing_intent.interests = list(set(existing_intent.interests + intent.interests))
+            existing.interests = list(set(existing.interests + intent.interests))
         if intent.budget:
-            existing_intent.budget = intent.budget
-            
-        intent = existing_intent
-    
+            existing.budget = intent.budget
+        if intent.accommodation_type:
+            existing.accommodation_type = intent.accommodation_type
+        # Always carry the latest clarification state forward
+        existing.needs_clarification = intent.needs_clarification
+        existing.clarification_question = intent.clarification_question
+        intent = existing
+
     state["travel_intent"] = intent
 
-    # Record intent extraction tool event
-    events: list = state.get("tool_events") or []
-    dest_str = (intent.destination.city or intent.destination.region or intent.destination.country or "unknown")
-    vibe_str = ",".join(v.value for v in intent.vibe) if intent.vibe else "none"
-    events.append(f"[Groq/intent] dest={dest_str} vibe={vibe_str} confidence={intent.confidence.overall:.2f}")
-    state["tool_events"] = events
-
-    # Determine conversation phase from message keywords
-    latest_msg = last_user_content(messages)
-    msg_lower = latest_msg.lower()
-    in_dest_signals = ["i'm in", "i am in", "near me", "nearby", "around here", "i'm at", "currently in"]
-    planning_signals = [
-        # Explicit planning
-        "plan my trip", "plan my", "plan the trip", "plan a trip",
-        "end to end", "complete trip", "full trip", "full plan",
-        # Itinerary requests
-        "itinerary", "day wise", "day by day", "day-by-day", "day-wise",
-        "week plan", "week itinerary", "schedule", "agenda",
-        "curated list", "curated plan",
-        # Logistics
-        "book", "hotel", "flight", "where should i stay", "accommodation",
-        "how do i get", "transport", "how to reach",
-        # Detailed exploration
-        "cover each", "cover all", "cover as much", "explore each",
-        "detailed plan", "give me a plan", "make a plan",
-    ]
-
-    if any(sig in msg_lower for sig in in_dest_signals):
-        state["phase"] = Phase.IN_DESTINATION
-    elif any(sig in msg_lower for sig in planning_signals):
-        state["phase"] = Phase.PLANNING
+    # ── Phase resolution ────────────────────────────────────────────────────────
+    # Use the LLM's phase_hint as the primary signal.
+    # Fall back to: if prev destination known + new city → planning; else discovery.
+    if phase_hint and phase_hint in _PHASE_MAP:
+        phase = _PHASE_MAP[phase_hint]
+    elif state.get("destination") and intent.destination.city:
+        phase = Phase.PLANNING
     else:
-        # Default to discovery, promote to planning if destination is already known
-        prev_dest = state.get("destination")
-        if prev_dest and intent.destination.city:
-            state["phase"] = Phase.PLANNING
-        else:
-            state["phase"] = Phase.DISCOVERY
+        phase = Phase.DISCOVERY
 
-    # Destination tracking: prefer city, fall back to region
+    state["phase"] = phase
+
+    # ── Destination tracking ────────────────────────────────────────────────────
     resolved_dest = intent.destination.city or intent.destination.region
     if resolved_dest:
         state["destination"] = resolved_dest
+    elif intent.origin_city and not state.get("destination"):
+        # "from X" / "near X" / "in X" — use origin as the routing anchor.
+        # When needs_clarification=True (bare "trip from X"), responder generates
+        # destination suggestions instead of asking a generic question.
+        state["destination"] = intent.origin_city
 
-    # Flag if destination missing — a known region is a valid destination
+    # ── Routing flags ───────────────────────────────────────────────────────────
     missing_dest = not bool(state.get("destination"))
 
-    if state.get("phase") == Phase.IN_DESTINATION and missing_dest:
-        state["needs_quick_setup"] = True
-    else:
-        state["needs_quick_setup"] = False
+    # quick_setup still set so the GPS/geocode flow runs once location is resolved
+    state["needs_quick_setup"] = phase == Phase.IN_DESTINATION and missing_dest
+    state["is_generic_request"] = intent.confidence.overall < 0.3
 
-    # Check for generic "surprise me" style requests
-    generic_signals = ["surprise me", "anything", "whatever", "you choose", "don't know"]
-    state["is_generic_request"] = any(sig in msg_lower for sig in generic_signals)
+    # Clarification fires ONLY when we have no location signal at all.
+    # Vibe, duration, budget are optional — the responder elicits them naturally.
+    # "from X" with no destination is handled by needs_clarification on the intent object.
+    no_location = missing_dest and not intent.origin_city
+    needs_clarify = no_location and not state["needs_quick_setup"]
+    first_missing = "destination" if needs_clarify else None
 
-    # Missing info flag (for clarification edge)
-    state["missing_info"] = missing_dest and not state.get("needs_quick_setup")
+    state["missing_info"] = needs_clarify
 
     if state["missing_info"]:
-        # Use the LLM to generate a warm, conversational question instead of a static fallback
-        conversational_q = await _intent_extractor.ask_conversationally(recent_dicts)
-        state["clarifying_question"] = conversational_q
+        if intent.needs_clarification and intent.clarification_question:
+            # LLM-generated question for "from X" with no destination
+            state["clarifying_question"] = intent.clarification_question
+        else:
+            state["clarifying_question"] = await _intent_extractor.ask_conversationally(recent_dicts, intent)
 
-    logger.info(f"detect_intent → phase={state.get('phase')}, dest={state.get('destination')}, quick_setup={state.get('needs_quick_setup')}")
+    # Tool event log
+    events: list = state.get("tool_events") or []
+    dest_str = state.get("destination", "unknown")
+    vibe_str = ",".join(v.value for v in intent.vibe) if intent.vibe else "none"
+    events.append(f"[Groq/intent] dest={dest_str} origin={intent.origin_city} phase={phase} vibe={vibe_str} conf={intent.confidence.overall:.2f}")
+    state["tool_events"] = events
+
+    state["conversation_stage"] = resolve_stage(state)
+    logger.info(f"detect_intent → phase={phase} dest={state.get('destination')} origin={intent.origin_city} missing={first_missing or False} stage={state['conversation_stage']}")
     return state
 
 
 # ─── Conditional edge functions ───────────────────────────────────────────────
 
 def should_clarify(state: GraphState) -> Literal["clarify", "route_phase"]:
-    """Return 'clarify' if destination is completely unknown, else proceed."""
     if state.get("missing_info") and not state.get("needs_quick_setup"):
         return "clarify"
     return "route_phase"
 
 
 def route_to_phase(state: GraphState) -> Literal["discovery", "planning", "in_destination"]:
-    """Route to the correct phase node after intent is resolved."""
     phase = state.get("phase", Phase.DISCOVERY)
     if phase == Phase.IN_DESTINATION:
         return "in_destination"
@@ -159,7 +237,6 @@ def route_to_phase(state: GraphState) -> Literal["discovery", "planning", "in_de
 
 
 async def clarify(state: GraphState) -> dict:
-    """Return a conversational clarifying question to append to messages and stop the turn."""
     question = state.get("clarifying_question", "Sounds like a fun trip! Where are you thinking of heading?")
     return {
         "messages": [{"role": "assistant", "content": question}],
