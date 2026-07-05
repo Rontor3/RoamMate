@@ -74,7 +74,11 @@ async def build_graph():
     workflow.add_conditional_edges(
         "detect_intent",
         should_clarify,
-        {"clarify": "clarify", "route_phase": "route_phase_fn"},
+        {
+            "clarify": "clarify",
+            "route_phase": "route_phase_fn",
+            "skip_to_responder": "responder",
+        },
     )
     workflow.add_conditional_edges(
         "route_phase_fn",
