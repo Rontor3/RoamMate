@@ -1,6 +1,7 @@
 """Unit tests for geo_utils."""
 import pytest
 from unittest.mock import AsyncMock, patch, MagicMock
+from app.services.geo_utils import batch_driving_times
 
 
 # ── get_origin ────────────────────────────────────────────────────────────────
@@ -144,3 +145,41 @@ async def test_resolve_origin_coords_geocodes_city_name():
 async def test_resolve_origin_coords_returns_none_when_no_origin():
     from app.services.geo_utils import resolve_origin_coords
     assert await resolve_origin_coords({}) is None
+
+
+# ── batch_driving_times ───────────────────────────────────────────────────────
+
+@pytest.mark.asyncio
+async def test_batch_driving_times_returns_in_order():
+    origin = {"lat": 19.076, "lng": 72.877}
+    dest1 = {"lat": 18.52, "lng": 73.85, "name": "Pune"}
+    dest2 = {"lat": 17.69, "lng": 75.91, "name": "Solapur"}
+
+    async def mock_driving_time(origin, destination):
+        if destination["name"] == "Pune":
+            return {"distance_km": 150, "duration_mins": 180, "travel_time": "3h"}
+        return {"distance_km": 400, "duration_mins": 480, "travel_time": "8h"}
+
+    with patch("app.services.geo_utils.driving_time", side_effect=mock_driving_time):
+        results = await batch_driving_times(origin, [dest1, dest2])
+
+    assert results[0]["distance_km"] == 150
+    assert results[1]["distance_km"] == 400
+
+
+@pytest.mark.asyncio
+async def test_batch_driving_times_returns_none_for_failed_destination():
+    origin = {"lat": 19.076, "lng": 72.877}
+    dest1 = {"lat": 18.52, "lng": 73.85, "name": "Pune"}
+    dest2 = {"lat": 17.69, "lng": 75.91, "name": "Solapur"}
+
+    async def mock_driving_time(origin, destination):
+        if destination["name"] == "Solapur":
+            raise ValueError("OSRM unreachable")
+        return {"distance_km": 150, "duration_mins": 180, "travel_time": "3h"}
+
+    with patch("app.services.geo_utils.driving_time", side_effect=mock_driving_time):
+        results = await batch_driving_times(origin, [dest1, dest2])
+
+    assert results[0]["distance_km"] == 150
+    assert results[1] is None

@@ -91,15 +91,12 @@ async def driving_time(origin: dict, destination: dict) -> dict | None:
 async def batch_driving_times(
     origin: dict, destinations: list[dict]
 ) -> list[dict | None]:
-    """
-    Run driving_time for all destinations in parallel.
-    Returns list in same order as input; None for any that failed.
-    origin must have {lat, lng}.
-    """
-    return list(await asyncio.gather(
+    """Run driving_time for multiple destinations in parallel."""
+    results = await asyncio.gather(
         *[driving_time(origin, d) for d in destinations],
-        return_exceptions=False,
-    ))
+        return_exceptions=True,
+    )
+    return [None if isinstance(r, BaseException) else r for r in results]
 
 
 async def resolve_origin_coords(state: dict) -> dict | None:
