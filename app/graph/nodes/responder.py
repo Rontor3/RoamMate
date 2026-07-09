@@ -335,4 +335,5 @@ async def responder(state: GraphState) -> GraphState:
         "routes_shown": routes_shown,
         "show_scene_strip": state.get("show_scene_strip", False),
         "skip_graph": False,
+        "destination_candidates": state.get("destination_candidates") or {},
     }

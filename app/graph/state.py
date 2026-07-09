@@ -101,3 +101,4 @@ class GraphState(TypedDict, total=False):
     card_context_by_vibe: Dict[str, Any]  # { "adv": { "text": "...", "tags": [...] } }
     free_text_context: Dict[str, Any]     # constraints from free text across all turns
     in_destination_saves: List[str]       # place ids saved from in-destination tab
+    destination_candidates: Dict[str, List[str]]  # {category_id: [destination_names]} pre-cached at chip time

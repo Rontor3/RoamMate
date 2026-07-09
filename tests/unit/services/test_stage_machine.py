@@ -22,6 +22,12 @@ def test_graphstate_has_skip_graph():
     assert state["skip_graph"] is True
 
 
+def test_graphstate_has_destination_candidates():
+    state: GraphState = {}
+    state["destination_candidates"] = {"hills_nature": ["Lonavala"], "beach_coast": ["Alibaug"]}
+    assert state["destination_candidates"]["hills_nature"] == ["Lonavala"]
+
+
 def test_chat_request_accepts_phase0_fields():
     from app.api.schemas import ChatRequest
     req = ChatRequest(
