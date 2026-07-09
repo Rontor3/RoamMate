@@ -4,18 +4,15 @@ Scores editorial content by: domain_authority * freshness * tavily_score.
 Cross-query boost for places mentioned across multiple sources.
 """
 import asyncio
-import aiohttp
 import os
 import re
 from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional
 
 from app.utils.logger import get_logger
+from app.services.tavily_client import tavily_search as _tavily_search
 
 logger = get_logger(__name__)
-
-TAVILY_API_KEY = os.getenv("TAVILY_API_KEY", "")
-TAVILY_URL = "https://api.tavily.com/search"
 
 # Domain authority scores (0-1) for known travel publishers
 DOMAIN_AUTHORITY = {
@@ -58,29 +55,6 @@ def _estimate_freshness(published_date: Optional[str]) -> float:
         return 0.5
 
 
-async def _tavily_search(query: str, max_results: int = 5) -> List[Dict[str, Any]]:
-    """Call Tavily search API and return raw results."""
-    if not TAVILY_API_KEY:
-        logger.warning("[Tavily] ✗ TAVILY_API_KEY not set — skipping")
-        return []
-    payload = {
-        "api_key": TAVILY_API_KEY,
-        "query": query,
-        "search_depth": "advanced",
-        "max_results": max_results,
-        "include_answer": False,
-    }
-    logger.info(f"[Tavily] → searching: '{query}'")
-    try:
-        async with aiohttp.ClientSession() as session:
-            async with session.post(TAVILY_URL, json=payload) as r:
-                data = await r.json()
-                results = data.get("results", [])
-                logger.info(f"[Tavily] ✓ '{query}' → {len(results)} results")
-                return results
-    except Exception as e:
-        logger.error(f"[Tavily] ✗ '{query}': {e}")
-        return []
 
 
 def _score_result(result: Dict[str, Any]) -> float:
@@ -110,18 +84,24 @@ def cross_query_boost(sources: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     return boosted
 
 
-async def get_blog_signals(destination: str, vibe: Optional[str] = None) -> Dict[str, Any]:
+async def get_blog_signals(
+    destination: str,
+    vibe: Optional[str] = None,
+    queries: Optional[List[str]] = None,
+) -> Dict[str, Any]:
     """
     Main entry point. Returns:
     {
       "sources": [{"url", "domain", "snippet", "final_score"}],
       "top_answer": str   # combined top snippets for responder
     }
+    Accepts pre-generated LLM queries; falls back to generic if not provided.
     """
-    queries = [
-        f"best things to do in {destination} travel guide",
-        f"{destination} hidden gems local tips {vibe or ''}".strip(),
-    ]
+    if not queries:
+        queries = [
+            f"best things to do in {destination} travel guide",
+            f"{destination} hidden gems local tips {vibe or ''}".strip(),
+        ]
 
     tasks = [_tavily_search(q) for q in queries]
     results_per_query = await asyncio.gather(*tasks, return_exceptions=True)
