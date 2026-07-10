@@ -13,7 +13,8 @@ import os
 import aiohttp
 
 from app.services.tavily_client import tavily_search
-from app.services.geo_utils import get_origin
+from app.services.geo_utils import get_origin, resolve_origin_coords, geocode, batch_driving_times
+from app.utils.place_photos import fetch_place_photos
 from app.utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -110,6 +111,34 @@ async def _extract_live_hooks(event_results: list[dict]) -> dict[str, str]:
             if k in _CATEGORY_DESCRIPTIONS
         }
     return {}
+
+
+async def _generate_destination_hooks(
+    destinations: list[str],
+    trip_who: str | None,
+    trip_season: str | None,
+    experience_types: list[str],
+) -> list[str]:
+    """
+    Groq: generate one evocative one-line hook per destination.
+    Returns list in same order as input; falls back to "Explore [name]" on failure.
+    """
+    if not destinations:
+        return []
+    who = trip_who or "travellers"
+    season = trip_season or "any season"
+    exp = ", ".join(experience_types) if experience_types else "travel"
+    prompt = (
+        f"Write a short evocative travel hook for each destination (10-15 words max).\n"
+        f"Context: {who}, {season} trip, interested in {exp}\n\n"
+        f"Destinations: {destinations}\n\n"
+        "Return ONLY a valid JSON array of strings matching the input order (no markdown):\n"
+        '["Monsoon turns the valleys electric green — strawberry season peak", "Sea breeze and empty beaches"]'
+    )
+    result = await _groq_json(prompt, max_tokens=300)
+    if isinstance(result, list) and len(result) == len(destinations):
+        return [str(h) for h in result]
+    return [f"Explore {d}" for d in destinations]
 
 
 # ── Stage resolution ───────────────────────────────────────────────────────────
@@ -289,8 +318,105 @@ async def build_experience_chips(state: dict) -> list[dict]:
 
 
 async def fetch_destination_suggestions(state: dict) -> list[dict]:
-    """Sprint 2: Tavily + Reddit fetch using origin + experience_types + season + who."""
-    return []
+    """Return destination cards with road travel time, hook, and photo.
+
+    Reads destination_candidates cached in state by build_experience_chips.
+    Falls back to a new Tavily search if cache is empty (plan mode path).
+    OSRM filters to destinations reachable within 12 hours by road.
+    """
+    experience_types = state.get("experience_types") or []
+    trip_who = state.get("trip_who")
+    trip_season = state.get("trip_season")
+
+    # Step 1: gather candidate names from cache
+    cached = state.get("destination_candidates") or {}
+    candidate_names: list[str] = []
+    candidate_type: dict[str, str] = {}
+
+    for exp_type in experience_types:
+        for name in cached.get(exp_type, []):
+            if name not in candidate_type:
+                candidate_names.append(name)
+                candidate_type[name] = exp_type
+
+    # Fallback: plan mode has no cache — search now
+    if not candidate_names and experience_types:
+        exp_str = " ".join(experience_types)
+        season_str = trip_season or ""
+        results = await tavily_search(
+            f"{exp_str} destinations {season_str} India road trip".strip(),
+            max_results=10,
+        )
+        if results:
+            fallback = await _classify_destinations(results, "India")
+            for exp_type in experience_types:
+                for name in fallback.get(exp_type, []):
+                    if name not in candidate_type:
+                        candidate_names.append(name)
+                        candidate_type[name] = exp_type
+
+    if not candidate_names:
+        return []
+
+    # Step 2: resolve origin coordinates (geocodes city name if needed)
+    origin = await resolve_origin_coords(state)
+
+    # Step 3: geocode all candidates in parallel
+    geocoded_coords = await asyncio.gather(
+        *[geocode(name) for name in candidate_names],
+        return_exceptions=True,
+    )
+    geocoded: list[tuple[str, dict]] = [
+        (name, coords)
+        for name, coords in zip(candidate_names, geocoded_coords)
+        if isinstance(coords, dict) and coords
+    ]
+
+    if not geocoded:
+        return []
+
+    # Step 4: OSRM road filter — keep only ≤720 mins (12 hours)
+    filtered: list[tuple[str, int, int, str]] = []  # (name, dist_km, dur_mins, travel_time)
+
+    if origin and "lat" in origin:
+        times = await batch_driving_times(origin, [c for _, c in geocoded])
+        for (name, _), time_data in zip(geocoded, times):
+            if time_data and time_data["duration_mins"] <= 720:
+                filtered.append((name, time_data["distance_km"], time_data["duration_mins"], time_data["travel_time"]))
+    else:
+        # No origin coords — include all without distance data
+        for name, _ in geocoded:
+            filtered.append((name, 0, 0, ""))
+
+    if not filtered:
+        return []
+
+    # Sort closer first, take top 10
+    filtered.sort(key=lambda x: x[2])
+    filtered = filtered[:10]
+    names_filtered = [f[0] for f in filtered]
+
+    # Step 5: Groq hook generation (one batch call)
+    hooks = await _generate_destination_hooks(names_filtered, trip_who, trip_season, experience_types)
+
+    # Step 6: Google Places photos (capped at 5 by fetch_place_photos)
+    GOOGLE_MAPS_KEY = os.getenv("GOOGLE_API_KEY", "")
+    photos_raw = await fetch_place_photos(names_filtered[:5], GOOGLE_MAPS_KEY)
+    photo_by_name = {p["name"]: p["url"] for p in photos_raw if isinstance(p, dict)}
+
+    # Step 7: assemble cards
+    cards = []
+    for i, (name, dist_km, dur_mins, travel_time) in enumerate(filtered):
+        cards.append({
+            "name": name,
+            "experience_type": candidate_type.get(name, experience_types[0] if experience_types else ""),
+            "distance_km": dist_km or None,
+            "travel_time": travel_time or None,
+            "hook": hooks[i] if i < len(hooks) else f"Explore {name}",
+            "photo_url": photo_by_name.get(name),
+        })
+
+    return cards
 
 
 async def fetch_vibe_cards(state: dict) -> list[dict]:
