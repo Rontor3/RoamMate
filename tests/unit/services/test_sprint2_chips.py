@@ -89,3 +89,26 @@ async def test_build_chips_falls_back_to_all_six_when_tavily_fails():
         chips = await stage_machine.build_experience_chips(state)
 
     assert len(chips) == 6
+
+
+@pytest.mark.asyncio
+async def test_build_chips_falls_back_when_tavily_raises():
+    from app.services.stage_machine import build_experience_chips
+    state = {"trip_mode": "now"}
+    with patch("app.services.stage_machine.get_origin", return_value={"name": "Mumbai"}):
+        with patch("app.services.stage_machine.tavily_search", side_effect=Exception("timeout")):
+            result = await build_experience_chips(state)
+    assert len(result) == 6
+
+
+@pytest.mark.asyncio
+async def test_build_chips_none_trip_mode_treated_as_now():
+    """trip_mode=None must route to 'now' path, not return all 6 immediately."""
+    from app.services.stage_machine import build_experience_chips
+    state = {"trip_mode": None}
+    with patch("app.services.stage_machine.get_origin", return_value={"name": "Mumbai"}):
+        with patch("app.services.stage_machine.tavily_search", new=AsyncMock(return_value=[])):
+            with patch("app.services.stage_machine._classify_destinations", new=AsyncMock(return_value={})):
+                result = await build_experience_chips(state)
+    # With no candidates from Tavily, we fall back to all 6
+    assert len(result) == 6

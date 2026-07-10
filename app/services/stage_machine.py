@@ -246,13 +246,13 @@ async def build_experience_chips(state: dict) -> list[dict]:
     Falls back to all 6 if Tavily or Groq fails.
     Mutates state["destination_candidates"] as a side-effect for the next turn.
     """
-    if state.get("trip_mode") != "now":
-        return list(BASE_CHIPS)
+    if state.get("trip_mode") not in ("now", None):
+        return [dict(c) for c in BASE_CHIPS]
 
     origin = get_origin(state)
     origin_name = origin.get("name", "") if origin else ""
     if not origin_name:
-        return list(BASE_CHIPS)
+        return [dict(c) for c in BASE_CHIPS]
 
     dest_results, event_results = await asyncio.gather(
         tavily_search(f"weekend getaway road trip destinations from {origin_name}", max_results=10),
@@ -282,12 +282,10 @@ async def build_experience_chips(state: dict) -> list[dict]:
         if classified and chip["id"] not in classified:
             continue
         chip_out = dict(chip)
-        hook = live_hooks.get(chip["id"]) if isinstance(live_hooks, dict) else None
-        if hook:
-            chip_out["live_hook"] = hook
+        chip_out["live_hook"] = (live_hooks.get(chip["id"]) if isinstance(live_hooks, dict) else None) or None
         chips.append(chip_out)
 
-    return chips or list(BASE_CHIPS)
+    return chips or [dict(c) for c in BASE_CHIPS]
 
 
 async def fetch_destination_suggestions(state: dict) -> list[dict]:
