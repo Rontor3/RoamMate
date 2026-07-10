@@ -121,7 +121,7 @@ async def _generate_destination_hooks(
 ) -> list[str]:
     """
     Groq: generate one evocative one-line hook per destination.
-    Returns list in same order as input; falls back to "Explore [name]" on failure.
+    Returns list in same order as input; falls back to "Visit {name}" on failure.
     """
     if not destinations:
         return []
@@ -138,7 +138,7 @@ async def _generate_destination_hooks(
     result = await _groq_json(prompt, max_tokens=300)
     if isinstance(result, list) and len(result) == len(destinations):
         return [str(h) for h in result]
-    return [f"Explore {d}" for d in destinations]
+    return [f"Visit {d}" for d in destinations]
 
 
 # ── Stage resolution ───────────────────────────────────────────────────────────
@@ -412,7 +412,7 @@ async def fetch_destination_suggestions(state: dict) -> list[dict]:
             "experience_type": candidate_type.get(name, experience_types[0] if experience_types else ""),
             "distance_km": dist_km or None,
             "travel_time": travel_time or None,
-            "hook": hooks[i] if i < len(hooks) else f"Explore {name}",
+            "hook": hooks[i] if i < len(hooks) else f"Visit {name}",
             "photo_url": photo_by_name.get(name),
         })
 

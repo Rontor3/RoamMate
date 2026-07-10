@@ -174,7 +174,7 @@ async def test_fetch_suggestions_skips_filter_when_no_origin():
 
 @pytest.mark.asyncio
 async def test_fetch_suggestions_uses_visit_fallback_on_groq_failure():
-    """When _generate_destination_hooks raises or returns wrong count, hook is 'Explore {name}'."""
+    """When _generate_destination_hooks raises or returns wrong count, hook is 'Visit {name}'."""
     from app.services import stage_machine
 
     state = {
@@ -192,7 +192,7 @@ async def test_fetch_suggestions_uses_visit_fallback_on_groq_failure():
         cards = await stage_machine.fetch_destination_suggestions(state)
 
     assert len(cards) == 1
-    assert cards[0]["hook"] == "Explore Lonavala"
+    assert cards[0]["hook"] == "Visit Lonavala"
 
 
 @pytest.mark.asyncio
