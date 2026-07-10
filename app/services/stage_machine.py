@@ -80,11 +80,14 @@ async def _classify_destinations(
     )
     result = await _groq_json(prompt)
     if isinstance(result, dict):
-        return {
+        classified = {
             k: [str(v) for v in vals]
             for k, vals in result.items()
             if k in _CATEGORY_DESCRIPTIONS and isinstance(vals, list)
         }
+        # Cap to 5 per category to limit geocode/OSRM fanout
+        classified = {k: v[:5] for k, v in classified.items()}
+        return classified
     return {}
 
 
@@ -276,12 +279,12 @@ async def build_experience_chips(state: dict) -> list[dict]:
     Mutates state["destination_candidates"] as a side-effect for the next turn.
     """
     if state.get("trip_mode") not in ("now", None):
-        return [dict(c) for c in BASE_CHIPS]
+        return [{**c, "live_hook": None} for c in BASE_CHIPS]
 
     origin = get_origin(state)
     origin_name = origin.get("name", "") if origin else ""
     if not origin_name:
-        return [dict(c) for c in BASE_CHIPS]
+        return [{**c, "live_hook": None} for c in BASE_CHIPS]
 
     dest_results, event_results = await asyncio.gather(
         tavily_search(f"weekend getaway road trip destinations from {origin_name}", max_results=10),
@@ -314,7 +317,7 @@ async def build_experience_chips(state: dict) -> list[dict]:
         chip_out["live_hook"] = (live_hooks.get(chip["id"]) if isinstance(live_hooks, dict) else None) or None
         chips.append(chip_out)
 
-    return chips or [dict(c) for c in BASE_CHIPS]
+    return chips or [{**c, "live_hook": None} for c in BASE_CHIPS]
 
 
 async def fetch_destination_suggestions(state: dict) -> list[dict]:
@@ -386,22 +389,22 @@ async def fetch_destination_suggestions(state: dict) -> list[dict]:
     else:
         # No origin coords — include all without distance data
         for name, _ in geocoded:
-            filtered.append((name, 0, 0, ""))
+            filtered.append((name, None, None, None))
 
     if not filtered:
         return []
 
-    # Sort closer first, take top 10
-    filtered.sort(key=lambda x: x[2])
+    # Sort closer first (None duration sorts last), take top 10
+    filtered.sort(key=lambda x: (x[2] is None, x[2] or 0))
     filtered = filtered[:10]
     names_filtered = [f[0] for f in filtered]
 
     # Step 5: Groq hook generation (one batch call)
     hooks = await _generate_destination_hooks(names_filtered, trip_who, trip_season, experience_types)
 
-    # Step 6: Google Places photos (capped at 5 by fetch_place_photos)
+    # Step 6: Google Places photos for all candidates
     GOOGLE_MAPS_KEY = os.getenv("GOOGLE_API_KEY", "")
-    photos_raw = await fetch_place_photos(names_filtered[:5], GOOGLE_MAPS_KEY)
+    photos_raw = await fetch_place_photos(names_filtered, GOOGLE_MAPS_KEY)
     photo_by_name = {p["name"]: p["url"] for p in photos_raw if isinstance(p, dict)}
 
     # Step 7: assemble cards
@@ -410,8 +413,8 @@ async def fetch_destination_suggestions(state: dict) -> list[dict]:
         cards.append({
             "name": name,
             "experience_type": candidate_type.get(name, experience_types[0] if experience_types else ""),
-            "distance_km": dist_km or None,
-            "travel_time": travel_time or None,
+            "distance_km": dist_km,
+            "travel_time": travel_time,
             "hook": hooks[i] if i < len(hooks) else f"Visit {name}",
             "photo_url": photo_by_name.get(name),
         })

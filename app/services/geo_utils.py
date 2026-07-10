@@ -29,8 +29,12 @@ def get_origin(state: dict) -> dict | None:
     if loc and loc.get("lat") and loc.get("lng"):
         return {"lat": float(loc["lat"]), "lng": float(loc["lng"]), "name": loc.get("label", "")}
     intent = state.get("travel_intent")
-    if intent and getattr(intent, "origin_city", None):
-        return {"name": intent.origin_city}
+    if intent:
+        origin_city = getattr(intent, "origin_city", None) or (
+            intent.get("origin_city") if isinstance(intent, dict) else None
+        )
+        if origin_city:
+            return {"name": origin_city}
     return None
 
 

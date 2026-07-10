@@ -16,6 +16,18 @@ async def test_build_chips_plan_mode_returns_all_six():
 
 
 @pytest.mark.asyncio
+async def test_build_chips_plan_mode_has_live_hook_none():
+    """Chips returned in plan mode must always include live_hook key (None when no event)."""
+    from app.services.stage_machine import build_experience_chips
+    state = {"trip_mode": "plan"}
+    result = await build_experience_chips(state)
+    assert len(result) == 6
+    for chip in result:
+        assert "live_hook" in chip
+        assert chip["live_hook"] is None
+
+
+@pytest.mark.asyncio
 async def test_build_chips_no_origin_returns_all_six():
     from app.services.stage_machine import build_experience_chips
     # no current_location, no travel_intent → no origin → fallback to all 6
