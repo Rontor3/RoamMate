@@ -17,12 +17,25 @@ from app.services.geo_utils import get_origin, resolve_origin_coords, geocode, b
 from app.services.area_cache import get_cached, set_cached
 from app.utils.place_photos import fetch_place_photos
 from app.utils.logger import get_logger
+from app.tools.fetchers.places import search_places
+from app.services.ranker import Ranker
+from app.services.scorer import score_all_places
+from app.models import Place, PlaceAreaMapping
+from app.services.reddit_signals import get_area_reddit_signals
 
 logger = get_logger(__name__)
 
 GROQ_API_KEY = os.getenv("GROQ_API", "")
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 _MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
+
+_ranker = Ranker()
+
+DEFAULT_PLACE_CATEGORIES: list[dict] = [
+    {"label": "Things to Do", "query": "attractions activities things to do"},
+    {"label": "Cafés & Bars", "query": "cafes bars restaurants local food"},
+    {"label": "Viewpoints & Nature", "query": "viewpoints nature parks scenic"},
+]
 
 _CATEGORY_DESCRIPTIONS = {
     "beach_coast":     "beaches, coastal towns, sea, islands, water sports",
@@ -143,6 +156,158 @@ async def _generate_destination_hooks(
     if isinstance(result, list) and len(result) == len(destinations):
         return [str(h) for h in result]
     return [f"Visit {d}" for d in destinations]
+
+
+# ── Sprint 4: place card helpers ──────────────────────────────────────────────
+
+def _rank_places_for_area(
+    places_raw: list[dict],
+    intent: any,
+    reddit_signals: dict,
+    blog_signals: dict,
+) -> list[dict]:
+    """Filter by rating, attach social scores, rank. Returns top-3 minimal dicts."""
+    filtered = [p for p in places_raw if (p.get("rating") or 0) >= 4.2]
+    if not filtered:
+        return []
+    score_all_places(filtered, reddit_signals, blog_signals)
+    mappings: list[PlaceAreaMapping] = []
+    for p in filtered:
+        place = Place(
+            place_id=p.get("place_id") or p.get("id", ""),
+            name=p.get("name", ""),
+            place_type=(p.get("types") or p.get("tags") or ["attraction"])[0],
+            lat=float(p.get("lat") or 0.0),
+            lon=float(p.get("lng") or p.get("lon") or 0.0),
+            rating=p.get("rating"),
+            review_count=int(p.get("user_ratings_total") or p.get("review_count") or 0),
+            tags=p.get("types") or p.get("tags") or [],
+        )
+        mappings.append(PlaceAreaMapping(place=place))
+    ranked = _ranker.rank_places(mappings, intent, area_scores=None) if intent else []
+    id_to_raw: dict[str, dict] = {(p.get("place_id") or p.get("id", "")): p for p in filtered}
+    result = []
+    for rp in ranked[:3]:
+        pid = rp.place.place_id
+        raw = id_to_raw.get(pid, {})
+        result.append({"id": pid, "name": rp.place.name, "photo_url": raw.get("photo_url")})
+    return result
+
+
+async def _prefetch_area_reddit(
+    destination: str,
+    area_id: str,
+    area_name: str,
+    experience_types: list[str],
+) -> None:
+    """Background task: fetch area-level Reddit signals and cache for Sprint 5."""
+    cache_key = f"reddit_area:{destination.lower()}:{area_id.lower()}"
+    existing = await get_cached(cache_key)
+    if existing:
+        return
+    try:
+        signals = await get_area_reddit_signals(area_name, destination, experience_types)
+        if signals.get("place_signals"):
+            await set_cached(cache_key, [signals], ttl=3600)
+    except Exception:
+        pass
+
+
+async def fetch_place_cards(state: dict) -> list[dict]:
+    """4-step pipeline: Groq categories → Maps search → rank → Groq hooks. Returns categorised place cards."""
+    destination = state.get("destination", "")
+    area_id = state.get("selected_area", "")
+    experience_types = state.get("experience_types") or []
+    selected_vibe_ids = state.get("selected_vibe_ids") or []
+    travel_intent = state.get("travel_intent")
+    reddit_signals = state.get("reddit_signals") or {}
+    blog_signals = state.get("blog_signals") or {}
+
+    area_name = area_id
+    for area in (state.get("area_cards") or []):
+        if area.get("id") == area_id:
+            area_name = area.get("name", area_id)
+            break
+
+    exp_key = "|".join(sorted(experience_types)) if experience_types else "|".join(sorted(selected_vibe_ids))
+    cache_key = f"place_cards:{destination.lower()}:{area_id.lower()}:{exp_key}"
+    cached = await get_cached(cache_key)
+    if cached:
+        state["place_cards"] = cached
+        try:
+            asyncio.create_task(_prefetch_area_reddit(destination, area_id, area_name, experience_types))
+        except Exception:
+            pass
+        return cached
+
+    # Step 1 — Category determination
+    trip_who = state.get("trip_who") or ""
+    trip_season = state.get("trip_season") or ""
+    exp_desc = ", ".join(experience_types) if experience_types else ", ".join(selected_vibe_ids)
+    cat_prompt = (
+        f"You are a travel expert. For {area_name} in {destination}, "
+        f"experience types: {exp_desc or 'general'}, group: {trip_who}, season: {trip_season}. "
+        f"Return a JSON array of 3-4 category objects with 'label' (display name) and 'query' (Google Maps search terms). "
+        f"Always include a food/drink category (Cafés & Bars or Restaurants). "
+        f'Example: [{{"label": "Adventure Spots", "query": "trekking viewpoints cliff"}}]. '
+        f"Return only valid JSON, no explanation."
+    )
+    raw_cats = await _groq_json(cat_prompt, max_tokens=250)
+    categories: list[dict] = raw_cats if (isinstance(raw_cats, list) and raw_cats) else DEFAULT_PLACE_CATEGORIES
+
+    # Step 2 — Maps search per category (parallel)
+    search_tasks = [search_places(f"{area_name}, {destination}", cat["query"]) for cat in categories]
+    raw_results = await asyncio.gather(*search_tasks, return_exceptions=True)
+
+    # Step 3 — Score and rank per category
+    categories_with_places: list[dict] = []
+    for cat, raw in zip(categories, raw_results):
+        if isinstance(raw, Exception) or not raw:
+            continue
+        ranked = _rank_places_for_area(raw, travel_intent, reddit_signals, blog_signals)
+        if ranked:
+            categories_with_places.append({"label": cat["label"], "places": ranked})
+
+    if not categories_with_places:
+        state["place_cards"] = []
+        try:
+            asyncio.create_task(_prefetch_area_reddit(destination, area_id, area_name, experience_types))
+        except Exception:
+            pass
+        return []
+
+    # Step 4 — Hook generation (one batch Groq call)
+    all_ids = [p["id"] for cat in categories_with_places for p in cat["places"]]
+    all_names = [p["name"] for cat in categories_with_places for p in cat["places"]]
+    hook_prompt = (
+        f"Write a punchy one-liner hook (under 15 words) for each place in {area_name}, {destination}. "
+        f"Return a JSON object mapping place_id to hook string. "
+        f"Places: {json.dumps(dict(zip(all_ids, all_names)))}. "
+        f"Return only valid JSON."
+    )
+    hooks_raw = await _groq_json(hook_prompt, max_tokens=800)
+    hooks: dict[str, str] = hooks_raw if isinstance(hooks_raw, dict) else {}
+
+    categories_out = []
+    for cat in categories_with_places:
+        places_out = [
+            {
+                "id": p["id"],
+                "name": p["name"],
+                "hook": hooks.get(p["id"]) or f"A great spot in {area_name}",
+                "photo_url": p["photo_url"],
+            }
+            for p in cat["places"]
+        ]
+        categories_out.append({"label": cat["label"], "places": places_out})
+
+    state["place_cards"] = categories_out
+    await set_cached(cache_key, categories_out, ttl=43200)
+    try:
+        asyncio.create_task(_prefetch_area_reddit(destination, area_id, area_name, experience_types))
+    except Exception:
+        pass
+    return categories_out
 
 
 # ── Stage resolution ───────────────────────────────────────────────────────────
