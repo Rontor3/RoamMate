@@ -596,6 +596,7 @@ async def fetch_area_cards(state: dict) -> list[dict]:
     )
     areas_raw = await _groq_json(area_prompt, max_tokens=1500)
     if not isinstance(areas_raw, list) or not areas_raw:
+        state["area_cards"] = []
         return []
 
     # Step 4: Photos (parallel)
@@ -605,12 +606,12 @@ async def fetch_area_cards(state: dict) -> list[dict]:
         for a in areas_raw
     ]
     photo_raw = await asyncio.gather(*photo_tasks, return_exceptions=True)
-    photo_map: dict[str, str | None] = {}
-    for a, pr in zip(areas_raw, photo_raw):
+    photo_map: dict[int, str | None] = {}
+    for idx, (a, pr) in enumerate(zip(areas_raw, photo_raw)):
         if isinstance(pr, list) and pr:
-            photo_map[a.get("id", "")] = pr[0].get("url")
+            photo_map[idx] = pr[0].get("url")
         else:
-            photo_map[a.get("id", "")] = None
+            photo_map[idx] = None
 
     areas = [
         {
@@ -620,9 +621,9 @@ async def fetch_area_cards(state: dict) -> list[dict]:
             "teaser": a.get("teaser", ""),
             "summary": a.get("summary", ""),
             "tags": a.get("tags") or [],
-            "photo_url": photo_map.get(a.get("id", "")),
+            "photo_url": photo_map.get(idx),
         }
-        for a in areas_raw
+        for idx, a in enumerate(areas_raw)
     ]
 
     state["area_cards"] = areas
