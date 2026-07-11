@@ -91,6 +91,10 @@ class GraphState(TypedDict, total=False):
     area_cards: List[Dict[str, Any]]  # preloaded area/neighbourhood cards
     selected_area: str | None         # area_id chosen by the user
 
+    # ── Place cards — populated when area is selected ─────────────────────────
+    place_cards: List[Dict[str, Any]]  # categorised place cards for selected area
+    selected_place: str | None         # place_id chosen for activity exploration
+
     # ── Graph short-circuit flag ──────────────────────────────────────────────
     skip_graph: bool                  # True → card action turn, go direct to responder
 
