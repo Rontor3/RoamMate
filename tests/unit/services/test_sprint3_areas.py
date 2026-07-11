@@ -248,3 +248,24 @@ async def test_determine_action_area_selected_returns_stub():
     )
     assert action == "show_place_cards"
     assert payload == {"places": []}
+
+
+# ── intent.py area_selected card action ──────────────────────────────────────
+
+@pytest.mark.asyncio
+async def test_area_selected_card_action_sets_selected_area_and_action():
+    from app.graph.nodes.intent import detect_intent
+    state = {
+        "card_action": "area_selected",
+        "card_data": {"area_id": "vagator"},
+        "destination": "Goa",
+        "messages": [],
+    }
+    with patch("app.graph.nodes.intent.resolve_stage", return_value="area_selected"):
+        with patch("app.graph.nodes.intent._stage_determine_action",
+                   return_value=("show_place_cards", {"places": []})):
+            result = await detect_intent(state)
+    assert result["selected_area"] == "vagator"
+    assert result["card_action"] is None
+    assert result["action"] == "show_place_cards"
+    assert result["payload"] == {"places": []}
