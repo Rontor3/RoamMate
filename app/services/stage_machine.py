@@ -330,6 +330,8 @@ def resolve_stage(state: dict) -> str:
         return "pace_selected"
     if state.get("selected_activities"):
         return "activities_selected"
+    if state.get("selected_place"):
+        return "place_selected"
     if state.get("places_shown"):
         if not state.get("trip_duration"):
             return "duration_pending"
@@ -373,8 +375,11 @@ async def determine_action(stage: str, state: dict) -> tuple[str | None, dict | 
         return "show_area_cards", {"areas": areas}
 
     if stage == "area_selected":
-        # Sprint 4 stub — place cards filtered to selected area
-        return "show_place_cards", {"places": []}
+        categories = await fetch_place_cards(state)
+        return "show_place_cards", {"categories": categories}
+
+    if stage == "place_selected":
+        return "show_activity_options", {"activities": []}
 
     if stage == "duration_pending":
         return "ask_trip_duration", {}

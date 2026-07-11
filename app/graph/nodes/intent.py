@@ -109,6 +109,17 @@ async def detect_intent(state: GraphState) -> GraphState:
         state["payload"] = payload
         return state
 
+    elif card_action == "place_selected":
+        state["selected_place"] = card_data.get("place_id", "")
+        state["card_action"] = None
+        state["skip_graph"] = True
+        stage = resolve_stage(state)
+        state["conversation_stage"] = stage
+        action, payload = await _stage_determine_action(stage, state)
+        state["action"] = action
+        state["payload"] = payload
+        return state
+
     elif card_action == "route_selected":
         state["selected_route_id"] = card_data.get("route_id")
         state["card_action"] = None
