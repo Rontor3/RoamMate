@@ -37,6 +37,8 @@ async def get_cached(key: str) -> list[dict] | None:
     except Exception as e:
         logger.warning(f"[area_cache] get error for {key}: {e}")
         return None
+    finally:
+        await r.aclose()
 
 
 async def set_cached(key: str, data: list[dict], ttl: int = 86400) -> None:
@@ -49,3 +51,5 @@ async def set_cached(key: str, data: list[dict], ttl: int = 86400) -> None:
         logger.info(f"[area_cache] set: {key} ttl={ttl}s")
     except Exception as e:
         logger.warning(f"[area_cache] set error for {key}: {e}")
+    finally:
+        await r.aclose()
