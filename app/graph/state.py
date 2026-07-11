@@ -87,6 +87,10 @@ class GraphState(TypedDict, total=False):
     # ── Experience type — multi-select, dynamic chips ─────────────────────────
     experience_types: List[str]       # e.g. ["hills_nature", "festival_events"]
 
+    # ── Area cards — populated when destination is confirmed ──────────────────
+    area_cards: List[Dict[str, Any]]  # preloaded area/neighbourhood cards
+    selected_area: str | None         # area_id chosen by the user
+
     # ── Graph short-circuit flag ──────────────────────────────────────────────
     skip_graph: bool                  # True → card action turn, go direct to responder
 

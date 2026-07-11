@@ -336,4 +336,6 @@ async def responder(state: GraphState) -> GraphState:
         "show_scene_strip": state.get("show_scene_strip", False),
         "skip_graph": False,
         "destination_candidates": state.get("destination_candidates") or {},
+        "area_cards": state.get("area_cards") or [],
+        "selected_area": state.get("selected_area"),
     }
