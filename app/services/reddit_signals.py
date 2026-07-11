@@ -52,7 +52,13 @@ def build_reddit_queries(intent: TravelIntent) -> List[str]:
     return unique_queries[:4]
 
 
-async def _search_reddit(reddit, query: str, limit: int = 12) -> List[str]:
+async def _search_reddit(
+    reddit,
+    query: str,
+    limit: int = 12,
+    comment_limit: int = 4,
+    comment_body_chars: int = 200,
+) -> List[str]:
     """Search r/all and return formatted post strings."""
     posts = []
     semaphore = asyncio.Semaphore(3)
@@ -64,7 +70,7 @@ async def _search_reddit(reddit, query: str, limit: int = 12) -> List[str]:
                     await asyncio.wait_for(submission.load(), timeout=10)
                     await submission.comments.replace_more(limit=0)
                     top_comments = [
-                        c.body[:200] for c in submission.comments.list()[:4]
+                        c.body[:comment_body_chars] for c in submission.comments.list()[:comment_limit]
                         if hasattr(c, "body")
                     ]
                     posts.append(
@@ -164,5 +170,43 @@ async def get_reddit_place_signals(
         return {"place_signals": {}, "raw_posts_text": ""}
 
     signals = await _extract_place_signals(raw_text, destination)
+    signals["raw_posts_text"] = raw_text
+    return signals
+
+
+async def get_area_reddit_signals(
+    area_name: str,
+    destination: str,
+    experience_types: list[str],
+) -> Dict[str, Any]:
+    """Fetch venue-level Reddit signals for a specific area. Used by Sprint 5."""
+    exp_str = experience_types[0] if experience_types else f"{area_name} things to do"
+    queries = [
+        f"{area_name} {destination}",
+        f"best places {area_name} {destination}",
+        f"{area_name} {destination} {exp_str}",
+        f"{area_name} {destination} recommend",
+    ]
+    all_posts: List[str] = []
+    try:
+        async with asyncpraw.Reddit(
+            client_id=CLIENT_ID,
+            client_secret=CLIENT_SECRET,
+            user_agent=USER_AGENT,
+        ) as reddit:
+            tasks = [_search_reddit(reddit, q, limit=8, comment_limit=15, comment_body_chars=350) for q in queries]
+            results = await asyncio.gather(*tasks, return_exceptions=True)
+            for r in results:
+                if isinstance(r, list):
+                    all_posts.extend(r)
+    except Exception as e:
+        logger.warning(f"[Reddit/area] ✗ {area_name}: {e}")
+        return {"place_signals": {}, "raw_posts_text": ""}
+
+    if not all_posts:
+        return {"place_signals": {}, "raw_posts_text": ""}
+
+    raw_text = "\n\n".join(all_posts)
+    signals = await _extract_place_signals(raw_text, f"{area_name}, {destination}")
     signals["raw_posts_text"] = raw_text
     return signals
