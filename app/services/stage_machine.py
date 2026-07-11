@@ -169,6 +169,8 @@ def resolve_stage(state: dict) -> str:
         if not state.get("trip_duration"):
             return "duration_pending"
         return "places_shown"
+    if state.get("selected_area"):
+        return "area_selected"
     if state.get("vibes_confirmed"):
         return "vibe_selected"
 
@@ -191,12 +193,23 @@ async def determine_action(stage: str, state: dict) -> tuple[str | None, dict | 
         return "show_destination_chips", {"destinations": destinations}
 
     if stage == "destination_known":
-        vibes = await fetch_vibe_cards(state)
-        return "show_vibe_cards", {"vibes": vibes}
+        if state.get("experience_types"):
+            # Branch A: user came via experience chips — skip vibe cards
+            areas = await fetch_area_cards(state)
+            return "show_area_cards", {"areas": areas}
+        else:
+            # Branch B: user typed destination directly — capture travel style first
+            vibes = await fetch_vibe_cards(state)
+            return "show_vibe_cards", {"vibes": vibes}
 
     if stage == "vibe_selected":
-        places = _build_place_cards(state)
-        return "show_place_cards", {"places": places}
+        # Branch B: vibes confirmed → show area cards
+        areas = await fetch_area_cards(state)
+        return "show_area_cards", {"areas": areas}
+
+    if stage == "area_selected":
+        # Sprint 4 stub — place cards filtered to selected area
+        return "show_place_cards", {"places": []}
 
     if stage == "duration_pending":
         return "ask_trip_duration", {}
@@ -501,6 +514,120 @@ async def fetch_vibe_cards(state: dict) -> list[dict]:
 
     await set_cached(cache_key, cards)
     return cards
+
+
+async def fetch_area_cards(state: dict) -> list[dict]:
+    """Return 3-5 area/neighbourhood cards for the confirmed destination.
+
+    Pipeline:
+      1. Scale assessment (Groq) — flat list vs zoned grouping
+      2. Tavily enrichment per zone (parallel)
+      3. Area generation with teaser+summary (Groq, one batch call)
+      4. Photos (Google Places, parallel)
+    Cached by (destination, experience_type|vibe_ids) for 24h.
+    """
+    destination = state.get("destination", "")
+    if not destination:
+        return []
+
+    experience_types: list[str] = state.get("experience_types") or []
+    vibe_ids: list[str] = state.get("selected_vibe_ids") or []
+    exp_key = "|".join(sorted(experience_types)) if experience_types else "|".join(sorted(vibe_ids))
+    cache_key = f"area_cards:{destination.lower()}:{exp_key}"
+
+    cached = await get_cached(cache_key)
+    if cached is not None:
+        state["area_cards"] = cached
+        return cached
+
+    trip_season = state.get("trip_season") or "any season"
+    trip_who = state.get("trip_who") or "travellers"
+    interest_str = ", ".join(experience_types or vibe_ids) or "travel"
+
+    # Step 1: Scale assessment
+    scale_prompt = (
+        f'Destination: "{destination}". Travel interest: "{interest_str}".\n'
+        f'Does exploring {destination} need:\n'
+        f'(a) "flat" — list specific neighbourhoods/areas directly (small or focused destination), or\n'
+        f'(b) "zoned" — group areas under broad geographic zones like North/South or major cities?\n\n'
+        f'Return JSON only (no markdown):\n'
+        f'{{"tier": "flat", "zones": []}} or {{"tier": "zoned", "zones": ["North Goa", "South Goa"]}}'
+    )
+    scale = await _groq_json(scale_prompt, max_tokens=150)
+    if not isinstance(scale, dict) or "tier" not in scale:
+        scale = {"tier": "flat", "zones": []}
+
+    tier = scale.get("tier", "flat")
+    zones: list[str] = scale.get("zones") or []
+    if not zones:
+        zones = [destination]
+
+    # Step 2: Tavily enrichment per zone (parallel)
+    tavily_tasks = [
+        tavily_search(f"{zone} {interest_str} areas things to do {trip_season}", max_results=5)
+        for zone in zones
+    ]
+    zone_raw = await asyncio.gather(*tavily_tasks, return_exceptions=True)
+    zone_context: dict[str, str] = {}
+    for zone, result in zip(zones, zone_raw):
+        if isinstance(result, list) and result:
+            zone_context[zone] = " | ".join(
+                r.get("content", "")[:200] for r in result[:3] if r.get("content")
+            )
+        else:
+            zone_context[zone] = ""
+
+    # Step 3: Area generation (one Groq batch call)
+    zones_ctx = "\n".join(f"- {z}: {zone_context.get(z) or 'no extra context'}" for z in zones)
+    area_prompt = (
+        f'You are a travel expert writing for a travel app. '
+        f'For destination "{destination}" with interest in "{interest_str}" '
+        f'({trip_who}, {trip_season}), identify 3–5 specific areas or neighbourhoods to explore.\n\n'
+        f'Geographic context:\n{zones_ctx}\n\n'
+        f'For each area provide:\n'
+        f'- id: lowercase slug (e.g. "vagator")\n'
+        f'- name: display name (e.g. "Vagator")\n'
+        f'- zone: geographic zone it belongs to (e.g. "North Goa"), or null if not applicable\n'
+        f'- teaser: 3-4 punchy lines — vivid, specific, honest about who it suits. No generic phrases.\n'
+        f'- summary: one full paragraph — geography, vibe, best things to do, when to visit, who it suits\n'
+        f'- tags: 3-4 short labels (e.g. ["cliffs", "nightlife", "sunsets"])\n\n'
+        f'Return a JSON array only (no markdown):\n'
+        f'[{{"id":"...","name":"...","zone":"..." or null,"teaser":"...","summary":"...","tags":["..."]}}]'
+    )
+    areas_raw = await _groq_json(area_prompt, max_tokens=1500)
+    if not isinstance(areas_raw, list) or not areas_raw:
+        return []
+
+    # Step 4: Photos (parallel)
+    GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
+    photo_tasks = [
+        fetch_place_photos([a.get("name", "")], GOOGLE_API_KEY)
+        for a in areas_raw
+    ]
+    photo_raw = await asyncio.gather(*photo_tasks, return_exceptions=True)
+    photo_map: dict[str, str | None] = {}
+    for a, pr in zip(areas_raw, photo_raw):
+        if isinstance(pr, list) and pr:
+            photo_map[a.get("id", "")] = pr[0].get("url")
+        else:
+            photo_map[a.get("id", "")] = None
+
+    areas = [
+        {
+            "id": a.get("id", ""),
+            "name": a.get("name", ""),
+            "zone": a.get("zone") if tier == "zoned" else None,
+            "teaser": a.get("teaser", ""),
+            "summary": a.get("summary", ""),
+            "tags": a.get("tags") or [],
+            "photo_url": photo_map.get(a.get("id", "")),
+        }
+        for a in areas_raw
+    ]
+
+    state["area_cards"] = areas
+    await set_cached(cache_key, areas)
+    return areas
 
 
 async def build_activity_options(state: dict) -> list[dict]:

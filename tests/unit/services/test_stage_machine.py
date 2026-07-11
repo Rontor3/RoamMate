@@ -156,17 +156,18 @@ async def test_determine_action_unknown_stage_returns_none():
 
 
 @pytest.mark.asyncio
-async def test_determine_action_vibe_selected_returns_place_cards():
+async def test_determine_action_vibe_selected_returns_area_cards():
     from app.services.stage_machine import determine_action
-    state = {
-        "ranked_places": [
-            {"name": "Palolem Beach", "rating": 4.5, "place_id": "p1",
-             "explanation": {"top_factor": "authenticity"}}
-        ]
-    }
-    action, payload = await determine_action("vibe_selected", state)
-    assert action == "show_place_cards"
-    assert payload["places"][0]["name"] == "Palolem Beach"
+    from unittest.mock import AsyncMock, patch
+    areas = [{"id": "palolem", "name": "Palolem"}]
+    with patch("app.services.stage_machine.fetch_area_cards",
+               new_callable=AsyncMock, return_value=areas):
+        action, payload = await determine_action(
+            "vibe_selected",
+            {"destination": "Goa", "vibes_confirmed": True, "selected_vibe_ids": ["hid"]}
+        )
+    assert action == "show_area_cards"
+    assert payload["areas"] == areas
 
 
 def test_should_clarify_returns_skip_when_skip_graph_set():
