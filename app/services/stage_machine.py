@@ -14,6 +14,7 @@ import aiohttp
 
 from app.services.tavily_client import tavily_search
 from app.services.geo_utils import get_origin, resolve_origin_coords, geocode, batch_driving_times
+from app.services.area_cache import get_cached, set_cached
 from app.utils.place_photos import fetch_place_photos
 from app.utils.logger import get_logger
 
@@ -269,6 +270,37 @@ BASE_CHIPS = [
     {"id": "retreat_rest",    "label": "Retreat & Rest",   "description": "Absolute stillness, wellness, nothing planned"},
 ]
 
+BASE_VIBE_CARDS: list[dict] = [
+    {
+        "id": "adv",
+        "label": "Adventure & Outdoors",
+        "eyebrow": "Physical · Outdoors",
+        "description": "Trails, altitude, water, adrenaline",
+        "tags": ["trekking", "water sports", "adrenaline"],
+    },
+    {
+        "id": "loc",
+        "label": "Culture & Food",
+        "eyebrow": "Culture · Food · People",
+        "description": "History, local cuisine, markets, people",
+        "tags": ["heritage", "food", "local life"],
+    },
+    {
+        "id": "spt",
+        "label": "Spots & Scenes",
+        "eyebrow": "Spots · Scenes",
+        "description": "Viewpoints, sunsets, cafés, photo moments",
+        "tags": ["sunsets", "cafes", "scenic"],
+    },
+    {
+        "id": "hid",
+        "label": "Hidden & Slow",
+        "eyebrow": "Hidden · Slow",
+        "description": "Off-path, quiet, unhurried, local secrets",
+        "tags": ["offbeat", "quiet", "slow travel"],
+    },
+]
+
 
 async def build_experience_chips(state: dict) -> list[dict]:
     """Return geo-filtered experience chips with live event hooks.
@@ -423,8 +455,52 @@ async def fetch_destination_suggestions(state: dict) -> list[dict]:
 
 
 async def fetch_vibe_cards(state: dict) -> list[dict]:
-    """Sprint 3: destination-specific vibe descriptions from blog signals."""
-    return []
+    """Return 4 vibe cards with destination-specific description hooks.
+
+    Branch B only — called when user typed destination directly with no experience_types.
+    Falls back to BASE_VIBE_CARDS generic descriptions on Groq failure.
+    Cached by destination for 24h.
+    """
+    destination = state.get("destination", "")
+    if not destination:
+        return [{**v} for v in BASE_VIBE_CARDS]
+
+    cache_key = f"vibe_cards:{destination.lower()}"
+    cached = await get_cached(cache_key)
+    if cached is not None:
+        return cached
+
+    # Build context from already-fetched blog signals
+    blog_ctx = ""
+    blog = state.get("blog_signals") or {}
+    if blog:
+        snippets = []
+        for val in blog.values():
+            if isinstance(val, list):
+                snippets.extend(str(v)[:150] for v in val[:2])
+            elif isinstance(val, str):
+                snippets.append(val[:200])
+        blog_ctx = " | ".join(snippets[:5])
+
+    prompt = (
+        f'You are a vivid travel writer. For the destination "{destination}", write a short '
+        f'destination-specific hook (max 70 chars) for each of the 4 travel vibes below. '
+        f'Use specific place names and activities from {destination} — not generic descriptions.\n'
+        f'Context: {blog_ctx or f"use your knowledge of {destination}"}\n\n'
+        f'Return JSON only (no markdown):\n'
+        f'{{"adv": "...", "loc": "...", "spt": "...", "hid": "..."}}'
+    )
+    hooks = await _groq_json(prompt, max_tokens=300)
+
+    cards = []
+    for v in BASE_VIBE_CARDS:
+        card = {**v}
+        if isinstance(hooks, dict) and v["id"] in hooks and hooks[v["id"]]:
+            card["description"] = str(hooks[v["id"]])[:70]
+        cards.append(card)
+
+    await set_cached(cache_key, cards)
+    return cards
 
 
 async def build_activity_options(state: dict) -> list[dict]:
