@@ -340,4 +340,6 @@ async def responder(state: GraphState) -> GraphState:
         "selected_area": state.get("selected_area"),
         "place_cards": state.get("place_cards") or [],
         "selected_place": state.get("selected_place"),
+        "pending_activities": state.get("pending_activities") or {},
+        "activity_options": state.get("activity_options") or [],
     }

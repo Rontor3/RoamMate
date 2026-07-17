@@ -95,6 +95,10 @@ class GraphState(TypedDict, total=False):
     place_cards: List[Dict[str, Any]]  # categorised place cards for selected area
     selected_place: str | None         # place_id chosen for activity exploration
 
+    # ── Activity selection loop — populated in Sprint 5 ──────────────────────
+    pending_activities: Dict[str, List[str]]  # {place_id: [activity_labels]} — accumulates during multi-place loop
+    activity_options: List[Dict[str, Any]]    # current activity chips shown — persisted for frontend re-render
+
     # ── Graph short-circuit flag ──────────────────────────────────────────────
     skip_graph: bool                  # True → card action turn, go direct to responder
 
