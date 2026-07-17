@@ -420,8 +420,7 @@ async def determine_action(stage: str, state: dict) -> tuple[str | None, dict | 
         return "ask_trip_duration", {}
 
     if stage == "places_shown":
-        activities = await _build_activity_options_for_place(state)
-        return "show_activity_options", {"activities": activities}
+        return "show_activity_options", {"activities": []}
 
     if stage == "activities_selected":
         return "show_pace_options", {}

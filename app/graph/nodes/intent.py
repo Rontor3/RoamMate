@@ -118,12 +118,14 @@ async def detect_intent(state: GraphState) -> GraphState:
         action, payload = await _stage_determine_action(stage, state)
         state["action"] = action
         state["payload"] = payload
+        if payload and "activities" in payload:
+            state["activity_options"] = payload["activities"]
         return state
 
     elif card_action == "activities_for_place":
         place_id = card_data.get("place_id", "")
         activities = card_data.get("activities", [])
-        pending = state.get("pending_activities") or {}
+        pending = dict(state.get("pending_activities") or {})
         pending[place_id] = activities
         state["pending_activities"] = pending
         state["selected_place"] = None

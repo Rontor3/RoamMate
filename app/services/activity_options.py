@@ -53,13 +53,21 @@ async def build_activity_options(
         cached_reddit = await get_cached(area_cache_key)
         area_signals = cached_reddit[0] if cached_reddit else {}
         place_signals = area_signals.get("place_signals", {})
+        match_val = None
         for signal_key, signal_val in place_signals.items():
-            if place_name.lower() in signal_key.lower():
-                highlights = signal_val.get("review_highlights") or []
-                vibe_tags = signal_val.get("vibe_tags") or []
-                parts = highlights[:3] + vibe_tags[:3]
-                reddit_context = "; ".join(str(p) for p in parts)[:400]
+            if signal_key.lower() == place_name.lower():
+                match_val = signal_val
                 break
+        if match_val is None:
+            for signal_key, signal_val in place_signals.items():
+                if place_name.lower() in signal_key.lower():
+                    match_val = signal_val
+                    break
+        if match_val is not None:
+            highlights = match_val.get("review_highlights") or []
+            vibe_tags = match_val.get("vibe_tags") or []
+            parts = highlights[:3] + vibe_tags[:3]
+            reddit_context = "; ".join(str(p) for p in parts)[:400]
     except Exception as e:
         logger.warning(f"[activity_options] reddit cache read failed: {e}")
 
@@ -91,9 +99,11 @@ async def build_activity_options(
                 result = await r.json()
                 text = result["choices"][0]["message"]["content"].strip()
                 if text.startswith("```"):
-                    text = text.split("```")[1]
+                    parts = text.split("```")
+                    text = parts[1] if len(parts) > 1 else text
                     if text.startswith("json"):
                         text = text[4:]
+                    text = text.split("```")[0]
                 parsed = json.loads(text)
                 if isinstance(parsed, list) and parsed:
                     activities = parsed

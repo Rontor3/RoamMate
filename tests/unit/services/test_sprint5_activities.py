@@ -618,3 +618,32 @@ async def test_activities_confirmed_empty_pending_gives_empty_selected():
         result = await detect_intent(state)
     assert result["selected_activities"] == []
     assert result["pending_activities"] == {}
+
+
+# ── Integration: place_selected card action sets activity_options ─────────────
+
+@pytest.mark.asyncio
+async def test_place_selected_card_action_sets_activity_options():
+    """detect_intent card_action='place_selected' must populate state['activity_options']."""
+    from app.graph.nodes.intent import detect_intent
+    mock_activities = [{"id": "sunrise_trek", "label": "Sunrise Trek", "duration": "2h", "time": "morning", "vibe": "adventure"}]
+    state = {
+        "destination": "Goa",
+        "selected_area": "north_goa",
+        "card_action": "place_selected",
+        "card_data": {"place_id": "chapora_fort"},
+        "place_cards": [
+            {"label": "Forts", "places": [{"id": "chapora_fort", "name": "Chapora Fort", "hook": "x", "photo_url": None}]},
+        ],
+        "messages": [],
+    }
+    with patch("app.graph.nodes.intent._stage_determine_action", new_callable=AsyncMock) as mock_action, \
+         patch("app.services.stage_machine.build_activity_options", new_callable=AsyncMock) as mock_build:
+        mock_build.return_value = mock_activities
+        mock_action.return_value = ("show_activity_options", {
+            "place_id": "chapora_fort",
+            "place_name": "Chapora Fort",
+            "activities": mock_activities,
+        })
+        result = await detect_intent(state)
+    assert result.get("activity_options") == mock_activities
