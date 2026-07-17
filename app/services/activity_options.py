@@ -101,5 +101,6 @@ async def build_activity_options(
     except Exception as e:
         logger.error(f"[activity_options] Groq failed for {place_name}: {e} — using defaults")
 
-    await set_cached(cache_key, activities, ttl=21600)
+    if activities is not DEFAULT_ACTIVITIES:
+        await set_cached(cache_key, activities, ttl=21600)
     return activities

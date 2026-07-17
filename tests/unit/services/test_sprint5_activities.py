@@ -141,6 +141,7 @@ async def test_build_activity_options_returns_cached_result():
 @pytest.mark.asyncio
 async def test_build_activity_options_groq_success():
     from app.services.activity_options import build_activity_options
+    import json as _json
     groq_result = [
         {"id": "sunrise_trek", "label": "Sunrise Trek", "duration": "2h", "time": "morning", "vibe": "adventure"},
         {"id": "cliff_photo", "label": "Cliff Photography", "duration": "1h", "time": "evening", "vibe": "cultural"},
@@ -154,7 +155,7 @@ async def test_build_activity_options_groq_success():
         mock_resp = AsyncMock()
         mock_resp.__aenter__ = AsyncMock(return_value=mock_resp)
         mock_resp.__aexit__ = AsyncMock(return_value=False)
-        mock_resp.json = AsyncMock(return_value={"choices": [{"message": {"content": str(groq_result).replace("'", '"')}}]})
+        mock_resp.json = AsyncMock(return_value={"choices": [{"message": {"content": _json.dumps(groq_result)}}]})
         mock_post = MagicMock()
         mock_post.__aenter__ = AsyncMock(return_value=mock_resp)
         mock_post.__aexit__ = AsyncMock(return_value=False)
@@ -194,7 +195,7 @@ async def test_build_activity_options_uses_reddit_context():
     }]
     captured_prompts = []
 
-    async def fake_groq_post(url, headers=None, json=None, **kwargs):
+    def fake_groq_post(url, headers=None, json=None, **kwargs):
         if "groq" in url:
             captured_prompts.append(json["messages"][0]["content"])
         resp = AsyncMock()
@@ -214,8 +215,8 @@ async def test_build_activity_options_uses_reddit_context():
         mock_session.return_value = mock_client
         await build_activity_options("chapora_fort", "Chapora Fort", "Goa", "north_goa", None, None)
 
-    if captured_prompts:
-        assert "chapora fort" in captured_prompts[0].lower() or "Chapora Fort" in captured_prompts[0]
+    assert captured_prompts, "Groq post was never called — mock wiring failed"
+    assert "chapora fort" in captured_prompts[0].lower() or "Chapora Fort" in captured_prompts[0]
 
 
 @pytest.mark.asyncio
@@ -227,7 +228,7 @@ async def test_build_activity_options_vibe_str_from_intent():
     intent.vibe = [MagicMock(value="adventure"), MagicMock(value="cultural")]
     captured_prompts = []
 
-    async def fake_post(url, headers=None, json=None, **kwargs):
+    def fake_post(url, headers=None, json=None, **kwargs):
         if "groq" in url:
             captured_prompts.append(json["messages"][0]["content"])
         resp = AsyncMock()
@@ -247,5 +248,5 @@ async def test_build_activity_options_vibe_str_from_intent():
         mock_session.return_value = mock_client
         await build_activity_options("chapora_fort", "Chapora Fort", "Goa", "north_goa", intent, "couple")
 
-    if captured_prompts:
-        assert "adventure" in captured_prompts[0] and "cultural" in captured_prompts[0]
+    assert captured_prompts, "Groq post was never called — mock wiring failed"
+    assert "adventure" in captured_prompts[0] and "cultural" in captured_prompts[0]
