@@ -250,3 +250,208 @@ async def test_build_activity_options_vibe_str_from_intent():
 
     assert captured_prompts, "Groq post was never called — mock wiring failed"
     assert "adventure" in captured_prompts[0] and "cultural" in captured_prompts[0]
+
+
+# ── Task 3: _STAGE_RULES and resolve_stage ────────────────────────────────────
+
+def test_stage_rules_is_list_of_tuples():
+    from app.services.stage_machine import _STAGE_RULES
+    assert isinstance(_STAGE_RULES, list)
+    assert len(_STAGE_RULES) == 9
+    for predicate, stage in _STAGE_RULES:
+        assert callable(predicate)
+        assert isinstance(stage, str)
+
+
+def test_resolve_stage_no_destination_no_experience():
+    from app.services.stage_machine import resolve_stage
+    assert resolve_stage({}) == "experience_type_unknown"
+
+
+def test_resolve_stage_no_destination_with_experience():
+    from app.services.stage_machine import resolve_stage
+    assert resolve_stage({"experience_types": ["beach_coast"]}) == "experience_type_known"
+
+
+def test_resolve_stage_destination_known():
+    from app.services.stage_machine import resolve_stage
+    assert resolve_stage({"destination": "Goa"}) == "destination_known"
+
+
+def test_resolve_stage_selected_place_wins_over_pending_activities():
+    """selected_place fires before pending_activities in _STAGE_RULES."""
+    from app.services.stage_machine import resolve_stage
+    state = {
+        "destination": "Goa",
+        "selected_place": "chapora_fort",
+        "pending_activities": {"baga_beach": ["Sunrise Walk"]},
+    }
+    assert resolve_stage(state) == "place_selected"
+
+
+def test_resolve_stage_pending_activities_wins_over_selected_activities():
+    """pending_activities fires before selected_activities in _STAGE_RULES."""
+    from app.services.stage_machine import resolve_stage
+    state = {
+        "destination": "Goa",
+        "pending_activities": {"baga_beach": ["Sunrise Walk"]},
+        "selected_activities": ["Sunrise Walk"],
+    }
+    assert resolve_stage(state) == "area_selected"
+
+
+def test_resolve_stage_pending_activities_empty_dict_does_not_fire():
+    """Empty {} is falsy — should not trigger pending_activities rule."""
+    from app.services.stage_machine import resolve_stage
+    state = {
+        "destination": "Goa",
+        "pending_activities": {},
+        "selected_activities": ["Sunrise Walk"],
+    }
+    assert resolve_stage(state) == "activities_selected"
+
+
+def test_resolve_stage_selected_activities_fires_when_pending_cleared():
+    from app.services.stage_machine import resolve_stage
+    state = {
+        "destination": "Goa",
+        "selected_activities": ["Sunrise Trek", "Photo Walk"],
+    }
+    assert resolve_stage(state) == "activities_selected"
+
+
+def test_resolve_stage_places_shown_with_no_duration():
+    from app.services.stage_machine import resolve_stage
+    state = {"destination": "Goa", "places_shown": True}
+    assert resolve_stage(state) == "duration_pending"
+
+
+def test_resolve_stage_places_shown_with_duration():
+    from app.services.stage_machine import resolve_stage
+    state = {"destination": "Goa", "places_shown": True, "trip_duration": 3}
+    assert resolve_stage(state) == "places_shown"
+
+
+def test_resolve_stage_selected_area():
+    from app.services.stage_machine import resolve_stage
+    state = {"destination": "Goa", "selected_area": "north_goa"}
+    assert resolve_stage(state) == "area_selected"
+
+
+def test_resolve_stage_route_arc_highest_priority():
+    from app.services.stage_machine import resolve_stage
+    state = {
+        "destination": "Goa",
+        "route_arc": {"direction": "north"},
+        "selected_pace": "mix",
+        "selected_place": "chapora_fort",
+        "pending_activities": {"x": ["y"]},
+        "selected_activities": ["y"],
+    }
+    assert resolve_stage(state) == "route_arc_selected"
+
+
+def test_resolve_stage_selected_pace():
+    from app.services.stage_machine import resolve_stage
+    state = {
+        "destination": "Goa",
+        "selected_pace": "mix",
+        "selected_place": "chapora_fort",
+    }
+    assert resolve_stage(state) == "pace_selected"
+
+
+# ── Task 3: _resolve_place_name ───────────────────────────────────────────────
+
+def test_resolve_place_name_found_in_place_cards():
+    from app.services.stage_machine import _resolve_place_name
+    state = {
+        "selected_place": "chapora_fort",
+        "place_cards": [
+            {"label": "Forts", "places": [{"id": "chapora_fort", "name": "Chapora Fort"}]},
+        ],
+    }
+    assert _resolve_place_name(state) == "Chapora Fort"
+
+
+def test_resolve_place_name_falls_back_to_place_id():
+    from app.services.stage_machine import _resolve_place_name
+    state = {
+        "selected_place": "unknown_place_id",
+        "place_cards": [
+            {"label": "Forts", "places": [{"id": "chapora_fort", "name": "Chapora Fort"}]},
+        ],
+    }
+    assert _resolve_place_name(state) == "unknown_place_id"
+
+
+def test_resolve_place_name_no_place_cards():
+    from app.services.stage_machine import _resolve_place_name
+    state = {"selected_place": "chapora_fort"}
+    assert _resolve_place_name(state) == "chapora_fort"
+
+
+# ── Task 3: determine_action place_selected and area_selected ────────────────
+
+@pytest.mark.asyncio
+async def test_determine_action_place_selected_returns_activity_options():
+    from app.services.stage_machine import determine_action
+    state = {
+        "destination": "Goa",
+        "selected_place": "chapora_fort",
+        "place_cards": [
+            {"label": "Forts", "places": [{"id": "chapora_fort", "name": "Chapora Fort", "hook": "x", "photo_url": None}]},
+        ],
+    }
+    mock_activities = [{"id": "sunrise_trek", "label": "Sunrise Trek", "duration": "2h", "time": "morning", "vibe": "adventure"}]
+    with patch("app.services.stage_machine.build_activity_options", new_callable=AsyncMock) as mock_build:
+        mock_build.return_value = mock_activities
+        action, payload = await determine_action("place_selected", state)
+    assert action == "show_activity_options"
+    assert payload["place_id"] == "chapora_fort"
+    assert payload["place_name"] == "Chapora Fort"
+    assert payload["activities"] == mock_activities
+
+
+@pytest.mark.asyncio
+async def test_determine_action_place_selected_persists_activity_options_to_state():
+    from app.services.stage_machine import determine_action
+    state = {
+        "destination": "Goa",
+        "selected_place": "chapora_fort",
+        "place_cards": [],
+    }
+    mock_activities = [{"id": "x", "label": "X", "duration": "1h", "time": "any", "vibe": "any"}]
+    with patch("app.services.stage_machine.build_activity_options", new_callable=AsyncMock) as mock_build:
+        mock_build.return_value = mock_activities
+        await determine_action("place_selected", state)
+    assert state.get("activity_options") == mock_activities
+
+
+@pytest.mark.asyncio
+async def test_determine_action_area_selected_includes_pending_activities():
+    from app.services.stage_machine import determine_action
+    state = {
+        "destination": "Goa",
+        "selected_area": "north_goa",
+        "pending_activities": {"chapora_fort": ["Sunrise Trek"]},
+    }
+    with patch("app.services.stage_machine.fetch_place_cards", new_callable=AsyncMock) as mock_fetch:
+        mock_fetch.return_value = [{"label": "Forts", "places": []}]
+        action, payload = await determine_action("area_selected", state)
+    assert action == "show_place_cards"
+    assert payload["pending_activities"] == {"chapora_fort": ["Sunrise Trek"]}
+
+
+@pytest.mark.asyncio
+async def test_determine_action_area_selected_pending_activities_defaults_to_empty():
+    from app.services.stage_machine import determine_action
+    state = {
+        "destination": "Goa",
+        "selected_area": "north_goa",
+    }
+    with patch("app.services.stage_machine.fetch_place_cards", new_callable=AsyncMock) as mock_fetch:
+        mock_fetch.return_value = []
+        action, payload = await determine_action("area_selected", state)
+    assert action == "show_place_cards"
+    assert payload["pending_activities"] == {}

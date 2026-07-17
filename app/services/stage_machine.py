@@ -22,6 +22,7 @@ from app.services.ranker import Ranker
 from app.services.scorer import score_all_places
 from app.models import Place, PlaceAreaMapping
 from app.services.reddit_signals import get_area_reddit_signals
+from app.services.activity_options import build_activity_options
 
 logger = get_logger(__name__)
 
@@ -312,36 +313,61 @@ async def fetch_place_cards(state: dict) -> list[dict]:
 
 # ── Stage resolution ───────────────────────────────────────────────────────────
 
+_STAGE_RULES: list[tuple] = [
+    # Late planning (most specific — highest priority)
+    (lambda s: s.get("route_arc"),                                    "route_arc_selected"),
+    (lambda s: s.get("selected_pace"),                                "pace_selected"),
+
+    # Activity selection loop
+    (lambda s: s.get("selected_place"),                               "place_selected"),
+    (lambda s: s.get("pending_activities"),                           "area_selected"),
+    (lambda s: s.get("selected_activities"),                          "activities_selected"),
+
+    # Place cards shown
+    (lambda s: s.get("places_shown") and not s.get("trip_duration"), "duration_pending"),
+    (lambda s: s.get("places_shown"),                                 "places_shown"),
+
+    # Area / vibe selection
+    (lambda s: s.get("selected_area"),                                "area_selected"),
+    (lambda s: s.get("vibes_confirmed"),                              "vibe_selected"),
+]
+
+
 def resolve_stage(state: dict) -> str:
     """
     Read current state and return the conversation stage.
-    Does not care about the path — only what context currently exists.
-    Priority: route_arc > pace > activities > places > vibes > destination > experience > unknown
+    Uses _STAGE_RULES priority list — first matching predicate wins.
+    Falls back to destination_known when destination is set but no other rule fires.
     """
     if not state.get("destination"):
-        if state.get("experience_types"):
-            return "experience_type_known"
-        return "experience_type_unknown"
-
-    # Destination is known from here
-    if state.get("route_arc"):
-        return "route_arc_selected"
-    if state.get("selected_pace"):
-        return "pace_selected"
-    if state.get("selected_activities"):
-        return "activities_selected"
-    if state.get("selected_place"):
-        return "place_selected"
-    if state.get("places_shown"):
-        if not state.get("trip_duration"):
-            return "duration_pending"
-        return "places_shown"
-    if state.get("selected_area"):
-        return "area_selected"
-    if state.get("vibes_confirmed"):
-        return "vibe_selected"
-
+        return "experience_type_known" if state.get("experience_types") else "experience_type_unknown"
+    for predicate, stage in _STAGE_RULES:
+        if predicate(state):
+            return stage
     return "destination_known"
+
+
+def _resolve_place_name(state: dict) -> str:
+    """Resolve selected_place id → display name by scanning place_cards."""
+    place_id = state.get("selected_place", "")
+    for cat in (state.get("place_cards") or []):
+        for p in cat.get("places", []):
+            if p.get("id") == place_id:
+                return p.get("name", place_id)
+    return place_id
+
+
+async def _build_activity_options_for_place(state: dict) -> list[dict]:
+    """Bridge: read state, delegate to build_activity_options, persist result in state."""
+    place_id = state.get("selected_place", "")
+    place_name = _resolve_place_name(state)
+    destination = state.get("destination", "")
+    area_id = state.get("selected_area", "")
+    intent = state.get("travel_intent")
+    trip_who = state.get("trip_who")
+    options = await build_activity_options(place_id, place_name, destination, area_id, intent, trip_who)
+    state["activity_options"] = options
+    return options
 
 
 # ── Action determination ───────────────────────────────────────────────────────
@@ -376,16 +402,25 @@ async def determine_action(stage: str, state: dict) -> tuple[str | None, dict | 
 
     if stage == "area_selected":
         categories = await fetch_place_cards(state)
-        return "show_place_cards", {"categories": categories}
+        return "show_place_cards", {
+            "categories": categories,
+            "pending_activities": state.get("pending_activities") or {},
+        }
 
     if stage == "place_selected":
-        return "show_activity_options", {"activities": []}
+        activities = await _build_activity_options_for_place(state)
+        place_name = _resolve_place_name(state)
+        return "show_activity_options", {
+            "place_id": state.get("selected_place"),
+            "place_name": place_name,
+            "activities": activities,
+        }
 
     if stage == "duration_pending":
         return "ask_trip_duration", {}
 
     if stage == "places_shown":
-        activities = await build_activity_options(state)
+        activities = await _build_activity_options_for_place(state)
         return "show_activity_options", {"activities": activities}
 
     if stage == "activities_selected":
@@ -799,11 +834,6 @@ async def fetch_area_cards(state: dict) -> list[dict]:
     state["area_cards"] = areas
     await set_cached(cache_key, areas)
     return areas
-
-
-async def build_activity_options(state: dict) -> list[dict]:
-    """Sprint 4: live activity suggestions per selected place."""
-    return []
 
 
 async def build_route_arcs(state: dict) -> list[dict]:

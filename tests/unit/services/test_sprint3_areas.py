@@ -242,12 +242,15 @@ async def test_determine_action_vibe_selected_shows_area_cards():
 @pytest.mark.asyncio
 async def test_determine_action_area_selected_returns_stub():
     from app.services.stage_machine import determine_action
-    action, payload = await determine_action(
-        "area_selected",
-        {"destination": "Goa", "selected_area": "vagator"}
-    )
+    from unittest.mock import AsyncMock, patch
+    with patch("app.services.stage_machine.fetch_place_cards", new_callable=AsyncMock, return_value=[]):
+        action, payload = await determine_action(
+            "area_selected",
+            {"destination": "Goa", "selected_area": "vagator"}
+        )
     assert action == "show_place_cards"
-    assert payload == {"places": []}
+    assert "categories" in payload
+    assert payload["pending_activities"] == {}
 
 
 # ── intent.py area_selected card action ──────────────────────────────────────

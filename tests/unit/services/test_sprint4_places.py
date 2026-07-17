@@ -325,16 +325,21 @@ async def test_determine_action_area_selected_calls_fetch_place_cards():
     with patch("app.services.stage_machine.fetch_place_cards", new_callable=AsyncMock, return_value=categories):
         action, payload = await determine_action("area_selected", state)
     assert action == "show_place_cards"
-    assert payload == {"categories": categories}
+    assert payload["categories"] == categories
+    assert payload["pending_activities"] == {}
 
 
 @pytest.mark.asyncio
 async def test_determine_action_place_selected_returns_stub():
-    """determine_action for place_selected returns show_activity_options stub."""
+    """determine_action for place_selected returns show_activity_options with place info."""
     from app.services.stage_machine import determine_action
-    action, payload = await determine_action("place_selected", {})
+    mock_activities = [{"id": "explore_on_foot", "label": "Explore on foot", "duration": "1h", "time": "any", "vibe": "any"}]
+    with patch("app.services.stage_machine.build_activity_options", new_callable=AsyncMock, return_value=mock_activities):
+        action, payload = await determine_action("place_selected", {"selected_place": "chapora_fort"})
     assert action == "show_activity_options"
-    assert payload == {"activities": []}
+    assert "activities" in payload
+    assert "place_id" in payload
+    assert "place_name" in payload
 
 
 @pytest.mark.asyncio
