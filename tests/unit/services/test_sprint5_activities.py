@@ -455,3 +455,166 @@ async def test_determine_action_area_selected_pending_activities_defaults_to_emp
         action, payload = await determine_action("area_selected", state)
     assert action == "show_place_cards"
     assert payload["pending_activities"] == {}
+
+
+# ── Task 4: intent.py card action handlers ────────────────────────────────────
+
+@pytest.mark.asyncio
+async def test_activities_for_place_stores_in_pending_activities():
+    from app.graph.nodes.intent import detect_intent
+    state = {
+        "destination": "Goa",
+        "selected_area": "north_goa",
+        "selected_place": "chapora_fort",
+        "card_action": "activities_for_place",
+        "card_data": {
+            "place_id": "chapora_fort",
+            "activities": ["Sunrise Trek", "Cliff Photography"],
+        },
+        "messages": [],
+    }
+    with patch("app.graph.nodes.intent._stage_determine_action", new_callable=AsyncMock) as mock_action:
+        mock_action.return_value = ("show_place_cards", {"categories": [], "pending_activities": {"chapora_fort": ["Sunrise Trek", "Cliff Photography"]}})
+        result = await detect_intent(state)
+    assert result["pending_activities"]["chapora_fort"] == ["Sunrise Trek", "Cliff Photography"]
+
+
+@pytest.mark.asyncio
+async def test_activities_for_place_clears_selected_place():
+    from app.graph.nodes.intent import detect_intent
+    state = {
+        "destination": "Goa",
+        "selected_area": "north_goa",
+        "selected_place": "chapora_fort",
+        "card_action": "activities_for_place",
+        "card_data": {
+            "place_id": "chapora_fort",
+            "activities": ["Sunrise Trek"],
+        },
+        "messages": [],
+    }
+    with patch("app.graph.nodes.intent._stage_determine_action", new_callable=AsyncMock) as mock_action:
+        mock_action.return_value = ("show_place_cards", {"categories": [], "pending_activities": {}})
+        result = await detect_intent(state)
+    assert result["selected_place"] is None
+
+
+@pytest.mark.asyncio
+async def test_activities_for_place_accumulates_across_places():
+    """Second place's activities are added alongside first place's."""
+    from app.graph.nodes.intent import detect_intent
+    state = {
+        "destination": "Goa",
+        "selected_area": "north_goa",
+        "selected_place": "baga_beach",
+        "pending_activities": {"chapora_fort": ["Sunrise Trek"]},
+        "card_action": "activities_for_place",
+        "card_data": {
+            "place_id": "baga_beach",
+            "activities": ["Sunset Swim", "Beach Volleyball"],
+        },
+        "messages": [],
+    }
+    with patch("app.graph.nodes.intent._stage_determine_action", new_callable=AsyncMock) as mock_action:
+        mock_action.return_value = ("show_place_cards", {"categories": [], "pending_activities": {}})
+        result = await detect_intent(state)
+    assert "chapora_fort" in result["pending_activities"]
+    assert "baga_beach" in result["pending_activities"]
+    assert result["pending_activities"]["baga_beach"] == ["Sunset Swim", "Beach Volleyball"]
+
+
+@pytest.mark.asyncio
+async def test_activities_for_place_routes_to_area_selected():
+    from app.graph.nodes.intent import detect_intent
+    state = {
+        "destination": "Goa",
+        "selected_area": "north_goa",
+        "selected_place": "chapora_fort",
+        "card_action": "activities_for_place",
+        "card_data": {"place_id": "chapora_fort", "activities": ["Sunrise Trek"]},
+        "messages": [],
+    }
+    with patch("app.graph.nodes.intent._stage_determine_action", new_callable=AsyncMock) as mock_action:
+        mock_action.return_value = ("show_place_cards", {"categories": [], "pending_activities": {"chapora_fort": ["Sunrise Trek"]}})
+        result = await detect_intent(state)
+    assert result["conversation_stage"] == "area_selected"
+    assert result["skip_graph"] is True
+    assert result["action"] == "show_place_cards"
+
+
+@pytest.mark.asyncio
+async def test_activities_confirmed_flattens_pending_into_selected():
+    from app.graph.nodes.intent import detect_intent
+    state = {
+        "destination": "Goa",
+        "selected_area": "north_goa",
+        "pending_activities": {
+            "chapora_fort": ["Sunrise Trek", "Cliff Photography"],
+            "baga_beach": ["Sunset Swim"],
+        },
+        "card_action": "activities_confirmed",
+        "card_data": {},
+        "messages": [],
+    }
+    with patch("app.graph.nodes.intent._stage_determine_action", new_callable=AsyncMock) as mock_action:
+        mock_action.return_value = ("show_pace_options", {})
+        result = await detect_intent(state)
+    selected = result["selected_activities"]
+    assert "Sunrise Trek" in selected
+    assert "Cliff Photography" in selected
+    assert "Sunset Swim" in selected
+    assert len(selected) == 3
+
+
+@pytest.mark.asyncio
+async def test_activities_confirmed_clears_pending_activities():
+    """Invariant: pending_activities MUST be {} after activities_confirmed."""
+    from app.graph.nodes.intent import detect_intent
+    state = {
+        "destination": "Goa",
+        "selected_area": "north_goa",
+        "pending_activities": {"chapora_fort": ["Sunrise Trek"]},
+        "card_action": "activities_confirmed",
+        "card_data": {},
+        "messages": [],
+    }
+    with patch("app.graph.nodes.intent._stage_determine_action", new_callable=AsyncMock) as mock_action:
+        mock_action.return_value = ("show_pace_options", {})
+        result = await detect_intent(state)
+    assert result["pending_activities"] == {}
+
+
+@pytest.mark.asyncio
+async def test_activities_confirmed_routes_to_activities_selected():
+    from app.graph.nodes.intent import detect_intent
+    state = {
+        "destination": "Goa",
+        "pending_activities": {"chapora_fort": ["Sunrise Trek"]},
+        "card_action": "activities_confirmed",
+        "card_data": {},
+        "messages": [],
+    }
+    with patch("app.graph.nodes.intent._stage_determine_action", new_callable=AsyncMock) as mock_action:
+        mock_action.return_value = ("show_pace_options", {})
+        result = await detect_intent(state)
+    assert result["conversation_stage"] == "activities_selected"
+    assert result["skip_graph"] is True
+    assert result["action"] == "show_pace_options"
+
+
+@pytest.mark.asyncio
+async def test_activities_confirmed_empty_pending_gives_empty_selected():
+    """Edge case: user hits Done with no activities saved."""
+    from app.graph.nodes.intent import detect_intent
+    state = {
+        "destination": "Goa",
+        "pending_activities": {},
+        "card_action": "activities_confirmed",
+        "card_data": {},
+        "messages": [],
+    }
+    with patch("app.graph.nodes.intent._stage_determine_action", new_callable=AsyncMock) as mock_action:
+        mock_action.return_value = ("show_pace_options", {})
+        result = await detect_intent(state)
+    assert result["selected_activities"] == []
+    assert result["pending_activities"] == {}

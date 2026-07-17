@@ -120,6 +120,36 @@ async def detect_intent(state: GraphState) -> GraphState:
         state["payload"] = payload
         return state
 
+    elif card_action == "activities_for_place":
+        place_id = card_data.get("place_id", "")
+        activities = card_data.get("activities", [])
+        pending = state.get("pending_activities") or {}
+        pending[place_id] = activities
+        state["pending_activities"] = pending
+        state["selected_place"] = None
+        state["card_action"] = None
+        state["skip_graph"] = True
+        stage = resolve_stage(state)
+        state["conversation_stage"] = stage
+        action, payload = await _stage_determine_action(stage, state)
+        state["action"] = action
+        state["payload"] = payload
+        return state
+
+    elif card_action == "activities_confirmed":
+        pending = state.get("pending_activities") or {}
+        state["selected_activities"] = [act for acts in pending.values() for act in acts]
+        state["pending_activities"] = {}                     # MUST clear before resolve_stage
+        state["selected_place"] = None
+        state["card_action"] = None
+        state["skip_graph"] = True
+        stage = resolve_stage(state)
+        state["conversation_stage"] = stage
+        action, payload = await _stage_determine_action(stage, state)
+        state["action"] = action
+        state["payload"] = payload
+        return state
+
     elif card_action == "route_selected":
         state["selected_route_id"] = card_data.get("route_id")
         state["card_action"] = None
