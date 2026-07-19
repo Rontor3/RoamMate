@@ -102,3 +102,69 @@ async def generate_route_arcs(state: dict) -> list[dict]:
         logger.error(f"[day_planner] route_arcs Groq failed: {e} — using defaults")
 
     return default_arcs
+
+
+async def generate_day_plan(state: dict) -> list[dict]:
+    """Generate day-by-day timed itinerary from confirmed activities + route arc + pace."""
+    destination = state.get("destination", "")
+    route_arc: dict = state.get("route_arc") or {}
+    selected_activities: list[str] = state.get("selected_activities") or []
+    selected_pace = state.get("selected_pace", "mix")
+    trip_duration = max(state.get("trip_duration") or 1, 1)
+
+    # Reconstruct full activity objects from Redis cache (Sprint 5 cached activity_options)
+    place_ids = [
+        p.get("id")
+        for cat in (state.get("place_cards") or [])
+        for p in cat.get("places", [])
+        if p.get("id")
+    ]
+    all_cached: list[dict] = []
+    for pid in place_ids:
+        cache_key = f"activity_options:{destination.lower()}:{pid.lower()}"
+        cached = await get_cached(cache_key)
+        if cached:
+            all_cached.extend(cached)
+
+    label_to_obj: dict[str, dict] = {a["label"].lower(): a for a in all_cached}
+    full_activities = [
+        label_to_obj.get(lbl.lower(), {"label": lbl, "duration": "1h", "time": "any", "vibe": "any"})
+        for lbl in selected_activities
+    ]
+
+    acts_per_day = PACE_DENSITY.get(selected_pace, 3)
+    place_order = route_arc.get("place_order") or [
+        p.get("name", p.get("id", ""))
+        for cat in (state.get("place_cards") or [])
+        for p in cat.get("places", [])
+    ]
+
+    prompt = (
+        f"Create a {trip_duration}-day itinerary for {destination}. "
+        f"Place visit order: {place_order}. "
+        f"Pace: {selected_pace} (~{acts_per_day} activities per day). "
+        f"Activities to schedule (with duration and preferred time): {json.dumps(full_activities)}. "
+        f"Rules: "
+        f"1. Schedule morning activities (time='morning') before noon, evening ones after 4pm. "
+        f"2. Spread activities across days — do not put more than {acts_per_day} per day. "
+        f"3. Group activities at the same place on the same day when possible. "
+        f"4. Give each day a short punchy title based on the places visited. "
+        f"5. Add a one-sentence 'note' per day (e.g. arrival tip, pace note). "
+        f"Return a JSON array of day objects. Each day: "
+        f"day (int), title (str), activities (list of {{time, activity, place, duration}}), note (str). "
+        f"Return only valid JSON, no explanation."
+    )
+
+    try:
+        parsed = await _groq_post(prompt, max_tokens=800)
+        if isinstance(parsed, list) and parsed:
+            logger.info(f"[day_planner] day_plan ✓ {len(parsed)} days for {destination}")
+            return parsed
+    except Exception as e:
+        logger.error(f"[day_planner] day_plan Groq failed: {e} — distributing evenly")
+
+    chunks = [selected_activities[i::trip_duration] for i in range(trip_duration)]
+    return [
+        {"day": i + 1, "title": f"Day {i + 1}", "activities": [{"activity": a} for a in chunk], "note": ""}
+        for i, chunk in enumerate(chunks)
+    ]

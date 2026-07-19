@@ -179,3 +179,94 @@ async def test_generate_route_arcs_fallback_uses_all_place_cards_when_selected_p
         result = await generate_route_arcs(state)
     assert result[0]["place_order"] == ["Chapora Fort", "Baga Beach"]
     assert result[1]["place_order"] == ["Baga Beach", "Chapora Fort"]
+
+
+# ── Task 3: generate_day_plan ─────────────────────────────────────────────────
+
+_PLAN_STATE = {
+    "destination": "Goa",
+    "route_arc": {"place_order": ["Chapora Fort"]},
+    "selected_activities": ["Sunrise Trek", "Sunset Picnic"],
+    "selected_pace": "mix",
+    "trip_duration": 3,
+    "place_cards": [],
+    "travel_intent": None,
+}
+
+_GROQ_PLAN = json.dumps([
+    {"day": 1, "title": "Fort Day", "activities": [{"time": "7:00 AM", "activity": "Sunrise Trek", "place": "Chapora Fort", "duration": "2h"}], "note": "Start early."},
+    {"day": 2, "title": "Chill Day", "activities": [{"time": "5:00 PM", "activity": "Sunset Picnic", "place": "Chapora Fort", "duration": "1h"}], "note": "Easy day."},
+    {"day": 3, "title": "Wrap Up", "activities": [], "note": "Check out."},
+])
+
+
+@pytest.mark.asyncio
+async def test_generate_day_plan_returns_groq_plan():
+    from app.services.day_planner import generate_day_plan
+    with patch("app.services.day_planner.get_cached", new_callable=AsyncMock, return_value=None), \
+         patch("app.services.day_planner.aiohttp.ClientSession", _make_session_mock(_GROQ_PLAN)):
+        result = await generate_day_plan(_PLAN_STATE)
+    assert isinstance(result, list) and len(result) > 0
+    assert result[0]["day"] == 1
+    assert "activities" in result[0]
+    assert "note" in result[0]
+
+
+@pytest.mark.asyncio
+async def test_generate_day_plan_fallback_distributes_evenly():
+    from app.services.day_planner import generate_day_plan
+    state = {**_PLAN_STATE, "selected_activities": ["A", "B", "C"], "trip_duration": 3}
+    bad_session = MagicMock()
+    bad_session.__aenter__ = AsyncMock(side_effect=Exception("Groq down"))
+    bad_session.__aexit__ = AsyncMock(return_value=False)
+    with patch("app.services.day_planner.get_cached", new_callable=AsyncMock, return_value=None), \
+         patch("app.services.day_planner.aiohttp.ClientSession", MagicMock(return_value=bad_session)):
+        result = await generate_day_plan(state)
+    assert len(result) == 3
+    assert all("day" in d and "activities" in d for d in result)
+
+
+@pytest.mark.asyncio
+async def test_generate_day_plan_uses_cached_activity_objects():
+    """Redis-cached full activity objects (with duration/time/vibe) are sent to Groq."""
+    from app.services.day_planner import generate_day_plan
+    cached_activities = [{"id": "sunrise_trek", "label": "Sunrise Trek", "duration": "2h", "time": "morning", "vibe": "adventure"}]
+    state = {
+        **_PLAN_STATE,
+        "place_cards": [{"category": "Forts", "places": [{"id": "chapora_fort"}]}],
+    }
+    captured = []
+
+    def fake_post(url, headers=None, json=None, **kwargs):
+        captured.append(json["messages"][0]["content"])
+        resp = AsyncMock()
+        resp.__aenter__ = AsyncMock(return_value=resp)
+        resp.__aexit__ = AsyncMock(return_value=False)
+        resp.json = AsyncMock(return_value={"choices": [{"message": {"content": _GROQ_PLAN}}]})
+        return resp
+
+    session = MagicMock()
+    session.__aenter__ = AsyncMock(return_value=session)
+    session.__aexit__ = AsyncMock(return_value=False)
+    session.post = MagicMock(side_effect=fake_post)
+
+    with patch("app.services.day_planner.get_cached", new_callable=AsyncMock, return_value=cached_activities), \
+         patch("app.services.day_planner.aiohttp.ClientSession", MagicMock(return_value=session)):
+        await generate_day_plan(state)
+
+    assert captured, "Groq was never called"
+    assert "morning" in captured[0]  # duration/time from cached objects reached the prompt
+
+
+@pytest.mark.asyncio
+async def test_generate_day_plan_trip_duration_zero_defaults_to_one():
+    from app.services.day_planner import generate_day_plan
+    state = {**_PLAN_STATE, "trip_duration": 0, "selected_activities": ["A"]}
+    bad_session = MagicMock()
+    bad_session.__aenter__ = AsyncMock(side_effect=Exception("Groq down"))
+    bad_session.__aexit__ = AsyncMock(return_value=False)
+    with patch("app.services.day_planner.get_cached", new_callable=AsyncMock, return_value=None), \
+         patch("app.services.day_planner.aiohttp.ClientSession", MagicMock(return_value=bad_session)):
+        result = await generate_day_plan(state)
+    assert len(result) == 1  # trip_duration defaults to 1
+    assert result[0]["day"] == 1
