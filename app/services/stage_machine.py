@@ -836,15 +836,15 @@ async def fetch_area_cards(state: dict) -> list[dict]:
 
 
 async def build_route_arcs(state: dict) -> list[dict]:
-    """Sprint 6: geographic journey arc generation."""
-    return []
+    from app.services.day_planner import generate_route_arcs
+    return await generate_route_arcs(state)
 
 
 async def build_day_plan(state: dict) -> list[dict]:
-    """Sprint 6: day-by-day plan generation from route arc + activities + pace."""
-    return []
+    from app.services.day_planner import generate_day_plan
+    return await generate_day_plan(state)
 
 
 async def build_destination_brief(state: dict) -> dict:
-    """Sprint 6: weather + events + permits + local language tips."""
-    return {}
+    from app.services.day_planner import generate_destination_brief
+    return await generate_destination_brief(state)
