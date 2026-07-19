@@ -270,3 +270,65 @@ async def test_generate_day_plan_trip_duration_zero_defaults_to_one():
         result = await generate_day_plan(state)
     assert len(result) == 1  # trip_duration defaults to 1
     assert result[0]["day"] == 1
+
+
+# ── Task 4: generate_destination_brief ───────────────────────────────────────
+
+_BRIEF_STATE = {
+    "destination": "Goa",
+    "experience_types": ["beach_coast"],
+    "trip_who": "solo",
+    "travel_intent": None,
+}
+
+_GROQ_BRIEF = json.dumps({
+    "weather": "Hot & humid, 30-34°C. Carry a rain layer.",
+    "language_tip": "Konkani locally; English widely spoken at tourist spots.",
+    "lingo": [
+        "Dev borem korum — greet locals, means God bless you",
+        "Kitlem zaata? — how much? — use when bargaining",
+        "Susegad — slow down and enjoy",
+    ],
+    "transport": "Rent a scooter for ₹300-400/day.",
+    "local_events": "None currently known",
+    "permits": "None required",
+    "safety": "Swim only at flagged beaches — riptides common elsewhere.",
+    "currency": "Beach shacks are cash-only. ATMs in Calangute.",
+})
+
+
+@pytest.mark.asyncio
+async def test_generate_destination_brief_returns_all_keys():
+    from app.services.day_planner import generate_destination_brief
+    with patch("app.services.day_planner.tavily_search", new_callable=AsyncMock, return_value=[]), \
+         patch("app.services.day_planner.aiohttp.ClientSession", _make_session_mock(_GROQ_BRIEF)):
+        result = await generate_destination_brief(_BRIEF_STATE)
+    assert "weather" in result
+    assert "language_tip" in result
+    assert "lingo" in result
+    assert isinstance(result["lingo"], list) and len(result["lingo"]) >= 3
+    assert "transport" in result
+    assert "safety" in result
+
+
+@pytest.mark.asyncio
+async def test_generate_destination_brief_fallback_on_groq_failure():
+    from app.services.day_planner import generate_destination_brief
+    bad_session = MagicMock()
+    bad_session.__aenter__ = AsyncMock(side_effect=Exception("Groq down"))
+    bad_session.__aexit__ = AsyncMock(return_value=False)
+    with patch("app.services.day_planner.tavily_search", new_callable=AsyncMock, return_value=[]), \
+         patch("app.services.day_planner.aiohttp.ClientSession", MagicMock(return_value=bad_session)):
+        result = await generate_destination_brief(_BRIEF_STATE)
+    assert result["destination"] == "Goa"
+    assert "note" in result
+
+
+@pytest.mark.asyncio
+async def test_generate_destination_brief_proceeds_when_tavily_fails():
+    """Tavily error does not raise — Groq uses own knowledge, brief is still returned."""
+    from app.services.day_planner import generate_destination_brief
+    with patch("app.services.day_planner.tavily_search", new_callable=AsyncMock, side_effect=Exception("Tavily down")), \
+         patch("app.services.day_planner.aiohttp.ClientSession", _make_session_mock(_GROQ_BRIEF)):
+        result = await generate_destination_brief(_BRIEF_STATE)
+    assert "weather" in result  # brief still returned via Groq

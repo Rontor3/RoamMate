@@ -168,3 +168,49 @@ async def generate_day_plan(state: dict) -> list[dict]:
         {"day": i + 1, "title": f"Day {i + 1}", "activities": [{"activity": a} for a in chunk], "note": ""}
         for i, chunk in enumerate(chunks)
     ]
+
+
+async def generate_destination_brief(state: dict) -> dict:
+    """Generate destination intel via parallel Tavily searches + Groq synthesis."""
+    destination = state.get("destination", "")
+    experience_types: list[str] = state.get("experience_types") or []
+    trip_who = state.get("trip_who")
+
+    month = datetime.now().strftime("%B")
+    results = await asyncio.gather(
+        tavily_search(f"{destination} travel tips weather permits {month}"),
+        tavily_search(f"{destination} local events things to know for tourists"),
+        return_exceptions=True,
+    )
+    snippets = ""
+    for r in results:
+        if isinstance(r, list):
+            snippets += " ".join(item.get("content", "")[:300] for item in r[:4])
+
+    context_line = f"Context from recent travel sources: {snippets[:2000]}" if snippets else ""
+    prompt = (
+        f"You are a local travel expert for {destination}. "
+        f"Group: {trip_who or 'solo'}. Experience: {', '.join(experience_types) or 'general'}. "
+        f"{context_line} "
+        f"Generate a destination brief with these exact keys: "
+        f"weather (current conditions + what to pack), "
+        f"language_tip (dominant language + how English is used), "
+        f"lingo (list of 3-5 practical phrases — greetings, honorifics like uncle/aunty equivalents, "
+        f"bargaining words — format each as: 'phrase — when/how to use it'), "
+        f"transport (best way to get around), "
+        f"local_events (any notable events or festivals happening soon, or 'None currently known'), "
+        f"permits (entry fees or permits required for selected places, or 'None required'), "
+        f"safety (1 practical safety tip), "
+        f"currency (cash vs card situation). "
+        f"Return only valid JSON, no explanation."
+    )
+
+    try:
+        parsed = await _groq_post(prompt, max_tokens=600)
+        if isinstance(parsed, dict):
+            logger.info(f"[day_planner] destination_brief ✓ for {destination}")
+            return parsed
+    except Exception as e:
+        logger.error(f"[day_planner] destination_brief Groq failed: {e}")
+
+    return {"destination": destination, "note": "Destination intel unavailable — check local sources on arrival."}
