@@ -17,6 +17,9 @@ Already in place from Sprints 1–5:
 - `selected_activities: List[str]` — activity labels confirmed by user (labels only, not full objects)
 - `pending_activities: Dict[str, List[str]]` — cleared after `activities_confirmed`; mapping of `{place_id: [labels]}` is gone
 - `place_cards: List[Dict]` in state — has place IDs for Redis lookups
+
+**New state field added in Sprint 6:**
+- `selected_places: List[str]` — place IDs the user actually selected (not all place cards). Set by `activities_confirmed` before clearing `pending_activities`. Without this, `generate_route_arcs` would see all place cards instead of only the user's chosen places.
 - `activity_options:{destination}:{place_id}` in Redis (TTL 21600) — full activity objects `{id, label, duration, time, vibe}` from Sprint 5
 - `selected_pace: "slow" | "mix" | "power"` — activity density signal
 - `trip_duration: int` — number of days
@@ -62,7 +65,19 @@ async def build_destination_brief(state: dict) -> dict:
 
 ### `generate_route_arcs(state: dict) -> list[dict]`
 
-**Reads from state:** `destination`, `selected_area`, `place_cards`, `experience_types`, `trip_who`
+**Reads from state:** `destination`, `selected_area`, `place_cards`, `selected_places`, `experience_types`, `trip_who`
+
+**Place name resolution:** Filter `place_cards` by `selected_places` IDs to get only the user's chosen places:
+```python
+selected_ids = set(state.get("selected_places") or [])
+place_names = [
+    p.get("name", p.get("id", ""))
+    for cat in (state.get("place_cards") or [])
+    for p in cat.get("places", [])
+    if not selected_ids or p.get("id") in selected_ids
+]
+```
+If `selected_places` is empty (edge case), fall back to all place cards.
 
 **Groq call:** single call, `max_tokens=400`
 
@@ -310,7 +325,32 @@ Each intermediate step also asserts `data["action"]` matches expected stage acti
 
 ---
 
-## 6. `trip_duration_set` Card Action Handler
+## 6. `activities_confirmed` Handler — `selected_places` Fix
+
+The existing `activities_confirmed` handler in `intent.py` clears `pending_activities` without saving the place IDs. Sprint 6 adds `selected_places` extraction before the clear:
+
+```python
+elif card_action == "activities_confirmed":
+    pending = dict(state.get("pending_activities") or {})
+    state["selected_places"] = list(pending.keys())          # NEW — save before clearing
+    state["selected_activities"] = [act for acts in pending.values() for act in acts]
+    state["pending_activities"] = {}
+    state["selected_place"] = None
+    state["card_action"] = None
+    state["skip_graph"] = True
+    stage = resolve_stage(state)
+    state["conversation_stage"] = stage
+    action, payload = await _stage_determine_action(stage, state)
+    state["action"] = action
+    state["payload"] = payload
+    return state
+```
+
+`generate_route_arcs` uses `selected_places` to filter `place_cards` to only the user's chosen places before asking Groq to generate arcs.
+
+---
+
+## 7. `trip_duration_set` Card Action Handler
 
 The `duration_pending` stage fires when `places_shown=True` and `trip_duration` is not yet set — the frontend shows a duration picker and sends back the number of days. No handler exists yet. Sprint 6 adds it to `intent.py`:
 
@@ -333,13 +373,15 @@ The integration test uses `card_action="trip_duration_set"` with `{"days": 3}` f
 
 ---
 
-## 7. Files Changed in Sprint 6
+## 8. Files Changed in Sprint 6
 
 | File | Change |
 |------|--------|
+| `app/graph/state.py` | Add `selected_places: List[str]` field |
 | `app/services/day_planner.py` | **New** — `generate_route_arcs`, `generate_day_plan`, `generate_destination_brief`, fallback constants |
 | `app/services/stage_machine.py` | Replace 3 stubs with bridge functions that import from `day_planner.py` |
-| `app/graph/nodes/intent.py` | Add `trip_duration_set` card action handler |
+| `app/graph/nodes/intent.py` | Update `activities_confirmed` to save `selected_places`; add `trip_duration_set` handler |
+| `app/graph/nodes/responder.py` | Persist `selected_places` |
 | `tests/unit/services/test_sprint6_day_plan.py` | **New** — unit tests for all three functions + `trip_duration_set` handler |
 | `tests/integration/test_pipeline.py` | **New** — full pipeline integration test |
 
@@ -354,7 +396,8 @@ The integration test uses `card_action="trip_duration_set"` with `{"days": 3}` f
 | Groq fails in `generate_destination_brief` | Return `{"destination": dest, "note": "intel unavailable"}` |
 | Tavily unavailable in brief | Skip snippets, Groq uses its own knowledge; no error |
 | Redis cold (activity_options cache miss) | Use synthetic `{"label": label, "duration": "1h", "time": "any", "vibe": "any"}` per activity |
-| `route_arc` missing `place_order` | Fall back to place names from `place_cards` in original order |
+| `route_arc` missing `place_order` | Fall back to place names from `selected_places`/`place_cards` in original order |
+| `selected_places` empty | Fall back to all place cards (edge case: user skipped activity loop) |
 | `trip_duration` is 0 or missing | Default to 1 day |
 
 ---
