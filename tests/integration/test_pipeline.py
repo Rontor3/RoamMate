@@ -123,6 +123,7 @@ def _cycling_groq_post(responses: list):
         call_state[0] += 1
         return result
 
+    fake_groq_post.call_count = call_state
     return fake_groq_post
 
 
@@ -145,6 +146,7 @@ async def test_full_pipeline_to_day_planner():
     #   call 4: Step 9 responder      → build_day_plan            → needs _PLAN
     #   call 5: Step 9 responder      → build_destination_brief   → needs _BRIEF
     groq_post_mock = _cycling_groq_post([_ARCS, _ARCS, _PLAN, _BRIEF, _PLAN, _BRIEF])
+    _groq_call_counter = groq_post_mock.call_count
 
     # Mock _build_activity_options_for_place directly in stage_machine to avoid
     # patching aiohttp twice (all modules share the same aiohttp module object;
@@ -243,3 +245,9 @@ async def test_full_pipeline_to_day_planner():
             assert "weather" in brief
             assert "lingo" in brief
             assert isinstance(brief["lingo"], list) and len(brief["lingo"]) >= 3
+
+            # Verify cycling mock consumed exactly the expected calls (2 for pace_selected + 4 for route_arc_selected)
+            assert _groq_call_counter[0] == 6, (
+                f"Expected 6 _groq_post calls (double-invocation of determine_action × 3 Groq steps) "
+                f"but got {_groq_call_counter[0]}. If this changes, update the cycling sequence."
+            )
