@@ -14,23 +14,36 @@ A small backend change accompanies this sprint: area selection becomes multi-sel
 
 ## Design Tokens
 
-All components use existing RoamMate tokens verbatim — no new values introduced:
+Base dark tokens (page shell, activity card container, sidebar):
 
 | Token | Value | Usage |
 |---|---|---|
 | `bg` | `#0F0F0D` | Page background |
-| `surface` | `#161614` | Card backgrounds |
-| `raised` | `#1E1E1A` | Row hover, badge backgrounds |
-| `border` | `#2A2A26` | Card borders, dividers |
-| `text` | `#F0EFE8` | Primary text |
-| `muted` | `#8A8A80` | Secondary text, eyebrows |
-| `accent` | `#03C03C` | Selected state, CTA buttons, arc headers |
+| `surface` | `#161614` | Activity card container background |
+| `border` | `#2A2A26` | Activity card border, ghost button border |
+| `text` | `#F0EFE8` | Light text on dark surfaces |
+| `muted` | `#8A8A80` | Eyebrows, secondary text on dark surfaces |
 
-**Typography:** `var(--font-neuton)` for titles/names; `var(--font-dm-sans)` for all body, labels, buttons.
+**Earthy card palette** — assigned by index (0–5), cycling for longer lists:
+
+| Index | Name | Hex | Used on |
+|---|---|---|---|
+| 0 | Coral | `#E07A5F` | Area card 1, activity row 1, arc card 1 |
+| 1 | Warm steel | `#7898B0` | Area card 2, activity row 2, arc card 2 |
+| 2 | Gold | `#D4A845` | Area card 3, activity row 3, arc card 3 |
+| 3 | Brick red | `#C85050` | Area card 4, activity row 4 |
+| 4 | Sage | `#8EAB82` | Activity row 5+ |
+| 5 | Blush | `#D490AA` | Activity row 6+ |
+
+**Filled card style** — all area cards, activity rows, and arc cards use their earthy color as `background`. Text on colored backgrounds is always `#0F0F0D` (near-black). Secondary/muted text uses `rgba(0,0,0,0.55)`. Tags use `rgba(0,0,0,0.12)` background with `rgba(0,0,0,0.55)` text. Borders use `rgba(0,0,0,0.12)`.
+
+**Typography:** `var(--font-neuton)` for titles/names (18px 700); `var(--font-dm-sans)` for all body, labels, buttons.
 
 **Animation:** `ease-out-expo` `cubic-bezier(0.16, 1, 0.3, 1)` at 0.42s with staggered `animationDelay` per card (0.06s increments). Replaces the existing `cardEntrance` bounce easing throughout the new components.
 
-**Layout:** All layout via inline `style={}` objects, matching the existing codebase convention. No Tailwind utility classes in new card components.
+**Sizing:** Cards use `borderRadius: 16`, `padding: 18px`. Area cards have `minHeight: 148px` with flex-column layout so tags pin to the bottom. Activity rows use `borderRadius: 12`, `padding: 13px 14px`. Arc card header padding `16px 18px 13px`, body `13px 18px 16px`.
+
+**Layout:** All layout via inline `style={}` objects. No Tailwind utility classes in new card components. Chat column max-width 680px matches existing page layout.
 
 ---
 
@@ -86,14 +99,16 @@ areas: Array<{
 - On confirm: fires `cardAction("areas_selected", { area_ids: string[] })`
 
 **Visual spec (per card):**
-- `borderRadius: 13`, `padding: 13`, `background: #161614`
-- Selected state: `border: 1.5px solid #03C03C`, `background: #0d1f0f`
-- Top-right circular checkbox: empty border unselected, `#03C03C` fill + ✓ selected
-- Right-edge 3px accent bar `#03C03C`, `opacity: 0` → `1` on selection
-- Zone eyebrow: 9px DM Sans uppercase muted
-- Area name: Neuton 15px 700
-- Teaser: DM Sans 10.5px muted, `lineHeight: 1.45`
-- Tags row: chips with `background: #1E1E1A`, `border: 1px solid #2A2A26`, 9px text, `borderRadius: 20`
+- `borderRadius: 16`, `padding: 18px`, `minHeight: 148px`, flex-column with `justifyContent: space-between`
+- `background`: earthy palette color by index (see palette table above)
+- `border: 1.5px solid rgba(0,0,0,0.12)`
+- Top-right circular checkbox (20px): `border: 1.5px solid rgba(0,0,0,0.22)`, filled + ✓ on selection
+- Selected state: checkbox fills `rgba(0,0,0,0.18)`, border removed
+- Zone eyebrow: 9px DM Sans uppercase `rgba(0,0,0,0.45)`
+- Area name: Neuton 18px 700, `color: #0F0F0D`
+- Teaser: DM Sans 11.5px `rgba(0,0,0,0.62)`, `lineHeight: 1.5`, `flex: 1`
+- Tags row pinned to bottom: chips `background: rgba(0,0,0,0.12)`, `color: rgba(0,0,0,0.55)`, 9.5px, `borderRadius: 20`, `padding: 3px 9px`
+- Confirm button: `background` of index-0 color (Coral), `color: #0F0F0D`, `borderRadius: 20`, `padding: 12px 0`, 13px 700
 - Animation: `cardIn` keyframe, `ease-out-expo`, 0.42s, stagger 0.06s per card
 
 ---
@@ -125,19 +140,18 @@ place_name: string
 - Both buttons always visible; "Add to my trip →" disabled when nothing selected.
 
 **Visual spec:**
-- Outer card: `background: #161614`, `border: 1.5px solid #2A2A26`, `borderRadius: 13`, `padding: 14`
-- Header: eyebrow "Pick activities" (9px DM Sans uppercase muted) + place name (Neuton 16px 700)
-- Each row: `display: flex`, `alignItems: center`, `gap: 10`, `padding: 9px 0`, `borderBottom: 1px solid #1E1E1A`
-  - Toggle circle: 18px, empty border / `#03C03C` fill + ✓ when selected
-  - Label: DM Sans 12.5px, `flex: 1`
-  - Duration pill: `background: #1E1E1A`, 9.5px muted text, `borderRadius: 20`, `padding: 2px 8px`
-  - Time badge colour by slot:
-    - `morning` → `background: #2a1f00`, `color: #f5a623`
-    - `afternoon` → `background: #001a2a`, `color: #5bb8f5`
-    - `evening` → `background: #1a0028`, `color: #c084fc`
-- Buttons: `marginTop: 14`, `flexDirection: column`, `gap: 8`
-  - "Add to my trip →": `background: #03C03C`, `color: #0F0F0D`, `borderRadius: 20`, `padding: 10px 0`, DM Sans 12px 700. `opacity: 0.4` + `pointerEvents: none` when nothing selected.
-  - "Done — finalise plan": transparent bg, `border: 1.5px solid #2A2A26`, `borderRadius: 20`, `padding: 9px 0`, DM Sans 12px 600, `color: #F0EFE8`
+- Outer card: `background: #161614`, `border: 1.5px solid #2A2A26`, `borderRadius: 16`, `padding: 18`
+- Header: eyebrow "Pick activities" (9px DM Sans uppercase `#8A8A80`) + place name (Neuton 18px 700, `color: #F0EFE8`)
+- Each activity row: `display: flex`, `alignItems: center`, `gap: 12`, `borderRadius: 12`, `padding: 13px 14px`, `minHeight: 48px`
+  - `background`: earthy palette color by row index (0 = Coral, 1 = Warm steel, 2 = Gold, etc.)
+  - `border: 1.5px solid rgba(0,0,0,0.1)`
+  - Toggle circle (20px): `border: 1.5px solid rgba(0,0,0,0.22)` unselected; `background: rgba(0,0,0,0.18)` + ✓ selected
+  - Label: DM Sans 13px 500, `color: #0F0F0D`, `flex: 1`
+  - Meta group (right): duration pill + time badge, both `background: rgba(0,0,0,0.12)`, `color: rgba(0,0,0,0.55)`, `borderRadius: 20`, `padding: 3px 9px`
+- Rows stacked with `gap: 10` (not border-separated)
+- Buttons: `marginTop: 16`, `flexDirection: column`, `gap: 9`
+  - "Add to my trip →": `background` of index-0 row color (Coral `#E07A5F`), `color: #0F0F0D`, `borderRadius: 20`, `padding: 12px 0`, DM Sans 13px 700. `opacity: 0.4` + `pointerEvents: none` when nothing selected.
+  - "Done — finalise plan": transparent bg, `border: 1.5px solid #2A2A26`, `borderRadius: 20`, `padding: 11px 0`, DM Sans 13px 600, `color: #F0EFE8`
 
 ---
 
@@ -163,16 +177,15 @@ arcs: Array<{
 - No confirm button — selection is instant
 
 **Visual spec (per card):**
-- Outer wrapper: `background: #161614`, `border: 1.5px solid #2A2A26`, `borderRadius: 13`, `overflow: hidden`, `marginBottom: 10`
-- Hover: `borderColor: #03C03C44`
-- Header band: `background: #03C03C18`, `borderBottom: 1px solid #03C03C22`, `padding: 11px 13px 9px`
-  - Arc label: Neuton 16px 800
-- Body: `padding: 10px 13px 12px`
-  - Description: DM Sans 11px muted, `lineHeight: 1.4`, `marginBottom: 10`
-  - Place flow: `display: flex`, `flexWrap: wrap`, `gap: 4`, `alignItems: center`
-    - Stop chip: `background: #1E1E1A`, `border: 1px solid #2A2A26`, `borderRadius: 20`, `padding: 3px 9px`, 10px text
-    - Arrow: `color: #03C03C`, 10px
-- Animation: `cardIn` keyframe, `ease-out-expo`, stagger 0.08s per card
+- Outer wrapper: `background` of earthy palette color by index, `border: 1.5px solid rgba(0,0,0,0.12)`, `borderRadius: 16`, `overflow: hidden`, `marginBottom: 12`
+- Header: `padding: 16px 18px 13px`, `borderBottom: 1px solid rgba(0,0,0,0.1)`
+  - Arc label: Neuton 18px 800, `color: #0F0F0D`
+- Body: `padding: 13px 18px 16px`
+  - Description: DM Sans 12px `rgba(0,0,0,0.58)`, `lineHeight: 1.5`, `marginBottom: 12`
+  - Place flow: `display: flex`, `flexWrap: wrap`, `gap: 6`, `alignItems: center`
+    - Stop chip: `background: rgba(0,0,0,0.12)`, `color: rgba(0,0,0,0.65)`, `borderRadius: 20`, `padding: 4px 11px`, 10.5px text
+    - Arrow: `color: rgba(0,0,0,0.35)`, 11px
+- Animation: `cardIn` keyframe, `ease-out-expo`, stagger 0.06s per card
 
 ---
 
