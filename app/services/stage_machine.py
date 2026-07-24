@@ -277,29 +277,52 @@ async def fetch_place_cards(state: dict, area_id: str | None = None) -> list[dic
             pass
         return []
 
-    # Step 4 — Hook generation (one batch Groq call)
+    # Step 4 — Hook + vibe generation (one batch Groq call)
     all_ids = [p["id"] for cat in categories_with_places for p in cat["places"]]
     all_names = [p["name"] for cat in categories_with_places for p in cat["places"]]
+    vibe_desc = ", ".join(selected_vibe_ids) if selected_vibe_ids else "general travel"
     hook_prompt = (
-        f"Write a punchy one-liner hook (under 15 words) for each place in {area_name}, {destination}. "
-        f"Return a JSON object mapping place_id to hook string. "
+        f"You are a travel expert. For each place in {area_name}, {destination}, "
+        f"the traveller's vibe preference is: {vibe_desc}. "
+        f"Return a JSON object mapping place_id to an object with: "
+        f'"hook" (punchy one-liner under 15 words), '
+        f'"vibe_id" (one of: adv=adventure/outdoor, loc=local food/culture/nightlife, '
+        f'spt=spiritual/wellness/nature, hid=hidden gem/offbeat), '
+        f'"vibe_hint" (3-4 comma-separated activities this place is best for, '
+        f"matching the traveller's vibe, lowercase, no trailing punctuation). "
         f"Places: {json.dumps(dict(zip(all_ids, all_names)))}. "
         f"Return only valid JSON."
     )
-    hooks_raw = await _groq_json(hook_prompt, max_tokens=800)
-    hooks: dict[str, str] = hooks_raw if isinstance(hooks_raw, dict) else {}
+    hooks_raw = await _groq_json(hook_prompt, max_tokens=1200)
+    hooks: dict = hooks_raw if isinstance(hooks_raw, dict) else {}
 
     categories_out = []
     for cat in categories_with_places:
-        places_out = [
-            {
+        places_out = []
+        for p in cat["places"]:
+            raw = hooks.get(p["id"])
+            if isinstance(raw, dict):
+                hook_str = raw.get("hook") or f"A great spot in {area_name}"
+                vibe_id = raw.get("vibe_id", "adv")
+                vibe_hint = raw.get("vibe_hint", "")
+            elif isinstance(raw, str):
+                # backwards compat: Groq returned old flat string format
+                hook_str = raw
+                vibe_id = "adv"
+                vibe_hint = ""
+            else:
+                hook_str = f"A great spot in {area_name}"
+                vibe_id = "adv"
+                vibe_hint = ""
+            places_out.append({
                 "id": p["id"],
                 "name": p["name"],
-                "hook": hooks.get(p["id"]) or f"A great spot in {area_name}",
+                "hook": hook_str,
                 "photo_url": p["photo_url"],
-            }
-            for p in cat["places"]
-        ]
+                "vibe_id": vibe_id,
+                "vibe_hint": vibe_hint,
+                "area": area_name,
+            })
         categories_out.append({"label": cat["label"], "places": places_out})
 
     state["place_cards"] = categories_out
