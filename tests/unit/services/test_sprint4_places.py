@@ -185,7 +185,7 @@ async def test_fetch_place_cards_returns_categories():
     intent = TravelIntent(destination=Destination(city="Goa"))
     state = {
         "destination": "Goa",
-        "selected_area": "vagator",
+        "selected_areas": ["vagator"],
         "experience_types": ["beach_coast"],
         "selected_vibe_ids": [],
         "travel_intent": intent,
@@ -220,7 +220,7 @@ async def test_fetch_place_cards_uses_cache_on_hit():
     from app.services.stage_machine import fetch_place_cards
     cached = [{"label": "Beaches", "places": [{"id": "x", "name": "X", "hook": "hook", "photo_url": None}]}]
     state = {
-        "destination": "Goa", "selected_area": "vagator",
+        "destination": "Goa", "selected_areas": ["vagator"],
         "experience_types": [], "selected_vibe_ids": [],
         "travel_intent": None, "reddit_signals": {}, "blog_signals": {},
         "area_cards": [],
@@ -240,7 +240,7 @@ async def test_fetch_place_cards_falls_back_to_defaults_on_groq_failure():
     from app.models import TravelIntent, Destination
     intent = TravelIntent(destination=Destination(city="Goa"))
     state = {
-        "destination": "Goa", "selected_area": "vagator",
+        "destination": "Goa", "selected_areas": ["vagator"],
         "experience_types": [], "selected_vibe_ids": [],
         "travel_intent": intent, "reddit_signals": {}, "blog_signals": {},
         "area_cards": [{"id": "vagator", "name": "Vagator"}],
@@ -280,12 +280,12 @@ async def test_prefetch_area_reddit_stores_signals():
 
 # ── Task 4: resolve_stage + determine_action + intent handler ─────────────────
 
-def test_resolve_stage_selected_place_wins_over_selected_area():
-    """selected_place takes priority over selected_area in resolve_stage."""
+def test_resolve_stage_selected_place_wins_over_selected_areas():
+    """selected_place takes priority over selected_areas in resolve_stage."""
     from app.services.stage_machine import resolve_stage
     state = {
         "destination": "Goa",
-        "selected_area": "vagator",
+        "selected_areas": ["vagator"],
         "selected_place": "chapora_fort",
         "vibes_confirmed": True,
     }
@@ -297,7 +297,7 @@ def test_resolve_stage_selected_place_wins_over_places_shown():
     from app.services.stage_machine import resolve_stage
     state = {
         "destination": "Goa",
-        "selected_area": "vagator",
+        "selected_areas": ["vagator"],
         "places_shown": True,
         "selected_place": "beach",
     }
@@ -349,7 +349,7 @@ async def test_detect_intent_place_selected_sets_state():
     from app.graph.state import GraphState
     state: GraphState = {
         "destination": "Goa",
-        "selected_area": "vagator",
+        "selected_areas": ["vagator"],
         "card_action": "place_selected",
         "card_data": {"place_id": "chapora_fort"},
         "messages": [],

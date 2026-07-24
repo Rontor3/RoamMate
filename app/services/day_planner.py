@@ -53,7 +53,7 @@ async def _groq_post(prompt: str, max_tokens: int) -> Any:
 async def generate_route_arcs(state: dict) -> list[dict]:
     """Generate 2–3 geographic route arc options for the user's selected places."""
     destination = state.get("destination", "")
-    selected_area = state.get("selected_area", "")
+    selected_area = (state.get("selected_areas") or [""])[0]
     experience_types: list[str] = state.get("experience_types") or []
     trip_who = state.get("trip_who")
     trip_duration = max(state.get("trip_duration") or 1, 1)
