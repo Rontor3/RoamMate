@@ -56,6 +56,10 @@ async def test_determine_action_areas_selected_calls_fetch_per_area():
 
     assert call_count == 2
     assert action == "show_place_cards"
+    # state["place_cards"] must keep the categorized shape
+    assert all("places" in cat for cat in state["place_cards"]), \
+        "state['place_cards'] must be a list of category dicts with a 'places' key"
+    # payload["places"] is the flat list for the frontend
     assert len(payload["places"]) == 2
     place_ids = {p["id"] for p in payload["places"]}
     assert place_ids == {"baga", "palolem"}

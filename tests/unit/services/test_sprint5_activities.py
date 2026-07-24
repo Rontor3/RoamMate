@@ -524,7 +524,7 @@ async def test_activities_for_place_accumulates_across_places():
 
 
 @pytest.mark.asyncio
-async def test_activities_for_place_routes_to_area_selected():
+async def test_activities_for_place_routes_to_areas_selected():
     from app.graph.nodes.intent import detect_intent
     state = {
         "destination": "Goa",

@@ -401,19 +401,20 @@ async def determine_action(stage: str, state: dict) -> tuple[str | None, dict | 
         return "show_area_cards", {"areas": areas}
 
     if stage == "areas_selected":
-        all_places: list[dict] = []
+        all_categories: list[dict] = []
         seen_ids: set[str] = set()
         for aid in state.get("selected_areas") or []:
             cats = await fetch_place_cards(state, area_id=aid)
             for cat in cats:
-                for p in cat.get("places", []):
-                    pid = p.get("id", "")
-                    if pid not in seen_ids:
-                        seen_ids.add(pid)
-                        all_places.append(p)
-        state["place_cards"] = all_places
+                deduped = [p for p in cat.get("places", []) if p.get("id") not in seen_ids]
+                for p in deduped:
+                    seen_ids.add(p.get("id", ""))
+                if deduped:
+                    all_categories.append({"label": cat.get("label", ""), "places": deduped})
+        state["place_cards"] = all_categories
+        flat_places = [p for cat in all_categories for p in cat["places"]]
         pending = state.get("pending_activities") or {}
-        return "show_place_cards", {"places": all_places, "pending_activities": pending}
+        return "show_place_cards", {"places": flat_places, "pending_activities": pending}
 
     if stage == "place_selected":
         activities = await _build_activity_options_for_place(state)
