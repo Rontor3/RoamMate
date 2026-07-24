@@ -177,16 +177,16 @@ async def test_fetch_area_cards_uses_branch_b_vibe_ids_for_cache_key():
 
 # ── resolve_stage ─────────────────────────────────────────────────────────────
 
-def test_resolve_stage_returns_area_selected_when_area_set():
+def test_resolve_stage_returns_areas_selected_when_area_set():
     from app.services.stage_machine import resolve_stage
-    state = {"destination": "Goa", "selected_area": "vagator"}
-    assert resolve_stage(state) == "area_selected"
+    state = {"destination": "Goa", "selected_areas": ["vagator"]}
+    assert resolve_stage(state) == "areas_selected"
 
 
-def test_resolve_stage_area_selected_takes_priority_over_vibes_confirmed():
+def test_resolve_stage_areas_selected_takes_priority_over_vibes_confirmed():
     from app.services.stage_machine import resolve_stage
-    state = {"destination": "Goa", "vibes_confirmed": True, "selected_area": "vagator"}
-    assert resolve_stage(state) == "area_selected"
+    state = {"destination": "Goa", "vibes_confirmed": True, "selected_areas": ["vagator"]}
+    assert resolve_stage(state) == "areas_selected"
 
 
 def test_resolve_stage_vibe_selected_still_works_without_area():
@@ -240,35 +240,35 @@ async def test_determine_action_vibe_selected_shows_area_cards():
 
 
 @pytest.mark.asyncio
-async def test_determine_action_area_selected_returns_stub():
+async def test_determine_action_areas_selected_returns_stub():
     from app.services.stage_machine import determine_action
     from unittest.mock import AsyncMock, patch
     with patch("app.services.stage_machine.fetch_place_cards", new_callable=AsyncMock, return_value=[]):
         action, payload = await determine_action(
-            "area_selected",
-            {"destination": "Goa", "selected_area": "vagator"}
+            "areas_selected",
+            {"destination": "Goa", "selected_areas": ["vagator"]}
         )
     assert action == "show_place_cards"
-    assert "categories" in payload
+    assert "places" in payload
     assert payload["pending_activities"] == {}
 
 
 # ── intent.py area_selected card action ──────────────────────────────────────
 
 @pytest.mark.asyncio
-async def test_area_selected_card_action_sets_selected_area_and_action():
+async def test_areas_selected_card_action_sets_selected_areas_and_action():
     from app.graph.nodes.intent import detect_intent
     state = {
-        "card_action": "area_selected",
-        "card_data": {"area_id": "vagator"},
+        "card_action": "areas_selected",
+        "card_data": {"area_ids": ["vagator"]},
         "destination": "Goa",
         "messages": [],
     }
-    with patch("app.graph.nodes.intent.resolve_stage", return_value="area_selected"):
+    with patch("app.graph.nodes.intent.resolve_stage", return_value="areas_selected"):
         with patch("app.graph.nodes.intent._stage_determine_action",
                    return_value=("show_place_cards", {"places": []})):
             result = await detect_intent(state)
-    assert result["selected_area"] == "vagator"
+    assert result["selected_areas"] == ["vagator"]
     assert result["card_action"] is None
     assert result["action"] == "show_place_cards"
     assert result["payload"] == {"places": []}

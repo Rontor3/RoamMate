@@ -214,10 +214,10 @@ async def _prefetch_area_reddit(
         pass
 
 
-async def fetch_place_cards(state: dict) -> list[dict]:
+async def fetch_place_cards(state: dict, area_id: str | None = None) -> list[dict]:
     """4-step pipeline: Groq categories → Maps search → rank → Groq hooks. Returns categorised place cards."""
     destination = state.get("destination", "")
-    area_id = state.get("selected_area", "")
+    area_id = area_id or (state.get("selected_areas") or [""])[0]
     experience_types = state.get("experience_types") or []
     selected_vibe_ids = state.get("selected_vibe_ids") or []
     travel_intent = state.get("travel_intent")
@@ -320,7 +320,7 @@ _STAGE_RULES: list[tuple] = [
 
     # Activity selection loop
     (lambda s: s.get("selected_place"),                               "place_selected"),
-    (lambda s: s.get("pending_activities"),                           "area_selected"),
+    (lambda s: s.get("pending_activities"),                           "areas_selected"),
     (lambda s: s.get("selected_activities"),                          "activities_selected"),
 
     # Place cards shown
@@ -328,7 +328,7 @@ _STAGE_RULES: list[tuple] = [
     (lambda s: s.get("places_shown"),                                 "places_shown"),
 
     # Area / vibe selection
-    (lambda s: s.get("selected_area"),                                "area_selected"),
+    (lambda s: bool(s.get("selected_areas")),                         "areas_selected"),
     (lambda s: s.get("vibes_confirmed"),                              "vibe_selected"),
 ]
 
@@ -362,7 +362,7 @@ async def _build_activity_options_for_place(state: dict) -> list[dict]:
     place_id = state.get("selected_place", "")
     place_name = _resolve_place_name(state)
     destination = state.get("destination", "")
-    area_id = state.get("selected_area", "")
+    area_id = (state.get("selected_areas") or [""])[0]
     intent = state.get("travel_intent")
     trip_who = state.get("trip_who")
     options = await build_activity_options(place_id, place_name, destination, area_id, intent, trip_who)
@@ -400,12 +400,20 @@ async def determine_action(stage: str, state: dict) -> tuple[str | None, dict | 
         areas = await fetch_area_cards(state)
         return "show_area_cards", {"areas": areas}
 
-    if stage == "area_selected":
-        categories = await fetch_place_cards(state)
-        return "show_place_cards", {
-            "categories": categories,
-            "pending_activities": state.get("pending_activities") or {},
-        }
+    if stage == "areas_selected":
+        all_places: list[dict] = []
+        seen_ids: set[str] = set()
+        for aid in state.get("selected_areas") or []:
+            cats = await fetch_place_cards(state, area_id=aid)
+            for cat in cats:
+                for p in cat.get("places", []):
+                    pid = p.get("id", "")
+                    if pid not in seen_ids:
+                        seen_ids.add(pid)
+                        all_places.append(p)
+        state["place_cards"] = all_places
+        pending = state.get("pending_activities") or {}
+        return "show_place_cards", {"places": all_places, "pending_activities": pending}
 
     if stage == "place_selected":
         activities = await _build_activity_options_for_place(state)

@@ -93,7 +93,7 @@ def _make_session_mock(content: str):
 
 _BASE_STATE = {
     "destination": "Goa",
-    "selected_area": "north_goa",
+    "selected_areas": ["north_goa"],
     "selected_places": ["chapora_fort"],
     "place_cards": [{"category": "Forts", "places": [{"id": "chapora_fort", "name": "Chapora Fort"}]}],
     "experience_types": ["beach_coast"],

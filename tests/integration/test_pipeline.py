@@ -200,8 +200,8 @@ async def test_full_pipeline_to_day_planner():
             r = await post("trip_duration_set", {"days": 3})
             assert r.status_code == 200
 
-            # Step 4: area_selected → show_place_cards
-            r = await post("area_selected", {"area_id": "north_goa"})
+            # Step 4: areas_selected → show_place_cards
+            r = await post("areas_selected", {"area_ids": ["north_goa"]})
             assert r.status_code == 200
             data = r.json()
             assert data["action"] == "show_place_cards"

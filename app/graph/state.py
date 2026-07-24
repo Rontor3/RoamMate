@@ -89,7 +89,7 @@ class GraphState(TypedDict, total=False):
 
     # ── Area cards — populated when destination is confirmed ──────────────────
     area_cards: List[Dict[str, Any]]  # preloaded area/neighbourhood cards
-    selected_area: str | None         # area_id chosen by the user
+    selected_areas: List[str]         # area_ids chosen by the user (multi-select)
 
     # ── Place cards — populated when area is selected ─────────────────────────
     place_cards: List[Dict[str, Any]]  # categorised place cards for selected area

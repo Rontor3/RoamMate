@@ -297,7 +297,7 @@ def test_resolve_stage_pending_activities_wins_over_selected_activities():
         "pending_activities": {"baga_beach": ["Sunrise Walk"]},
         "selected_activities": ["Sunrise Walk"],
     }
-    assert resolve_stage(state) == "area_selected"
+    assert resolve_stage(state) == "areas_selected"
 
 
 def test_resolve_stage_pending_activities_empty_dict_does_not_fire():
@@ -332,10 +332,10 @@ def test_resolve_stage_places_shown_with_duration():
     assert resolve_stage(state) == "places_shown"
 
 
-def test_resolve_stage_selected_area():
+def test_resolve_stage_selected_areas():
     from app.services.stage_machine import resolve_stage
-    state = {"destination": "Goa", "selected_area": "north_goa"}
-    assert resolve_stage(state) == "area_selected"
+    state = {"destination": "Goa", "selected_areas": ["north_goa"]}
+    assert resolve_stage(state) == "areas_selected"
 
 
 def test_resolve_stage_route_arc_highest_priority():
@@ -429,30 +429,30 @@ async def test_determine_action_place_selected_persists_activity_options_to_stat
 
 
 @pytest.mark.asyncio
-async def test_determine_action_area_selected_includes_pending_activities():
+async def test_determine_action_areas_selected_includes_pending_activities():
     from app.services.stage_machine import determine_action
     state = {
         "destination": "Goa",
-        "selected_area": "north_goa",
+        "selected_areas": ["north_goa"],
         "pending_activities": {"chapora_fort": ["Sunrise Trek"]},
     }
     with patch("app.services.stage_machine.fetch_place_cards", new_callable=AsyncMock) as mock_fetch:
         mock_fetch.return_value = [{"label": "Forts", "places": []}]
-        action, payload = await determine_action("area_selected", state)
+        action, payload = await determine_action("areas_selected", state)
     assert action == "show_place_cards"
     assert payload["pending_activities"] == {"chapora_fort": ["Sunrise Trek"]}
 
 
 @pytest.mark.asyncio
-async def test_determine_action_area_selected_pending_activities_defaults_to_empty():
+async def test_determine_action_areas_selected_pending_activities_defaults_to_empty():
     from app.services.stage_machine import determine_action
     state = {
         "destination": "Goa",
-        "selected_area": "north_goa",
+        "selected_areas": ["north_goa"],
     }
     with patch("app.services.stage_machine.fetch_place_cards", new_callable=AsyncMock) as mock_fetch:
         mock_fetch.return_value = []
-        action, payload = await determine_action("area_selected", state)
+        action, payload = await determine_action("areas_selected", state)
     assert action == "show_place_cards"
     assert payload["pending_activities"] == {}
 
@@ -464,7 +464,7 @@ async def test_activities_for_place_stores_in_pending_activities():
     from app.graph.nodes.intent import detect_intent
     state = {
         "destination": "Goa",
-        "selected_area": "north_goa",
+        "selected_areas": ["north_goa"],
         "selected_place": "chapora_fort",
         "card_action": "activities_for_place",
         "card_data": {
@@ -484,7 +484,7 @@ async def test_activities_for_place_clears_selected_place():
     from app.graph.nodes.intent import detect_intent
     state = {
         "destination": "Goa",
-        "selected_area": "north_goa",
+        "selected_areas": ["north_goa"],
         "selected_place": "chapora_fort",
         "card_action": "activities_for_place",
         "card_data": {
@@ -505,7 +505,7 @@ async def test_activities_for_place_accumulates_across_places():
     from app.graph.nodes.intent import detect_intent
     state = {
         "destination": "Goa",
-        "selected_area": "north_goa",
+        "selected_areas": ["north_goa"],
         "selected_place": "baga_beach",
         "pending_activities": {"chapora_fort": ["Sunrise Trek"]},
         "card_action": "activities_for_place",
@@ -528,7 +528,7 @@ async def test_activities_for_place_routes_to_area_selected():
     from app.graph.nodes.intent import detect_intent
     state = {
         "destination": "Goa",
-        "selected_area": "north_goa",
+        "selected_areas": ["north_goa"],
         "selected_place": "chapora_fort",
         "card_action": "activities_for_place",
         "card_data": {"place_id": "chapora_fort", "activities": ["Sunrise Trek"]},
@@ -537,7 +537,7 @@ async def test_activities_for_place_routes_to_area_selected():
     with patch("app.graph.nodes.intent._stage_determine_action", new_callable=AsyncMock) as mock_action:
         mock_action.return_value = ("show_place_cards", {"categories": [], "pending_activities": {"chapora_fort": ["Sunrise Trek"]}})
         result = await detect_intent(state)
-    assert result["conversation_stage"] == "area_selected"
+    assert result["conversation_stage"] == "areas_selected"
     assert result["skip_graph"] is True
     assert result["action"] == "show_place_cards"
 
@@ -547,7 +547,7 @@ async def test_activities_confirmed_flattens_pending_into_selected():
     from app.graph.nodes.intent import detect_intent
     state = {
         "destination": "Goa",
-        "selected_area": "north_goa",
+        "selected_areas": ["north_goa"],
         "pending_activities": {
             "chapora_fort": ["Sunrise Trek", "Cliff Photography"],
             "baga_beach": ["Sunset Swim"],
@@ -572,7 +572,7 @@ async def test_activities_confirmed_clears_pending_activities():
     from app.graph.nodes.intent import detect_intent
     state = {
         "destination": "Goa",
-        "selected_area": "north_goa",
+        "selected_areas": ["north_goa"],
         "pending_activities": {"chapora_fort": ["Sunrise Trek"]},
         "card_action": "activities_confirmed",
         "card_data": {},
@@ -629,7 +629,7 @@ async def test_place_selected_card_action_sets_activity_options():
     mock_activities = [{"id": "sunrise_trek", "label": "Sunrise Trek", "duration": "2h", "time": "morning", "vibe": "adventure"}]
     state = {
         "destination": "Goa",
-        "selected_area": "north_goa",
+        "selected_areas": ["north_goa"],
         "card_action": "place_selected",
         "card_data": {"place_id": "chapora_fort"},
         "place_cards": [

@@ -98,8 +98,8 @@ async def detect_intent(state: GraphState) -> GraphState:
         state["payload"] = payload
         return state
 
-    elif card_action == "area_selected":
-        state["selected_area"] = card_data.get("area_id", "")
+    elif card_action == "areas_selected":
+        state["selected_areas"] = card_data.get("area_ids", [])
         state["card_action"] = None
         state["skip_graph"] = True    # no data fetch needed
         stage = resolve_stage(state)

@@ -337,7 +337,7 @@ async def responder(state: GraphState) -> GraphState:
         "skip_graph": False,
         "destination_candidates": state.get("destination_candidates") or {},
         "area_cards": state.get("area_cards") or [],
-        "selected_area": state.get("selected_area"),
+        "selected_areas": state.get("selected_areas") or [],
         "place_cards": state.get("place_cards") or [],
         "selected_place": state.get("selected_place"),
         "pending_activities": state.get("pending_activities") or {},

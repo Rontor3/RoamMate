@@ -304,28 +304,28 @@ def test_resolve_stage_selected_place_wins_over_places_shown():
     assert resolve_stage(state) == "place_selected"
 
 
-def test_resolve_stage_area_selected_when_no_place():
-    """resolve_stage returns area_selected when selected_area is set but selected_place is not."""
+def test_resolve_stage_areas_selected_when_no_place():
+    """resolve_stage returns areas_selected when selected_areas is set but selected_place is not."""
     from app.services.stage_machine import resolve_stage
-    state = {"destination": "Goa", "selected_area": "vagator"}
-    assert resolve_stage(state) == "area_selected"
+    state = {"destination": "Goa", "selected_areas": ["vagator"]}
+    assert resolve_stage(state) == "areas_selected"
 
 
 @pytest.mark.asyncio
-async def test_determine_action_area_selected_calls_fetch_place_cards():
-    """determine_action for area_selected calls fetch_place_cards and returns show_place_cards."""
+async def test_determine_action_areas_selected_calls_fetch_place_cards():
+    """determine_action for areas_selected calls fetch_place_cards and returns show_place_cards."""
     from app.services.stage_machine import determine_action
     categories = [{"label": "Beaches", "places": [{"id": "x", "name": "X", "hook": "y", "photo_url": None}]}]
     state = {
-        "destination": "Goa", "selected_area": "vagator",
+        "destination": "Goa", "selected_areas": ["vagator"],
         "experience_types": [], "selected_vibe_ids": [],
         "travel_intent": None, "reddit_signals": {}, "blog_signals": {},
         "area_cards": [{"id": "vagator", "name": "Vagator"}],
     }
     with patch("app.services.stage_machine.fetch_place_cards", new_callable=AsyncMock, return_value=categories):
-        action, payload = await determine_action("area_selected", state)
+        action, payload = await determine_action("areas_selected", state)
     assert action == "show_place_cards"
-    assert payload["categories"] == categories
+    assert payload["places"] == [{"id": "x", "name": "X", "hook": "y", "photo_url": None}]
     assert payload["pending_activities"] == {}
 
 
