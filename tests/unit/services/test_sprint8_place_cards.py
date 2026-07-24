@@ -122,3 +122,32 @@ async def test_fetch_place_cards_includes_area_name():
         result = await fetch_place_cards(state, area_id="north_goa")
 
     assert result[0]["places"][0]["area"] == "North Goa"
+
+
+@pytest.mark.asyncio
+async def test_fetch_place_cards_invalid_vibe_id_defaults_to_adv():
+    from app.services.stage_machine import fetch_place_cards
+    state = {
+        "destination": "Goa",
+        "area_cards": [{"id": "north_goa", "label": "North Goa"}],
+        "selected_vibe_ids": [],
+    }
+    mock_cats = [{"label": "Beaches", "query": "beach surf water"}]
+    mock_hooks = {"baga": {"hook": "Party beach", "vibe_id": "adventure", "vibe_hint": "surfing"}}
+
+    with (
+        patch("app.services.stage_machine.get_cached", new_callable=AsyncMock, return_value=None),
+        patch("app.services.stage_machine.set_cached", new_callable=AsyncMock),
+        patch("app.services.stage_machine._groq_json", new_callable=AsyncMock, side_effect=[mock_cats, mock_hooks]),
+        patch("app.services.stage_machine.search_places", new_callable=AsyncMock, return_value=[
+            {"id": "baga", "name": "Baga Beach", "photo_url": None}
+        ]),
+        patch("app.services.stage_machine._rank_places_for_area",
+              return_value=[{"id": "baga", "name": "Baga Beach", "photo_url": None}]),
+        patch("asyncio.create_task"),
+    ):
+        result = await fetch_place_cards(state, area_id="north_goa")
+
+    places = [p for cat in result for p in cat.get("places", [])]
+    assert len(places) == 1
+    assert places[0]["vibe_id"] == "adv", "Invalid vibe_id 'adventure' should fall back to 'adv'"

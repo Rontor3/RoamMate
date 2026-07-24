@@ -306,7 +306,7 @@ async def fetch_place_cards(state: dict, area_id: str | None = None) -> list[dic
                 hook_str = raw.get("hook") or f"A great spot in {area_name}"
                 vibe_id_raw = raw.get("vibe_id", "adv")
                 vibe_id = vibe_id_raw if vibe_id_raw in _VALID_VIBE_IDS else "adv"
-                vibe_hint = raw.get("vibe_hint", "").rstrip(".,;")
+                vibe_hint = (raw.get("vibe_hint") or "").rstrip(".,;")
             elif isinstance(raw, str):
                 # backwards compat: Groq returned old flat string format
                 hook_str = raw
