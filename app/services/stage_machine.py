@@ -31,6 +31,7 @@ GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 _MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
 
 _ranker = Ranker()
+_VALID_VIBE_IDS = {"adv", "loc", "spt", "hid"}
 
 DEFAULT_PLACE_CATEGORIES: list[dict] = [
     {"label": "Things to Do", "query": "attractions activities things to do"},
@@ -303,8 +304,9 @@ async def fetch_place_cards(state: dict, area_id: str | None = None) -> list[dic
             raw = hooks.get(p["id"])
             if isinstance(raw, dict):
                 hook_str = raw.get("hook") or f"A great spot in {area_name}"
-                vibe_id = raw.get("vibe_id", "adv")
-                vibe_hint = raw.get("vibe_hint", "")
+                vibe_id_raw = raw.get("vibe_id", "adv")
+                vibe_id = vibe_id_raw if vibe_id_raw in _VALID_VIBE_IDS else "adv"
+                vibe_hint = raw.get("vibe_hint", "").rstrip(".,;")
             elif isinstance(raw, str):
                 # backwards compat: Groq returned old flat string format
                 hook_str = raw
